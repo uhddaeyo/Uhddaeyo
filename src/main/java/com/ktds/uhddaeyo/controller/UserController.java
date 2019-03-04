@@ -1,5 +1,8 @@
 package com.ktds.uhddaeyo.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -27,7 +30,7 @@ public class UserController {
 			return "login";
 		} else {
 			int type = (int) req.getSession().getAttribute("userType");
-			return (type == 1) ? "host" : "home";
+			return (type == 1) ? "home" : "host";
 		}
 	}
 
@@ -39,11 +42,11 @@ public class UserController {
 			int type = (int) session.getAttribute("userType");
 			switch (type) {
 			case 1:
-				model.setViewName("/host");
+				model.setViewName("/home");
 				model.addObject("msg", "success");
 				break;
 			case 2:
-				model.setViewName("/home");
+				model.setViewName("/host");
 				model.addObject("msg", "success");
 				break;
 			}

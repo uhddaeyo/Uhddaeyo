@@ -18,8 +18,9 @@ ${sessionScope.userId}(${sessionScope.userName })
 		<a href = "${path}/login">로그인</a>
 	</c:when>
 	<c:otherwise>
-		${sessionScope.userName } 님이 로그인 중입니다.
-		<a href = "${path}/logout">로그아웃</a>
+		${sessionScope.userName } 님이 로그인 중입니다. <br>
+		<a href = "${path}/logout">로그아웃</a> <br>
+		<a href = "${path}/historyList">나의 내역보기</a>
 	</c:otherwise>
 </c:choose>
 <P></P>

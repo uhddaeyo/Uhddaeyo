@@ -1,11 +1,18 @@
 package com.ktds.uhddaeyo.model.dto;
 
 public class UserDto {
+	private int no;
 	private String id;
 	private String passwd;
 	private String name;
 	private int type;
 	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public String getId() {
 		return id;
 	}
