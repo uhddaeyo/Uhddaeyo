@@ -5,10 +5,6 @@
 <!-- 해당 부분의 namespace는 project package + Mapper Package + Mapper Interface 이름입니다. -->
 <mapper namespace="com.ktds.uhddaeyo.mapper.UserMapper">
 <!-- 해당 부분의 id는 MapperClass의 함수 이름과 유사하여야 합니다. -->
-	<select id="selectlist"  resultType="com.ktds.uhddaeyo.model.dto.UserDto">
-		select id, name from user
-	</select>
-	
 	<select id="loginCheck" resultType="String">
 		SELECT name FROM user WHERE id = #{id} AND pw = #{passwd} 
 	</select>
@@ -17,4 +13,13 @@
 		SELECT id, pw AS passwd, name, type FROM user
 		WHERE id = #{id} AND pw = #{passwd}
 	</select>
+	
+	<select id="idCheck" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM user WHERE id = #{userId}
+	</select>
+	
+	<insert id="insertGuest" parameterType="com.ktds.uhddaeyo.model.dto.GuestDto">
+		INSERT INTO user (id, pw, name, tel, age, gender, type) VALUES
+		(#{id}, #{passwd}, #{name}, #{tel}, #{age}, #{gender}, 1)
+	</insert>
 </mapper>

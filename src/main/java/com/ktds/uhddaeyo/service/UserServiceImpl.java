@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ktds.uhddaeyo.mapper.UserMapper;
+import com.ktds.uhddaeyo.model.dto.GuestDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	@Autowired
 	UserMapper userMapper;
 
@@ -35,6 +36,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void logout(HttpSession session) {
 		session.invalidate();
+
+	}
+
+	@Override
+	public int idCheck(String userId) {
+		return userMapper.idCheck(userId);
+	}
+
+	@Override
+	public void insertGuest(GuestDto guest) {
+		userMapper.insertGuest(guest);
 		
 	}
 	

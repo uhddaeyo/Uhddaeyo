@@ -1,6 +1,6 @@
-package com.ktds.uhddaeyo.model.domain;
+package com.ktds.uhddaeyo.model.dto;
 
-public class User {
+public class GuestDto {
 	private String id;
 	private String passwd;
 	private String name;
