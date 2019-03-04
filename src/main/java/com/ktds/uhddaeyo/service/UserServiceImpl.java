@@ -37,7 +37,4 @@ public class UserServiceImpl implements UserService {
 		session.invalidate();
 		
 	}
-	
-	
-
 }
