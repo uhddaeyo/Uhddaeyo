@@ -36,7 +36,6 @@ public class UserController {
 
 	@RequestMapping("/loginCheck")
 	public ModelAndView loginCheck(UserDto user, HttpSession session) {
-		System.out.println(user.getId());
 		boolean rslt = userService.loginCheck(user, session);
 		ModelAndView model = new ModelAndView();
 		if (rslt == true) {

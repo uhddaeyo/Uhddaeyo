@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ktds.uhddaeyo.dao.UserDao;
 import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
@@ -13,40 +14,31 @@ import com.ktds.uhddaeyo.model.dto.UserDto;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	UserMapper userMapper;
+	UserDao userDao;
 
 	@Override
 	public boolean loginCheck(UserDto user, HttpSession session) {
-		String r = userMapper.loginCheck(user);
-		boolean rslt = (r == null) ? false : true;
-		if (rslt) {
-			UserDto user2 = viewMember(user);
-			session.setAttribute("userId", user2.getId());
-			session.setAttribute("userName", user2.getName());
-			session.setAttribute("userType", user2.getType());
-		}
-		return rslt;
+		return userDao.loginCheck(user, session);
 	}
 
 	@Override
 	public UserDto viewMember(UserDto user) {
-		return userMapper.viewMember(user);
+		return userDao.viewMember(user);
 	}
 
 	@Override
 	public void logout(HttpSession session) {
 		session.invalidate();
-
 	}
 
 	@Override
 	public int idCheck(String userId) {
-		return userMapper.idCheck(userId);
+		return userDao.idCheck(userId);
 	}
 
 	@Override
 	public void insertGuest(GuestDto guest) {
-		userMapper.insertGuest(guest);
+		userDao.insertGuest(guest);
 		
 	}
 	
