@@ -46,6 +46,11 @@ public class UserServiceImpl implements UserService {
 	public List<Map<String, Object>> selectHistory(int userNo) {
 		return userMapper.selectHistory(userNo);
 	}
+
+	@Override
+	public String reviewDetail(int placeNo) {
+		return userMapper.reviewDetail(placeNo);
+	}
 	
 	
 

@@ -17,4 +17,6 @@ public interface UserService {
 
 	public List<Map<String, Object>> selectHistory(int userNo);
 
+	public String reviewDetail(int placeNo);
+
 }

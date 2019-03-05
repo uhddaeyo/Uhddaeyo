@@ -12,4 +12,5 @@ public interface UserMapper {
 	public UserDto viewMember(UserDto user);
 	public void logout(HttpSession session);
 	public List<Map<String, Object>> selectHistory(int userNo);
+	public String reviewDetail(int placeNo);
 }

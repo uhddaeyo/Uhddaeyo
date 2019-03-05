@@ -5,7 +5,17 @@
 <html>
 <head>
 	<title>나의 이용내역</title>
-</head>
+</head> 
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('.review').on("click",function(){
+			var popUrl = "/reviewDetail?place_no="+$(this).attr("id");
+			var popOption = "width=500, height=600, resizeable=no, scrollbar=no, status=no";
+			window.open(popUrl,"",popOption);
+		})
+	});
+</script>
 <body>
 	<h2>나의 이용내역</h2>
 	<table class="history_list">
@@ -15,7 +25,6 @@
 			<col width="15%"/>
 			<col width="20%"/>
 		</colgroup>
-		
 		<thead>
 			<tr>
 				<th scope="col">가게이름</th>
@@ -32,7 +41,7 @@
 							<td>${row.place_name}</td>
 							<td>${row.address}</td>
 							<td>${row.resv_date}</td>
-							<td>리뷰작성</td>
+							<td class="review" id="${row.place_no}"><a href="#">리뷰작성하기</a></td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -41,7 +50,7 @@
 						<td colspan="4"> 조회된 결과가 없습니다.</td>
 					</tr>
 				</c:otherwise>
-			</c:choose>
+			</c:choose>,
 		</tbody>
 	</table>
 </body>

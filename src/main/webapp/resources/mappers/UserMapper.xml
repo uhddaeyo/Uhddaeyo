@@ -19,7 +19,11 @@
 	</select>
 	
 	<select id="selectHistory" resultType="hashmap">
-		SELECT place_name, address, resv_date FROM history
+		SELECT place_no, place_name, address, resv_date FROM VIEW_history__project_db__suggestion__place
 		WHERE user_no = #{userNo} and isresv = 'Y'
+	</select>
+	
+	<select id="reviewDetail" resultType="String">
+		SELECT place_name FROM place where place_no = #{placeNo}
 	</select>
 </mapper>
