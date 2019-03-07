@@ -41,14 +41,13 @@ ${sessionScope.userId}(${sessionScope.userName })
 				<th scope="col">메세지</th>
 				<th scope="col">예약일</th>
 				<th scope="col">예약취소</th>
-				
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${ReservationList}" var="resv">
 				<tr>
-					<td>${resv.plcae_no}kk</td>
-					<td>${resv.plcae_no}</td>
+					<td>${resv.place_no}</td>
+					<td>${resv.place_no}</td>
 					<td>${resv.message}</td>
 					<td>${resv.resv_date}</td>
 					<td><input type="button" id="cancle" value="취소하기"></td>
