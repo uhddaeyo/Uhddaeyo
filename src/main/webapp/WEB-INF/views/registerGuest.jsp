@@ -23,20 +23,39 @@
 					if (data.cnt > 0) {
 						alert('아이디가 존재합니다. 다른 아이디를 입력해주세요');
 						$('#id').focus();
-						$('#submit').attr("disabled", "disabled");
+						$('#submitBtn').attr("disabled", "disabled");
 					} else {
 						alert('사용 가능한 아이디입니다.');
 						$('#passwd').focus();
 						// 아이디가 중복하지 않으면
-						$('#submit').removeAttr("disabled");
+						$('#submitBtn').removeAttr("disabled");
 					}
 				},
 				error : function(e) {
-					alert('error : ' + e);
+					alert('아이디를 입력하세요!');
 				}
-			})
-		})
+			});
+		});
+		
 	});
+	
+	function clickSubmit(){
+		var passwd = document.getElementById('passwd').value;
+		var passwdCon = document.getElementById('passwdCon').value;
+		var target = document.getElementById('age');
+		if(passwd != passwdCon){
+			alert('비밀번호가 일치하지 않습니다!');
+			return;
+		} else if(target.options[target.selectedIndex].value == '나이대 선택'){
+			alert('나이를 선택하세요!');
+			return;
+		} else {
+			document.form1.action='/guest/signUp';
+			document.form1.submit();
+		}
+	}
+	
+
 </script>
 </head>
 <body>
@@ -48,7 +67,7 @@
 		<table width="600px">
 			<tr>
 				<td>
-					<form name="form" method="post" class="form-signin"
+					<form id="form1" name="form1" method="post" class="form-signin"
 						action="/guest/signUp">
 						<label for="id">아이디</label> <input type="text" id="id" name="id"
 							class="form-control" placeholder="아이디를 입력하세요" required autofocus>
@@ -77,8 +96,8 @@
 								<option value=60>60대</option>
 							</select>
 						</div>
-						<input type="submit" class="btn btn-ln btn-danger btn-block"
-							id="submit" disabled="disabled" value="Sign Up">
+						<input type="button" class="btn btn-ln btn-danger btn-block"
+						 id="submitBtn" onclick="clickSubmit();" disabled="disabled" value="Sign Up">
 					</form>
 				</td>
 			</tr>

@@ -55,6 +55,10 @@
 		<form method="GET" action="/guest/signUp">
 			<input type="submit" value="회원가입">
 		</form>
+		
+		<form method="GET" action="/host/signUp">
+			<input type="submit" value="점주회원가입">
+		</form>
 	</div>
 </body>
 </html>

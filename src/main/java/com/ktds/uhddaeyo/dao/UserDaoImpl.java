@@ -1,5 +1,7 @@
 package com.ktds.uhddaeyo.dao;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
+import com.ktds.uhddaeyo.model.dto.HashTagDto;
+import com.ktds.uhddaeyo.model.dto.HostDto;
+import com.ktds.uhddaeyo.model.dto.PicDto;
+import com.ktds.uhddaeyo.model.dto.PlaceDto;
+import com.ktds.uhddaeyo.model.dto.PlaceTagDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 
 @Repository
@@ -50,4 +57,35 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
+	@Override
+	public void insertHost(HostDto host) {
+		userMapper.insertHost(host);
+
+	}
+
+	@Override
+	public void insertPlace(PlaceDto place) {
+		userMapper.insertPlace(place);
+		
+	}
+
+	@Override
+	public void insertPicture(List<PicDto> pic) {
+		userMapper.insertPicture(pic);
+		
+	}
+
+	@Override
+	public List<HashTagDto> selectHashTags() {
+		return userMapper.selectHashTags();
+	}
+
+	@Override
+	public void insertPlaceTags(List<PlaceTagDto> tag) {
+		userMapper.insertPlaceTags(tag);
+		
+	}
+	
+	
+	
 }
