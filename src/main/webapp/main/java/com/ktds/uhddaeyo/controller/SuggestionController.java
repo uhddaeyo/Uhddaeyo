@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ktds.uhddaeyo.model.dto.SuggestionDto;
+import com.ktds.uhddaeyo.service.HashTagService;
 import com.ktds.uhddaeyo.service.SuggestionService;
 
 @Controller
@@ -20,7 +21,10 @@ public class SuggestionController {
 	
 	@Inject
 	SuggestionService service;
-		
+	
+	@Inject
+	HashTagService hashService;
+	
 	@RequestMapping(value = "/suggestion", method=RequestMethod.POST)
 	public String PopupSuggestion(@RequestParam int width, @RequestParam int height, HttpServletRequest request, SuggestionDto sdto ,Model model) {
 		
@@ -30,17 +34,13 @@ public class SuggestionController {
 		
 		SuggestionDto resultDto = service.selectSuggestion(sdto);
 		
-		List<String> pictures = service.selectPicturesByPlaceNo(sdto.getPlace_no());
-		model.addAttribute("pictures", pictures);
-		System.out.println(pictures);
-		
 		List<String> tags = new ArrayList<String>();
 		if (resultDto == null)
 			System.out.println("NULL");
 		else  {
 			resultDto.setMessage(resultDto.getMessage().replace("\n", "<br>"));
 			System.out.println(resultDto.toString());
-			tags = service.selectTagsByPlaceNo(resultDto.getPlace_no());
+			tags = hashService.selectTagsByPlaceNo(resultDto.getPlace_no());
 			model.addAttribute("tags", tags);
 		}
 		
@@ -51,7 +51,6 @@ public class SuggestionController {
 		model.addAttribute("imgWidth", imgWidth);
 		model.addAttribute("imgHeight", imgHeight);
 		model.addAttribute("SugDto", resultDto);
-		
 		
 		return "suggestion";
 	}

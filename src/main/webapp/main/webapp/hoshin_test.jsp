@@ -11,7 +11,7 @@
 	function suggestionPopup() {
 		var sugForm = document.sug_form;
 		var popupWidth = 430;
-		var popupHeight = 800;
+		var popupHeight = 700;
  		var sugUrl = "suggestion";
  		var popOption = "width=" + popupWidth + ", height= " + popupHeight
 				+ ", left=" + (window.screen.width - popupWidth) / 2 + ", top="

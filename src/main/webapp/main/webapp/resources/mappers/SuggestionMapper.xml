@@ -13,13 +13,4 @@
 	<update id="acceptSuggestion" parameterType="com.ktds.uhddaeyo.model.dto.SuggestionDto">
 		UPDATE suggestion SET isresv = 'Y' WHERE place_no = #{place_no} AND user_no = #{user_no};
 	</update>
-	
-	<select id="selectTagsByPlaceNo"  resultType="String">
-		SELECT tag_contents FROM hash_tag AS ht JOIN hash_tag_list AS htl
-		 ON ht.tag_list_no = htl.tag_list_no WHERE place_no = #{place_no};
-	</select>
-	
-	<select id="selectPicturesByPlaceNo" resultType="String">
-		SELECT photo_name FROM picture WHERE place_no = #{place_no};
-	</select>
 </mapper>
