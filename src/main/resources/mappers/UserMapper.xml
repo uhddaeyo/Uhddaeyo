@@ -24,8 +24,10 @@
 	</insert>
 	
 	<select id="selectReservationList" resultType="com.ktds.uhddaeyo.model.dto.ReservationDto">
-		SELECT sug_no, place_no, user_no, sug_date, resv_date, isresv, message FROM suggestion
-		WHERE isresv = 'Y' and date(resv_date) > date(now())
+		SELECT place_name, address, message, resv_date FROM suggestion, place
+		WHERE place.place_no = suggestion.place_no
+		and isresv = 'Y' and date(resv_date) > date(now())
+		
 		<!-- WHERE user_no = #{id} -->
 	</select>
 </mapper>

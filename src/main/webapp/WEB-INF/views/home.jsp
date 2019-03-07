@@ -46,8 +46,8 @@ ${sessionScope.userId}(${sessionScope.userName })
 		<tbody>
 			<c:forEach items="${ReservationList}" var="resv">
 				<tr>
-					<td>${resv.place_no}</td>
-					<td>${resv.place_no}</td>
+					<td>${resv.place_name}</td>
+					<td>${resv.address}</td>
 					<td>${resv.message}</td>
 					<td>${resv.resv_date}</td>
 					<td><input type="button" id="cancle" value="취소하기"></td>
