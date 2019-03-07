@@ -129,4 +129,5 @@ public class SuggestionDto {
 				+ ", place_tel=" + place_tel + ", capacity=" + capacity + ", start_time=" + start_time + ", end_time="
 				+ end_time + ", address=" + address + ", message=" + message + "]";
 	}
+	
 }

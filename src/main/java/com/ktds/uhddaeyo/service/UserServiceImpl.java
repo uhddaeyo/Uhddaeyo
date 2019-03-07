@@ -10,7 +10,6 @@ import com.ktds.uhddaeyo.model.dto.UserDto;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
 	@Autowired
 	UserMapper userMapper;
 
@@ -35,6 +34,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void logout(HttpSession session) {
 		session.invalidate();
-		
+
 	}
 }

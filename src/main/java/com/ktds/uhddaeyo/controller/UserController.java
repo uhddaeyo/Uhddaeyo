@@ -14,7 +14,6 @@ import com.ktds.uhddaeyo.service.UserService;
 
 @Controller
 public class UserController {
-
 	@Autowired
 	UserService memberService;
 

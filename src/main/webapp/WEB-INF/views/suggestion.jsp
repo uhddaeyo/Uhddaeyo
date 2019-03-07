@@ -33,7 +33,6 @@
 		self.close();
 	}
 </script>
-
 <script type="text/javascript">
 	function showAllImages() {
 		alert("hi");

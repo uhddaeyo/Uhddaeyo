@@ -18,16 +18,18 @@ public class SuggestionServiceImpl implements SuggestionService {
 	public SuggestionDto selectSuggestion(SuggestionDto sdto) {
 		return mapper.selectSuggestion(sdto);
 	}
+
 	@Override
 	public boolean acceptSuggestion(SuggestionDto sdto) {
 		return mapper.acceptSuggestion(sdto);
 	}
+
 	@Override
 	public List<String> selectTagsByPlaceNo(int place_no) {
 		return mapper.selectTagsByPlaceNo(place_no);
 	}
-	
-	 @Override
+
+	@Override
 	public List<String> selectPicturesByPlaceNo(int place_no) {
 		return mapper.selectPicturesByPlaceNo(place_no);
 	}

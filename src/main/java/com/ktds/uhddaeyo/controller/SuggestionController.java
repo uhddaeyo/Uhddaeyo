@@ -25,7 +25,6 @@ public class SuggestionController {
 	public String PopupSuggestion(@RequestParam int width, @RequestParam int height, HttpServletRequest request, SuggestionDto sdto ,Model model) {
 		
 //		sdto.setUser_no((int)request.getSession().getAttribute("user_no"));
-		
 		sdto.setUser_no(3); // 로그인 시 user_no 를 가져오게 수정한 후 위 두 줄의 주석 상태를 바꿈
 		
 		SuggestionDto resultDto = service.selectSuggestion(sdto);

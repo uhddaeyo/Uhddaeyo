@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <title>Insert title here</title>
 
 <script type="text/javascript">
