@@ -1,13 +1,18 @@
 package com.ktds.uhddaeyo.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Locale;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,11 +20,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.uhddaeyo.model.dto.GuestDto;
+import com.ktds.uhddaeyo.model.dto.ReservationDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 import com.ktds.uhddaeyo.service.UserService;
 
 @Controller
 public class UserController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	UserService userService;
@@ -88,6 +96,18 @@ public class UserController {
 		m.setViewName("/home");
 		return m;
 
+	}
+	
+	@RequestMapping(value = "/loginCheck", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) throws Exception{
+		
+		logger.info("home");
+		List<ReservationDto> ReservationList = userService.selectReservationList();
+		
+		model.addAttribute("ReservationList", ReservationList);
+		
+		return "home";
+		
 	}
 
 }

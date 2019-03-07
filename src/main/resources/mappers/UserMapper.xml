@@ -22,4 +22,10 @@
 		INSERT INTO user (id, pw, name, tel, age, gender, type) VALUES
 		(#{id}, #{passwd}, #{name}, #{tel}, #{age}, #{gender}, 1)
 	</insert>
+	
+	<select id="selectReservationList" resultType="com.ktds.uhddaeyo.model.dto.ReservationDto">
+		SELECT sug_no, place_no, user_no, sug_date, resv_date, isresv, message FROM suggestion
+		WHERE isresv = 'Y' and date(resv_date) > date(now())
+		<!-- WHERE user_no = #{id} -->
+	</select>
 </mapper>

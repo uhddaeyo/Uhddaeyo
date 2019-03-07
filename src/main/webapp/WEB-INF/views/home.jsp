@@ -23,5 +23,39 @@ ${sessionScope.userId}(${sessionScope.userName })
 	</c:otherwise>
 </c:choose>
 <P></P>
+
+<h2>나의 예약내역</h2>
+	<table>
+		<colgroup>
+			<col width="10%"/>
+			<col width="30%"/>
+			<col width="30%"/>
+			<col width="25%"/>
+			<col width="10%"/>
+			
+		</colgroup>
+		<thead>
+			<tr>
+				<th scope="col">가게이름</th>
+				<th scope="col">가게주소</th>
+				<th scope="col">메세지</th>
+				<th scope="col">예약일</th>
+				<th scope="col">예약취소</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${ReservationList}" var="resv">
+				<tr>
+					<td>${resv.plcae_no}kk</td>
+					<td>${resv.plcae_no}</td>
+					<td>${resv.message}</td>
+					<td>${resv.resv_date}</td>
+					<td><input type="button" id="cancle" value="취소하기"></td>
+				</tr>
+			</c:forEach>
+			
+		</tbody>
+	</table>
 </body>
 </html>

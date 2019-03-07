@@ -1,8 +1,11 @@
 package com.ktds.uhddaeyo.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.ktds.uhddaeyo.model.dto.GuestDto;
+import com.ktds.uhddaeyo.model.dto.ReservationDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;;
 
 public interface UserService {
@@ -16,5 +19,7 @@ public interface UserService {
 	public int idCheck(String userId);
 	
 	public void insertGuest(GuestDto guest);
+	
+	public List<ReservationDto> selectReservationList() throws Exception;
 
 }

@@ -1,5 +1,7 @@
 package com.ktds.uhddaeyo.dao;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
+import com.ktds.uhddaeyo.model.dto.ReservationDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 
 @Repository
@@ -49,5 +52,6 @@ public class UserDaoImpl implements UserDao {
 		userMapper.insertGuest(guest);
 
 	}
+
 
 }
