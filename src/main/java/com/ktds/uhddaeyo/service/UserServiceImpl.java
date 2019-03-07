@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ktds.uhddaeyo.mapper.UserMapper;
+import com.ktds.uhddaeyo.model.dto.ReviewDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 
 @Service
@@ -51,7 +52,9 @@ public class UserServiceImpl implements UserService {
 	public String reviewDetail(int placeNo) {
 		return userMapper.reviewDetail(placeNo);
 	}
-	
-	
 
+	@Override
+	public void insertReview(ReviewDto review) {
+		userMapper.insertReview(review);
+	}
 }

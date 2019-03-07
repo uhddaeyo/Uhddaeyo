@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.ktds.uhddaeyo.model.dto.ReviewDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;;
 
 public interface UserService {
@@ -18,5 +19,7 @@ public interface UserService {
 	public List<Map<String, Object>> selectHistory(int userNo);
 
 	public String reviewDetail(int placeNo);
+
+	public void insertReview(ReviewDto review);
 
 }

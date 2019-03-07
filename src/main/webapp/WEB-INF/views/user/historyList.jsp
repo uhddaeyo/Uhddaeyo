@@ -1,17 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>나의 이용내역</title>
+<%@ include file="/WEB-INF/include/include-header.jsp" %>
 </head> 
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 	$(document).ready(function(){
 		$('.review').on("click",function(){
 			var popUrl = "/reviewDetail?place_no="+$(this).attr("id");
-			var popOption = "width=500, height=600, resizeable=no, scrollbar=no, status=no";
+			var popOption = "width=350, height=450, resizeable=no, scrollbar=no, status=no";
 			window.open(popUrl,"",popOption);
 		})
 	});
