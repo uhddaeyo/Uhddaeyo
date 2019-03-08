@@ -1,6 +1,8 @@
 package com.ktds.uhddaeyo.mapper;
 
 import java.util.List;
+import java.util.Map;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import com.ktds.uhddaeyo.model.dto.HostDto;
 import com.ktds.uhddaeyo.model.dto.PicDto;
 import com.ktds.uhddaeyo.model.dto.PlaceDto;
 import com.ktds.uhddaeyo.model.dto.PlaceTagDto;
+import com.ktds.uhddaeyo.model.dto.ReviewDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;;
 
 public interface UserMapper {
@@ -26,4 +29,7 @@ public interface UserMapper {
 	public void deleteUser(int userNo);
 	public void deletePlace(int placeNo);
 	public void deletePic(int placeNo);
+	public List<Map<String, Object>> selectHistory(int userNo);
+	public String reviewDatail(int placeNo);
+	public void insertReview(ReviewDto review);
 }

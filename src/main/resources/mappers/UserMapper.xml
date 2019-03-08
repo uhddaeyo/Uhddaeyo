@@ -80,4 +80,17 @@
 	<delete id="deletePic" parameterType="Integer">
 		DELETE FROM picture WHERE place_no = #{placeNo}
 	</delete>
+	<select id="selectHistory" resultType="hashmap">
+		SELECT place_no, place_name, address, resv_date FROM VIEW_history__project_db__suggestion__place
+		WHERE user_no = #{userNo} and isresv = 'Y'
+	</select>
+	
+	<select id="reviewDatail" resultType="String">
+		SELECT place_name FROM place where place_no = #{placeNo}
+	</select>
+	
+	<insert id="insertReview" parameterType="com.ktds.uhddaeyo.model.dto.ReviewDto">
+		INSERT INTO comment(place_no,user_no,comment,star)
+		VALUES(#{place_no},#{user_no}, #{review}, #{star})
+	</insert>
 </mapper>

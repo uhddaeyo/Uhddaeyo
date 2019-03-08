@@ -100,7 +100,6 @@ public class UserController {
 		ModelAndView m = new ModelAndView();
 		m.setViewName("/home");
 		return m;
-
 	}
 
 	@RequestMapping(value = "/host/signUp", method = RequestMethod.GET)

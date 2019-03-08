@@ -54,8 +54,6 @@
 			document.form1.submit();
 		}
 	}
-	
-
 </script>
 </head>
 <body>
