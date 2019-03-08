@@ -23,4 +23,7 @@ public interface UserMapper {
 	public void insertPicture(List<PicDto> pic);
 	public List<HashTagDto> selectHashTags();
 	public void insertPlaceTags(List<PlaceTagDto> tag);
+	public void deleteUser(int userNo);
+	public void deletePlace(int placeNo);
+	public void deletePic(int placeNo);
 }

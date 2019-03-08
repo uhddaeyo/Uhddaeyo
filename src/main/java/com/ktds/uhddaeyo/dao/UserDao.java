@@ -23,4 +23,5 @@ public interface UserDao {
 	public void insertPicture(List<PicDto> pic);
 	public List<HashTagDto> selectHashTags();
 	public void insertPlaceTags(List<PlaceTagDto> tag);
+	public void cancelJoin(int userNo, int placeNo);
 }

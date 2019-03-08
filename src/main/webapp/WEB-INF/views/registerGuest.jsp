@@ -99,6 +99,7 @@
 						<input type="button" class="btn btn-ln btn-danger btn-block"
 						 id="submitBtn" onclick="clickSubmit();" disabled="disabled" value="Sign Up">
 					</form>
+					<button type="button" onclick="location.href='/login'">취소</button>
 				</td>
 			</tr>
 		</table>

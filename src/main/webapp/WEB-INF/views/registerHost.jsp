@@ -73,7 +73,7 @@
 						<form:input type="text" id="id" path="id" cssClass="form-control"
 							placeholder="아이디를 입력하세요" required="required" />
 						<input type="button" id="idck"
-							class="btn btn-outline-danger my-2 my-sm-0" value="중복 확인" />
+							class="btn btn-outline-danger my-2 my-sm-0" value="중복 확인" /><br />
 						<label for="passwd">비밀번호</label>
 						<form:input type="password" id="passwd" path="passwd"
 							class="form-control" placeholder="비밀번호를 입력하세요"
@@ -95,30 +95,30 @@
 						<h2>가게 정보</h2>
 						<label for="placeName">상호명</label>
 						<form:input type="text" path="place.placeName"
-							id="place.placeName" required="required" />
+							id="place.placeName" required="required" /><br />
 						<label for="placeTel">전화번호</label>
 						<form:input type="text" path="place.placeTel" id="place.placeTel"
-							required="required" />
+							required="required" /><br />
 						<label for="capacity">최대 수용 인원</label>
 						<form:input type="text" path="place.capacity" id="place.capacity"
-							required="required" />
+							required="required" /><br />
 						<label>영업시간</label>
 						<form:input type="time" class='form-control' step="1800"
 							path="place.startTime" id="place.startTime" required="required" />
 						<form:input type="time" class='form-control' step="1800"
-							path="place.endTime" id="place.endTime" required="required" />
+							path="place.endTime" id="place.endTime" required="required" /><br />
 						<label for="address">주소</label>
 						<form:input type="text" path="place.address" id="place.address"
-							required="required" />
+							required="required" /><br />
 						<label for="picture">사진</label>
 						<div id="pic">
 							<input type="file" multiple="multiple" id="pic1"
 								class="form-control" name="pic" required="required">
 						</div>
-						<button id="addPic">사진 추가</button>
 						<input type="submit" class="btn btn-ln btn-danger btn-block"
 							id="submitBtn" onclick="clickSubmit();" value="Sign Up"
 							disabled="disabled">
+							<button type="button" onclick="location.href='/login'">취소</button>
 					</form:form></td>
 			</tr>
 		</table>

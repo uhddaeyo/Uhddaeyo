@@ -9,10 +9,16 @@
 </head>
 <body>
 	<%@include file="header.jsp"%>
-	<h2>
-		<c:out value="${placeNo}" />
-	</h2>
+
 	<form method="post" action="/host/tag">
+		<h3>분류</h3>
+		<c:forEach var="tag" items="${hashTagList}">
+			<c:if test="${tag.category.equals('분류') }">
+				<input type="radio" name="classify" value="${tag.content}" />
+				<c:out value="${tag.content }" />
+			</c:if>
+		</c:forEach>
+		
 		<h3>방문 목적</h3>
 		<c:forEach var="tag" items="${hashTagList}">
 			<c:if test="${tag.category.equals('방문목적') }">
@@ -46,6 +52,12 @@
 		</c:forEach>
 		<input type="hidden" name="placeNo" value="${placeNo }" /> <input
 			type="submit" value="전송" />
+	</form>
+	
+	<form method="post" action="/host/back">
+	<input type="hidden" name="placeNo" value="${placeNo }" />
+	<input type="hidden" name="userNo" value="${userNo }" />
+	<input type="submit" value="가입 취소" />
 	</form>
 </body>
 </html>

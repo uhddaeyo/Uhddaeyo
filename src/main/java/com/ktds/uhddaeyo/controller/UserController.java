@@ -144,19 +144,26 @@ public class UserController {
 		m.setViewName("category");
 		m.addObject("hashTagList", hashTagList);
 		m.addObject("placeNo", host.getPlace().getPlaceNo());
+		m.addObject("userNo", host.getUserNo());
 		return m;
 	}
 
 	@RequestMapping(value = "/host/tag", method = RequestMethod.POST)
-	public String tagInsert(@RequestParam("tag") List<String> tags, @RequestParam("placeNo") int placeNo) {
+	public String tagInsert(@RequestParam("tag") List<String> tags, @RequestParam("placeNo") int placeNo, @RequestParam("classify") String classify) {
 
 		List<PlaceTagDto> list = new ArrayList<>();
-
+		list.add(new PlaceTagDto(placeNo, classify));
+		
 		for (String tag : tags) {
 			list.add(new PlaceTagDto(placeNo, tag));
 		}
-
 		userService.insertPlaceTags(list);
+		return "home";
+	}
+	
+	@RequestMapping(value = "/host/back", method = RequestMethod.POST)
+	public String cancelJoin(@RequestParam("placeNo") int placeNo, @RequestParam("userNo") int userNo) {
+		userService.cancelJoin(userNo, placeNo);
 		return "home";
 	}
 

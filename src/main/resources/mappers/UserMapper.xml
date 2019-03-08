@@ -68,4 +68,16 @@
 			(#{tag.placeNo}, #{tag.content})
 		</foreach>
 	</insert>
+	
+	<delete id="deleteUser" parameterType="Integer">
+		DELETE FROM user WHERE user_no = #{userNo}
+	</delete>
+	
+	<delete id="deletePlace" parameterType="Integer">
+		DELETE FROM place WHERE place_no = #{placeNo}
+	</delete>
+	
+	<delete id="deletePic" parameterType="Integer">
+		DELETE FROM picture WHERE place_no = #{placeNo}
+	</delete>
 </mapper>

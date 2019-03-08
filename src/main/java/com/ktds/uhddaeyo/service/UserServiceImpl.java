@@ -76,5 +76,14 @@ public class UserServiceImpl implements UserService {
 		userDao.insertPlaceTags(tag);
 		
 	}
+
+	@Override
+	public void cancelJoin(int userNo, int placeNo) {
+		userDao.cancelJoin(userNo, placeNo);
+		
+	}
+
+	
+	
 	
 }

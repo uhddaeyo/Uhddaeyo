@@ -85,7 +85,12 @@ public class UserDaoImpl implements UserDao {
 		userMapper.insertPlaceTags(tag);
 		
 	}
-	
-	
+
+	@Override
+	public void cancelJoin(int userNo, int placeNo) {
+		userMapper.deletePic(placeNo);
+		userMapper.deletePlace(placeNo);
+		userMapper.deleteUser(userNo);
+	}		
 	
 }
