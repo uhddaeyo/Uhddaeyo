@@ -1,5 +1,8 @@
 package com.ktds.uhddaeyo.service;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import com.ktds.uhddaeyo.model.dto.UserDto;
 
 @Service
 public class UserServiceImpl implements UserService {
+	
 	@Autowired
 	UserMapper userMapper;
 
@@ -34,6 +38,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void logout(HttpSession session) {
 		session.invalidate();
-
+		
 	}
 }

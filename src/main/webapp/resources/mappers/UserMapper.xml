@@ -16,5 +16,5 @@
 	<select id="viewMember" resultType="com.ktds.uhddaeyo.model.dto.UserDto">
 		SELECT id, pw AS passwd, name, type FROM user
 		WHERE id = #{id} AND pw = #{passwd}
-	</select>
+	</select>	
 </mapper>

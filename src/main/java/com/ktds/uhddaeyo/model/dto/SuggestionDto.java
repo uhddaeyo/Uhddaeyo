@@ -7,16 +7,16 @@ public class SuggestionDto {
 	private int sug_no;
 	private int place_no;
 	private int user_no;
-	private Timestamp sug_date;
+	private Timestamp sug_date; 
 	private Timestamp resv_date;
 	private String isresv;
 	private String place_name;
-	private String place_tel;
-	private int capacity;
-	private Time start_time;
-	private Time end_time;
-	private String address;
-	private String message;
+	private String place_tel; 
+	private int capacity; 
+	private Time start_time; 
+	private Time end_time; 
+	private String address; 
+	private String message; 
 
 	public int getCapacity() {
 		return capacity;

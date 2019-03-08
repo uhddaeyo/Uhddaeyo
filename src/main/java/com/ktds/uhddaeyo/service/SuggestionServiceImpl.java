@@ -33,4 +33,9 @@ public class SuggestionServiceImpl implements SuggestionService {
 	public List<String> selectPicturesByPlaceNo(int place_no) {
 		return mapper.selectPicturesByPlaceNo(place_no);
 	}
+
+	@Override
+	public List<SuggestionDto> selectSuggestionList(int user_no) {
+		return mapper.selectSuggestionList(user_no);
+	}
 }

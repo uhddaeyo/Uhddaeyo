@@ -12,4 +12,6 @@ public interface SuggestionService {
 	public List<String> selectTagsByPlaceNo(int place_no);
 
 	public List<String> selectPicturesByPlaceNo(int place_no);
+
+	public List<SuggestionDto> selectSuggestionList(int user_no);
 }

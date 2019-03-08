@@ -51,6 +51,7 @@
 		<c:forEach items="${pictures }" var="picture">
 			<img class="place_img" alt="No Image" src="/resources/placeImages/${picture }">
 		</c:forEach>
+	
 	</div>
 
 	<h3 class="textClass">${SugDto.place_name}</h3>
