@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void insertGuest(GuestDto guest) {
 		userDao.insertGuest(guest);
-    
+
 	}
 
 	@Override
@@ -59,13 +59,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void insertPlace(PlaceDto place) {
 		userDao.insertPlace(place);
-		
+
 	}
 
 	@Override
 	public void insertPicture(List<PicDto> pic) {
 		userDao.insertPicture(pic);
-		
+
 	}
 
 	@Override
@@ -76,13 +76,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void insertPlaceTags(List<PlaceTagDto> tag) {
 		userDao.insertPlaceTags(tag);
-		
+
 	}
 
 	@Override
 	public void cancelJoin(int userNo, int placeNo) {
 		userDao.cancelJoin(userNo, placeNo);
-		
+
 	}
 
 	@Override
@@ -99,5 +99,5 @@ public class UserServiceImpl implements UserService {
 	public void insertReview(ReviewDto review) {
 		userDao.insertReview(review);
 	}
-	
+
 }
