@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 	<title>Home</title>
@@ -44,17 +45,39 @@ ${sessionScope.userId}(${sessionScope.userName })
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${ReservationList}" var="resv">
-				<tr>
-					<td>${resv.place_name}</td>
-					<td>${resv.address}</td>
-					<td>${resv.message}</td>
-					<td>${resv.resv_date}</td>
-					<td><input type="button" id="cancle" value="취소하기"></td>
-				</tr>
-			</c:forEach>
-			
+			<c:choose>
+				<c:when test="${fn:length(ReservationList) > 0}">
+					<c:forEach items="${ReservationList}" var="resv">
+						<tr>
+							<td>${resv.place_name}</td>
+							<td>${resv.address}</td>
+							<td>${resv.message}</td>
+							<td>${resv.resv_date}</td>
+							<td><input onclick="isresvChange()" type="button" id="cancle" value="취소하기"></td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td colspan="5">고객님의 예약 내역이 없습니다.</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+
+
 		</tbody>
 	</table>
+	
+	<script type="text/javascript">
+	
+	function isresvChange(){
+		if(confrim("정말 예약을 취소하시겠습니까?") == true){
+			document.form.submit()
+		}else{
+			return;
+		}
+	}
+	
+	</script>
 </body>
 </html>
