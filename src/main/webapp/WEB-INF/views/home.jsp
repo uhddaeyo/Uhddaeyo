@@ -20,6 +20,7 @@ ${sessionScope.userId}(${sessionScope.userName })
 	<c:otherwise>
 		${sessionScope.userName } 님이 로그인 중입니다.
 		<a href = "${path}/logout">로그아웃</a>
+		<a href = "${path}/historyList">나의 내역보기</a>
 	</c:otherwise>
 </c:choose>
 <P></P>

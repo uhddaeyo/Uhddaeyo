@@ -1,4 +1,4 @@
-package com.ktds.uhddaeyo.service;
+package com.ktds.uhddaeyo.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -6,9 +6,9 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-import com.ktds.uhddaeyo.dao.UserDao;
+import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
 import com.ktds.uhddaeyo.model.dto.HashTagDto;
 import com.ktds.uhddaeyo.model.dto.HostDto;
@@ -18,86 +18,98 @@ import com.ktds.uhddaeyo.model.dto.PlaceTagDto;
 import com.ktds.uhddaeyo.model.dto.ReviewDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 
-@Service
-public class UserServiceImpl implements UserService {
+@Repository
+public class UserDaoImpl implements UserDao {
 
 	@Autowired
-	UserDao userDao;
+	UserMapper userMapper;
 
 	@Override
 	public boolean loginCheck(UserDto user, HttpSession session) {
-		return userDao.loginCheck(user, session);
+		String r = userMapper.loginCheck(user);
+		boolean rslt = (r == null) ? false : true;
+		if (rslt) {
+			UserDto user2 = viewMember(user);
+			session.setAttribute("userNo", user2.getNo());
+			session.setAttribute("userId", user2.getId());
+			session.setAttribute("userName", user2.getName());
+			session.setAttribute("userType", user2.getType());
+		}
+		return rslt;
 	}
 
 	@Override
 	public UserDto viewMember(UserDto user) {
-		return userDao.viewMember(user);
+		return userMapper.viewMember(user);
 	}
 
 	@Override
 	public void logout(HttpSession session) {
-		session.invalidate();
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
-	public int idCheck(String userId) {
-		return userDao.idCheck(userId);
+	public Integer idCheck(String userId) {
+		return userMapper.idCheck(userId);
 	}
 
 	@Override
 	public void insertGuest(GuestDto guest) {
-		userDao.insertGuest(guest);
+		userMapper.insertGuest(guest);
 
 	}
 
 	@Override
 	public void insertHost(HostDto host) {
-		userDao.insertHost(host);
+		userMapper.insertHost(host);
 
 	}
 
 	@Override
 	public void insertPlace(PlaceDto place) {
-		userDao.insertPlace(place);
+		userMapper.insertPlace(place);
 
+  }
+  
+  @Override
+	public List<Map<String, Object>> selectHistory(int userNo) {
+		return userMapper.selectHistory(userNo);
+		
 	}
 
 	@Override
 	public void insertPicture(List<PicDto> pic) {
-		userDao.insertPicture(pic);
-
+		userMapper.insertPicture(pic);
+		
 	}
 
 	@Override
 	public List<HashTagDto> selectHashTags() {
-		return userDao.selectHashTags();
+		return userMapper.selectHashTags();
 	}
 
 	@Override
 	public void insertPlaceTags(List<PlaceTagDto> tag) {
-		userDao.insertPlaceTags(tag);
-
+		userMapper.insertPlaceTags(tag);
+		
 	}
 
 	@Override
 	public void cancelJoin(int userNo, int placeNo) {
-		userDao.cancelJoin(userNo, placeNo);
-
-	}
-
-	@Override
-	public List<Map<String, Object>> selectHistory(int userNo) {
-		return userDao.selectHistory(userNo);
-	}
-
-	@Override
+		userMapper.deletePic(placeNo);
+		userMapper.deletePlace(placeNo);
+		userMapper.deleteUser(userNo);
+	}		
+	
+  @Override
 	public String reviewDetail(int placeNo) {
-		return userDao.reviewDetail(placeNo);
+		return userMapper.reviewDatail(placeNo);
 	}
 
 	@Override
 	public void insertReview(ReviewDto review) {
-		userDao.insertReview(review);
+		userMapper.insertReview(review);
 	}
 
 }
