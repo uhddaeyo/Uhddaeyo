@@ -1,5 +1,8 @@
 package com.ktds.uhddaeyo.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
+import com.ktds.uhddaeyo.model.dto.ReviewDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 
 @Repository
@@ -21,6 +25,7 @@ public class UserDaoImpl implements UserDao {
 		boolean rslt = (r == null) ? false : true;
 		if (rslt) {
 			UserDto user2 = viewMember(user);
+			session.setAttribute("userNo", user2.getNo());
 			session.setAttribute("userId", user2.getId());
 			session.setAttribute("userName", user2.getName());
 			session.setAttribute("userType", user2.getType());
@@ -49,5 +54,22 @@ public class UserDaoImpl implements UserDao {
 		userMapper.insertGuest(guest);
 
 	}
+
+	@Override
+	public List<Map<String, Object>> selectHistory(int userNo) {
+		return userMapper.selectHistory(userNo);
+		
+	}
+
+	@Override
+	public String reviewDetail(int placeNo) {
+		return userMapper.reviewDatail(placeNo);
+	}
+
+	@Override
+	public void insertReview(ReviewDto review) {
+		userMapper.insertReview(review);
+	}
+
 
 }

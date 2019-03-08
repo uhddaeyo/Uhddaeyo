@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="viewMember" resultType="com.ktds.uhddaeyo.model.dto.UserDto">
-		SELECT id, pw AS passwd, name, type FROM user
+		SELECT user_no AS no, id, pw AS passwd, name, type FROM user
 		WHERE id = #{id} AND pw = #{passwd}
 	</select>
   
@@ -21,5 +21,19 @@
 	<insert id="insertGuest" parameterType="com.ktds.uhddaeyo.model.dto.GuestDto">
 		INSERT INTO user (id, pw, name, tel, age, gender, type) VALUES
 		(#{id}, #{passwd}, #{name}, #{tel}, #{age}, #{gender}, 1)
+	</insert>
+	
+	<select id="selectHistory" resultType="hashmap">
+		SELECT place_no, place_name, address, resv_date FROM VIEW_history__project_db__suggestion__place
+		WHERE user_no = #{userNo} and isresv = 'Y'
+	</select>
+	
+	<select id="reviewDatail" resultType="String">
+		SELECT place_name FROM place where place_no = #{placeNo}
+	</select>
+	
+	<insert id="insertReview" parameterType="com.ktds.uhddaeyo.model.dto.ReviewDto">
+		INSERT INTO comment(place_no,user_no,comment,star)
+		VALUES(#{place_no},#{user_no}, #{review}, #{star})
 	</insert>
 </mapper>
