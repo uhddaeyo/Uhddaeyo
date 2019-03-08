@@ -18,41 +18,32 @@ import com.ktds.uhddaeyo.service.UserService;
 
 @Controller
 public class UserHistoryController {
-	private static final Logger logger = LoggerFactory.getLogger(UserHistoryController.class);
 
 	@Autowired
 	UserService memberService;
 
 	@RequestMapping("/historyList")
 	public ModelAndView selectHistoryList(HttpSession session) {
-
 		ModelAndView mv = new ModelAndView("/historyList");
-		int userNo = (int)session.getAttribute("userNo");
-		List<Map<String,Object>> historyList = memberService.selectHistory(userNo);
+		int userNo = (int) session.getAttribute("userNo");
+		List<Map<String, Object>> historyList = memberService.selectHistory(userNo);
 		mv.addObject("historyList", historyList);
-
 		return mv;
 	}
-	
+
 	@RequestMapping("/reviewDetail")
 	public String reviewDetail(int place_no, Model model) {
-
 		String placeName = memberService.reviewDetail(place_no);
-		
-		model.addAttribute("placeName",placeName);
-		model.addAttribute("placeNo",place_no);
-
-		System.out.println("[result]" + placeName);
+		model.addAttribute("placeName", placeName);
+		model.addAttribute("placeNo", place_no);
 		return "/reviewDetail";
 	}
-	
+
 	@RequestMapping("/insertReview")
 	public String insertReview(HttpSession session, ReviewDto review) {
-
-		int userNo = (int)session.getAttribute("userNo");
+		int userNo = (int) session.getAttribute("userNo");
 		review.setUser_no(userNo);
 		memberService.insertReview(review);
-
 		return "historyList";
 	}
 }

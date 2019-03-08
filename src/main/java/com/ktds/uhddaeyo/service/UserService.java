@@ -33,10 +33,6 @@ public interface UserService {
 
 	public void insertReview(ReviewDto review);
 
-	public int idCheck(String userId);
-
-	public void insertGuest(GuestDto guest);
-
 	public void insertHost(HostDto host);
 
 	public void insertPlace(PlaceDto place);

@@ -121,7 +121,6 @@ public class UserController {
 		// 본인 파일 경로로 바꾸기
 		String path = "C:\\Users\\현정\\git\\Uhddaeyo\\src\\main\\webapp\\resources\\placeImage\\";
 		UUID uuid = UUID.randomUUID();
-
 		List<PicDto> pics = new ArrayList<>();
 
 		for (MultipartFile mf : fileList) {
@@ -149,10 +148,8 @@ public class UserController {
 
 	@RequestMapping(value = "/host/tag", method = RequestMethod.POST)
 	public String tagInsert(@RequestParam("tag") List<String> tags, @RequestParam("placeNo") int placeNo, @RequestParam("classify") String classify) {
-
 		List<PlaceTagDto> list = new ArrayList<>();
 		list.add(new PlaceTagDto(placeNo, classify));
-		
 		for (String tag : tags) {
 			list.add(new PlaceTagDto(placeNo, tag));
 		}

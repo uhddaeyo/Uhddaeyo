@@ -13,7 +13,7 @@
 
 	<select id="viewMember"
 		resultType="com.ktds.uhddaeyo.model.dto.UserDto">
-		SELECT id, pw AS passwd, name, type FROM user
+		SELECT user_no AS no, id, pw AS passwd, name, type FROM user
 		WHERE id =
 		#{id} AND pw = #{passwd}
 	</select>
@@ -80,6 +80,7 @@
 	<delete id="deletePic" parameterType="Integer">
 		DELETE FROM picture WHERE place_no = #{placeNo}
 	</delete>
+	
 	<select id="selectHistory" resultType="hashmap">
 		SELECT place_no, place_name, address, resv_date FROM VIEW_history__project_db__suggestion__place
 		WHERE user_no = #{userNo} and isresv = 'Y'
