@@ -17,7 +17,9 @@ import com.ktds.uhddaeyo.model.dto.UserDto;;
 
 public interface UserMapper {
 	public String loginCheck(UserDto user);
+
 	public UserDto viewMember(UserDto user);
+
 	public void logout(HttpSession session);
 	public Integer idCheck(String userId);
 	public void insertGuest(GuestDto guest);

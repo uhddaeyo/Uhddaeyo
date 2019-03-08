@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 해당 부분의 namespace는 project package + Mapper Package + Mapper Interface 이름입니다. -->
+<mapper namespace="com.ktds.uhddaeyo.mapper.UserMapper">
+<!-- 해당 부분의 id는 MapperClass의 함수 이름과 유사하여야 합니다. -->
+	<select id="selectlist"  resultType="com.ktds.uhddaeyo.model.dto.UserDto">
+		select id, name from user
+	</select>
+	
+	<select id="loginCheck" resultType="String">
+		SELECT name FROM user WHERE id = #{id} AND pw = #{passwd} 
+	</select>
+	
+	<select id="viewMember" resultType="com.ktds.uhddaeyo.model.dto.UserDto">
+		SELECT id, pw AS passwd, name, type FROM user
+		WHERE id = #{id} AND pw = #{passwd}
+	</select>
+</mapper>

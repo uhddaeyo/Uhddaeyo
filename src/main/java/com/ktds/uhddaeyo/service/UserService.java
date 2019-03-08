@@ -43,4 +43,5 @@ public interface UserService {
 	public void insertPlaceTags(List<PlaceTagDto> tag);
 
 	public void cancelJoin(int userNo, int placeNo);
+
 }
