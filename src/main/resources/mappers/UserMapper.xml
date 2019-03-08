@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="viewMember" resultType="com.ktds.uhddaeyo.model.dto.UserDto">
-		SELECT id, pw AS passwd, name, type FROM user
+		SELECT user_no AS no, id, pw AS passwd, name, type FROM user
 		WHERE id = #{id} AND pw = #{passwd}
 	</select>
   
@@ -23,11 +23,19 @@
 		(#{id}, #{passwd}, #{name}, #{tel}, #{age}, #{gender}, 1)
 	</insert>
 	
-	<select id="selectReservationList" resultType="com.ktds.uhddaeyo.model.dto.ReservationDto">
+	<!-- <select id="selectReservationList" resultType="com.ktds.uhddaeyo.model.dto.ReservationDto">
 		SELECT place_name, address, message, resv_date FROM suggestion, place
 		WHERE place.place_no = suggestion.place_no
-		and isresv = 'Y' and date(resv_date) > date(now())
+		and isresv = 'Y' and date(resv_date) > date(now()) 
+		</select>
+		-->
+	
+	<select id="selectReservationList" resultType="hashmap">
+		SELECT place_name, address, message, resv_date FROM suggestion, place 
+		WHERE place.place_no = suggestion.place_no 
+		and isresv = 'Y' and date(resv_date) > date(now()) and suggestion.user_no = #{userNo}
+	</select>
 		
 		<!-- WHERE user_no = #{id} -->
-	</select>
+	
 </mapper>

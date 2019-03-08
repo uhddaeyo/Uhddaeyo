@@ -1,5 +1,8 @@
 package com.ktds.uhddaeyo.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import com.ktds.uhddaeyo.model.dto.GuestDto;
@@ -11,4 +14,5 @@ public interface UserMapper {
 	public void logout(HttpSession session);
 	public Integer idCheck(String userId);
 	public void insertGuest(GuestDto guest);
+	public List<Map<String, Object>> selectReservationList(int userNo);
 }

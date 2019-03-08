@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+
 <html>
 <head>
 	<title>Home</title>
@@ -25,7 +26,9 @@ ${sessionScope.userId}(${sessionScope.userName })
 </c:choose>
 <P></P>
 
-<h2>나의 예약내역</h2>
+<button onclick="location='reservationList'">나의 예약내역</button>
+
+<%-- <h2>나의 예약내역</h2>
 	<table>
 		<colgroup>
 			<col width="10%"/>
@@ -78,6 +81,6 @@ ${sessionScope.userId}(${sessionScope.userName })
 		}
 	}
 	
-	</script>
+	</script> --%>
 </body>
 </html>

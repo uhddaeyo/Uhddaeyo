@@ -1,6 +1,7 @@
 package com.ktds.uhddaeyo.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +21,7 @@ public interface UserService {
 	
 	public void insertGuest(GuestDto guest);
 	
-	public List<ReservationDto> selectReservationList() throws Exception;
+	//public List<ReservationDto> selectReservationList() throws Exception;
+	public List<Map<String, Object>> selectReservationList(int userNo);
 
 }

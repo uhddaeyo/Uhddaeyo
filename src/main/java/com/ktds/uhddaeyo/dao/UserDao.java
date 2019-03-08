@@ -1,6 +1,7 @@
 package com.ktds.uhddaeyo.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,4 +15,5 @@ public interface UserDao {
 	public void logout(HttpSession session);
 	public Integer idCheck(String userId);
 	public void insertGuest(GuestDto guest);
+	public List<Map<String, Object>> selectReservationList(int userNo);
 }

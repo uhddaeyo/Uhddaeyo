@@ -98,16 +98,17 @@ public class UserController {
 
 	}
 	
-	@RequestMapping(value = "/loginCheck", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) throws Exception{
+	@RequestMapping("/reservationList")
+	public ModelAndView selectReservationList(HttpSession session) {
 		
-		logger.info("home");
-		List<ReservationDto> ReservationList = userService.selectReservationList();
+		ModelAndView mv = new ModelAndView("/reservationList");
 		
-		model.addAttribute("ReservationList", ReservationList);
+		int userNo = (int)session.getAttribute("userNo");
+		List<Map<String,Object>> selectReservationList = userService.selectReservationList(userNo);
+		mv.addObject("selectReservationList", selectReservationList);
 		
-		return "home";
-		
+		return mv;
 	}
+	
 
 }

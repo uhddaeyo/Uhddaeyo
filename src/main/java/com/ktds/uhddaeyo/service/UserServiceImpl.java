@@ -1,6 +1,7 @@
 package com.ktds.uhddaeyo.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.ktds.uhddaeyo.dao.ReservationListDao;
 import com.ktds.uhddaeyo.dao.UserDao;
+import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
 import com.ktds.uhddaeyo.model.dto.ReservationDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
@@ -19,10 +21,22 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	UserMapper userMapper;
 
 	@Override
 	public boolean loginCheck(UserDto user, HttpSession session) {
-		return userDao.loginCheck(user, session);
+		String r = userMapper.loginCheck(user);
+		boolean rslt = (r == null) ? false : true;
+		if(rslt) {
+			UserDto user2 = viewMember(user);
+			session.setAttribute("userNo", user2.getNo());
+			session.setAttribute("userId", user2.getId());
+			session.setAttribute("userName", user2.getName());
+			session.setAttribute("userType", user2.getType());
+		}
+		return rslt;
 	}
 
 	@Override
@@ -46,14 +60,21 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
-	@Inject
-	private ReservationListDao reserDao;
+	
 	
 	@Override
-	public List<ReservationDto> selectReservationList() throws Exception {
+	public List<Map<String, Object>> selectReservationList(int userNo) {
 		// TODO Auto-generated method stub
-		return reserDao.selectReservationList();
+		return userMapper.selectReservationList(userNo);
 	}
+
+	/*
+	 * @Inject private ReservationListDao reserDao;
+	 * 
+	 * @Override public List<ReservationDto> selectReservationList() throws
+	 * Exception { // TODO Auto-generated method stub return
+	 * reserDao.selectReservationList(); }
+	 */
 	
 	
 

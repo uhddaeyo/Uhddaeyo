@@ -1,6 +1,7 @@
 package com.ktds.uhddaeyo.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +25,7 @@ public class UserDaoImpl implements UserDao {
 		boolean rslt = (r == null) ? false : true;
 		if (rslt) {
 			UserDto user2 = viewMember(user);
+			session.setAttribute("userNo", user2.getNo());
 			session.setAttribute("userId", user2.getId());
 			session.setAttribute("userName", user2.getName());
 			session.setAttribute("userType", user2.getType());
@@ -51,6 +53,12 @@ public class UserDaoImpl implements UserDao {
 	public void insertGuest(GuestDto guest) {
 		userMapper.insertGuest(guest);
 
+	}
+
+	@Override
+	public List<Map<String, Object>> selectReservationList(int userNo) {
+		// TODO Auto-generated method stub
+		return userMapper.selectReservationList(userNo);
 	}
 
 
