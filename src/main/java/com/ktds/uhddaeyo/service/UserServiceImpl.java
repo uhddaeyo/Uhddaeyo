@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import com.ktds.uhddaeyo.dao.UserDao;
 import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
+import com.ktds.uhddaeyo.model.dto.HashTagDto;
+import com.ktds.uhddaeyo.model.dto.HostDto;
+import com.ktds.uhddaeyo.model.dto.PicDto;
+import com.ktds.uhddaeyo.model.dto.PlaceDto;
+import com.ktds.uhddaeyo.model.dto.PlaceTagDto;
 import com.ktds.uhddaeyo.model.dto.ReviewDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 
@@ -43,6 +48,41 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void insertGuest(GuestDto guest) {
 		userDao.insertGuest(guest);
+    
+	}
+
+	@Override
+	public void insertHost(HostDto host) {
+		userDao.insertHost(host);
+
+	}
+
+	@Override
+	public void insertPlace(PlaceDto place) {
+		userDao.insertPlace(place);
+		
+	}
+
+	@Override
+	public void insertPicture(List<PicDto> pic) {
+		userDao.insertPicture(pic);
+		
+	}
+
+	@Override
+	public List<HashTagDto> selectHashTags() {
+		return userDao.selectHashTags();
+	}
+
+	@Override
+	public void insertPlaceTags(List<PlaceTagDto> tag) {
+		userDao.insertPlaceTags(tag);
+		
+	}
+
+	@Override
+	public void cancelJoin(int userNo, int placeNo) {
+		userDao.cancelJoin(userNo, placeNo);
 		
 	}
 
@@ -61,6 +101,4 @@ public class UserServiceImpl implements UserService {
 		userDao.insertReview(review);
 	}
 	
-	
-
 }

@@ -10,6 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
+import com.ktds.uhddaeyo.model.dto.HashTagDto;
+import com.ktds.uhddaeyo.model.dto.HostDto;
+import com.ktds.uhddaeyo.model.dto.PicDto;
+import com.ktds.uhddaeyo.model.dto.PlaceDto;
+import com.ktds.uhddaeyo.model.dto.PlaceTagDto;
 import com.ktds.uhddaeyo.model.dto.ReviewDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 
@@ -56,12 +61,48 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	public void insertHost(HostDto host) {
+		userMapper.insertHost(host);
+
+	}
+
+	@Override
+	public void insertPlace(PlaceDto place) {
+		userMapper.insertPlace(place);
+
+  }
+  
+  @Override
 	public List<Map<String, Object>> selectHistory(int userNo) {
 		return userMapper.selectHistory(userNo);
 		
 	}
 
 	@Override
+	public void insertPicture(List<PicDto> pic) {
+		userMapper.insertPicture(pic);
+		
+	}
+
+	@Override
+	public List<HashTagDto> selectHashTags() {
+		return userMapper.selectHashTags();
+	}
+
+	@Override
+	public void insertPlaceTags(List<PlaceTagDto> tag) {
+		userMapper.insertPlaceTags(tag);
+		
+	}
+
+	@Override
+	public void cancelJoin(int userNo, int placeNo) {
+		userMapper.deletePic(placeNo);
+		userMapper.deletePlace(placeNo);
+		userMapper.deleteUser(userNo);
+	}		
+	
+  @Override
 	public String reviewDetail(int placeNo) {
 		return userMapper.reviewDatail(placeNo);
 	}
@@ -70,6 +111,5 @@ public class UserDaoImpl implements UserDao {
 	public void insertReview(ReviewDto review) {
 		userMapper.insertReview(review);
 	}
-
 
 }

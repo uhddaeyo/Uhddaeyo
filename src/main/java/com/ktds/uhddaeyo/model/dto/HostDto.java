@@ -1,6 +1,10 @@
 package com.ktds.uhddaeyo.model.dto;
 
-public class GuestDto {
+import java.io.Serializable;
+import java.util.List;
+
+@SuppressWarnings("serial")
+public class HostDto implements Serializable{
 	private int userNo;
 	private String id;
 	private String passwd;
@@ -9,6 +13,7 @@ public class GuestDto {
 	private int age;
 	private String gender;
 	private int type;
+	private PlaceDto place;
 	
 	public int getUserNo() {
 		return userNo;
@@ -58,4 +63,11 @@ public class GuestDto {
 	public void setType(int type) {
 		this.type = type;
 	}
+	public PlaceDto getPlace() {
+		return place;
+	}
+	public void setPlace(PlaceDto place) {
+		this.place = place;
+	}
+	
 }
