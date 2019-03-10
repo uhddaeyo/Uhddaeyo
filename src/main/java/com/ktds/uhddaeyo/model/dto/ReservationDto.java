@@ -7,6 +7,7 @@ public class ReservationDto {
 	private String place_name;
 	private String address;
 	private String message;
+	private String name;
 	private Date resv_date;
 	
 	public String getPlace_name() {
@@ -26,6 +27,14 @@ public class ReservationDto {
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public Date getResv_date() {
 		return resv_date;

@@ -7,6 +7,7 @@
 	<title>Home</title>
 </head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 <body>
 <%-- <h1>
 	Hello world!  
@@ -30,10 +31,11 @@ ${sessionScope.userId}(${sessionScope.userName })
 	<table>
 		<colgroup>
 			<col width="10%"/>
-			<col width="30%"/>
-			<col width="30%"/>
 			<col width="25%"/>
+			<col width="30%"/>
 			<col width="10%"/>
+			<col width="20%"/>
+			<col width="5%"/>
 			
 		</colgroup>
 		<thead>
@@ -41,6 +43,7 @@ ${sessionScope.userId}(${sessionScope.userName })
 				<th scope="col">가게이름</th>
 				<th scope="col">가게주소</th>
 				<th scope="col">메세지</th>
+				<th scope="col">예약자 명</th>
 				<th scope="col">예약일</th>
 				<th scope="col">예약취소</th>
 			</tr>
@@ -53,14 +56,15 @@ ${sessionScope.userId}(${sessionScope.userName })
 							<td>${resv.place_name}</td>
 							<td>${resv.address}</td>
 							<td>${resv.message}</td>
+							<td>${resv.name}</td>
 							<td>${resv.resv_date}</td>
-							<td><input onclick="isresvChange()" type="button" id="cancle" value="취소하기"></td>
+							<td><input onclick="isresvChange();" type="button" id="cancle" value="취소하기"></td>
 						</tr>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td colspan="5">고객님의 예약 내역이 없습니다.</td>
+						<td colspan="6">고객님의 예약 내역이 없습니다.</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
@@ -69,16 +73,34 @@ ${sessionScope.userId}(${sessionScope.userName })
 		</tbody>
 	</table>
 	
+	<form action="update" method = "post" style="visibility:hidden">
+		<input type="text" name ="isreservation" value="N" />
+	</form>
+	
+	</form>
+	
+	
 	<script type="text/javascript">
 	
 	function isresvChange(){
-		if(confrim("정말 예약을 취소하시겠습니까?") == true){
-			document.form.submit()
-		}else{
+		
+		var check = confirm("정말 예약을 취소하시겠습니까?");
+		
+		
+		if(check == true){
+			
+			document.form.submit();
+			
+
+			
+		}else if(check == false){
 			return;
 		}
 	}
 	
+	
+	
 	</script>
+	
 </body>
 </html>

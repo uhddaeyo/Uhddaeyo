@@ -31,8 +31,8 @@
 		-->
 	
 	<select id="selectReservationList" resultType="hashmap">
-		SELECT place_name, address, message, resv_date FROM suggestion, place 
-		WHERE place.place_no = suggestion.place_no 
+		SELECT place_name, address, message, name, resv_date FROM suggestion, place, user
+		WHERE place.place_no = suggestion.place_no and user.user_no = suggestion.user_no
 		and isresv = "Y" and date(resv_date) > date(now()) and suggestion.user_no = #{userNo}
 	</select>
 		
