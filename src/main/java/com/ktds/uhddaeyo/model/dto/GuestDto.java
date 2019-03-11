@@ -1,6 +1,7 @@
 package com.ktds.uhddaeyo.model.dto;
 
 public class GuestDto {
+	private int userNo;
 	private String id;
 	private String passwd;
 	private String name;
@@ -9,6 +10,12 @@ public class GuestDto {
 	private String gender;
 	private int type;
 	
+	public int getUserNo() {
+		return userNo;
+	}
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
 	public String getId() {
 		return id;
 	}
