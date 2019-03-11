@@ -15,8 +15,8 @@ public class GuestServiceImpl implements GuestService {
 	GuestDao guestDao;
 
 	@Override
-	public List<Integer> getMatchedPlace(int capacity, String place, List<String> tag) {
-		return guestDao.getMatchedPlace(capacity, place, tag);
+	public List<Integer> getMatchedPlace(int capacity, String place, int price, List<String> tag) {
+		return guestDao.getMatchedPlace(capacity, place, price, tag);
 	}
 
 	@Override

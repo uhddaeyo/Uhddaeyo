@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ktds.uhddaeyo.mapper.HostMapper;
+import com.ktds.uhddaeyo.mapper.SuggestionMapper;
 import com.ktds.uhddaeyo.model.dto.GuestReqDto;
+import com.ktds.uhddaeyo.model.dto.SuggestionDto;
 
 @Repository
 public class HostDaoImpl implements HostDao{
@@ -14,9 +16,36 @@ public class HostDaoImpl implements HostDao{
 	@Autowired
 	HostMapper hostMapper;
 	
+	@Autowired
+	SuggestionMapper suggestionMapper;
+	
 	@Override
 	public List<GuestReqDto> getGuestList(int placeNo) {
 		return hostMapper.getGuestList(placeNo);
 	}
 
+	@Override
+	public List<GuestReqDto> getResvList(int placeNo) {
+		return hostMapper.getResvList(placeNo);
+	}
+
+	@Override
+	public String selectPlaceName(int placeNo) {
+		return hostMapper.selectPlaceName(placeNo);
+	}
+
+	@Override
+	public List<String> selectTagsByPlaceNo(int place_no) {
+		return suggestionMapper.selectTagsByPlaceNo(place_no);
+	}
+
+	@Override
+	public void insertSuggestion(SuggestionDto suggest) {
+		hostMapper.insertSuggestion(suggest);
+		
+	}
+	
+	
+
+	
 }

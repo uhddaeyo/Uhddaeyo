@@ -8,8 +8,8 @@
 	<!-- 해당 부분의 id는 MapperClass의 함수 이름과 유사하여야 합니다. -->
 	<select id="getMatchedPlace" resultType="int">
 		SELECT DISTINCT(p.place_no) FROM place p, hash_tag h WHERE
-		p.capacity 
-		>= #{capacity} and p.place_no = h.place_no and p.address like CONCAT('%',#{place},'%')
+		p.capacity >= #{capacity} AND p.place_no = h.place_no AND #{price}-4000 <![CDATA[ <= ]]> p.place_price <![CDATA[ <= ]]> #{price}+5000
+		AND p.address like CONCAT('%',#{place},'%')
 		and h.tag_contents in (
 		<foreach collection="tags" item="tags" separator=",">
 			#{tags}
@@ -21,7 +21,7 @@
 		keyColumn="req_no" keyProperty="reqNo"
 		parameterType="com.ktds.uhddaeyo.model.dto.GuestReqDto">
 		INSERT INTO customer_req (user_no, tag_msg, mem_cnt,
-		price) VALUES (#{userNo}, #{tagMsg}, #{memCnt}, #{price})
+		price, date ) VALUES (#{userNo}, #{tagMsg}, #{memCnt}, #{price}, #{date})
 	</insert>
 	
 	<insert id="insertMatchedReq" parameterType="com.ktds.uhddaeyo.model.dto.GuestReqDto">

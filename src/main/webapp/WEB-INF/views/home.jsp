@@ -8,20 +8,16 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
 	$(document).ready(function() {
-		/* 		var json; */
 		$('#exampleModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
 			var recipient = button.data('whatever') // Extract info from data-* attributes
-			// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-			// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 			var modal = $(this)
 			/* modal.find('.modal-body input').val(recipient) */
-		});
-
+			});
 		$("#reqSend").click(function() {
 			$.ajax({
 				async : true,
-				type : 'GET',
+				type : 'POST',
 				cache : false,
 				url : '<c:url value='/hashTagList' />',
 				dataType : 'json',
@@ -29,27 +25,25 @@
 				success : function(data) {
 					$.each(data, function(i, f) {
 						if (f.category == '분류') {
-							var s = '<input type="radio" name="classify" value="' + 
-									f.content + '" /> ' + f.content + ' ';
+							var s = '<input type="radio" name="tag" value="' + f.content + '" /> ' + f.content + ' ';
 							$('#category').append(s);
-						} else if(f.category == '방문목적') {
+						} else if (f.category == '방문목적') {
 							var s = '<input type="checkbox" name="tag" value="' + f.content + '" /> ' + f.content + ' ';
 							$('#purpose').append(s);
-						} else if(f.category == '편의시설') {
+						} else if (f.category == '편의시설') {
 							var s = '<input type="checkbox" name="tag" value="' + f.content + '" /> ' + f.content + ' ';
 							$('#condition').append(s);
 						} else {
 							var s = '<input type="checkbox" name="tag" value="' + f.content + '" /> ' + f.content + ' ';
 							$('#mood').append(s);
+						}});
+					},
+					error : function(e) {
+						alert(e);
 						}
 					});
-				},
-				error : function(e) {
-					alert('아이디를 입력하세요!');
-				}
 			});
 		});
-	});
 </script>
 </head>
 <body>
@@ -106,17 +100,9 @@ ${sessionScope.userId}(${sessionScope.userName })
 								step="1800" />
 						</div>
 						<div class="form-group">
-							<label for="price" class="col-form-label">인당 가격</label> <select
-								class="custom-select" id="tag" name="tag">
-								<option selected>인당 가격 선택</option>
-								<option>1만원 대 이하</option>
-								<option>1만원 대</option>
-								<option>2만원 대</option>
-								<option>3만원 대</option>
-								<option>4만원 대</option>
-								<option>5만원 대</option>
-								<option>5만원 대 이상</option>
-							</select>
+							<label for="price" class="col-form-label">인당 가격</label> <input
+								type="text" class="form-control" id="price" name="price"
+								placeholder="인당 가격대를 입력해주세요." required />
 						</div>
 						<div class="form-group">
 							<label for="member" class="col-form-label">인원</label> <input
@@ -126,11 +112,11 @@ ${sessionScope.userId}(${sessionScope.userName })
 						<div id="category">
 							<h3>분류</h3>
 						</div>
-						
+
 						<div id="purpose">
 							<h3>방문 목적</h3>
 						</div>
-						
+
 						<div id="mood">
 							<h3>분위기</h3>
 						</div>

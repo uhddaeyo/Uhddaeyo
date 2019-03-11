@@ -150,6 +150,18 @@
 						<form:input type="text" path="place.capacity" id="place.capacity"
 							required="required" />
 						<br />
+						<label for="placePrice">인당 가격</label>
+						<form:select class="custom-select" path="place.placePrice" id="place.placePrice" name="place.placePrice">
+								<form:option value="0" selected="selected" >인당 가격</form:option>
+								<form:option value="9999">1만원 대 이하</form:option>
+								<form:option value="10000">1만원 대</form:option>
+								<form:option value="20000">2만원 대</form:option>
+								<form:option value="30000">3만원 대</form:option>
+								<form:option value="40000">4만원 대</form:option>
+								<form:option value="50000">5만원 대</form:option>
+								<form:option value="60000">5만원 대 이상</form:option>
+							</form:select>
+						<br />
 						<label>영업시간</label>
 						<form:input type="time" class='form-control' step="1800"
 							path="place.startTime" id="place.startTime" required="required" />
@@ -168,9 +180,6 @@
 								style="top: 5px;" placeholder="주소 찾기 버튼을 눌러 주소를 입력해주세요!"
 								name="addr2" id="addr2" type="text" readonly="readonly" />
 						</div>
-<%-- 						<label for="address">주소</label>
-						<form:input type="text" path="place.address" id="place.address"
-							required="required" /> --%>
 						<br />
 						<label for="picture">사진</label>
 						<div id="pic">

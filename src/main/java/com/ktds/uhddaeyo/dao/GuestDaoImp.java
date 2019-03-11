@@ -15,8 +15,8 @@ public class GuestDaoImp implements GuestDao {
 	GuestMapper guestMapper;
 
 	@Override
-	public List<Integer> getMatchedPlace(int capacity, String place, List<String> tag) {
-		return guestMapper.getMatchedPlace(capacity, place, tag);
+	public List<Integer> getMatchedPlace(int capacity, String place, int price, List<String> tag) {
+		return guestMapper.getMatchedPlace(capacity, place, price, tag);
 	}
 
 	@Override

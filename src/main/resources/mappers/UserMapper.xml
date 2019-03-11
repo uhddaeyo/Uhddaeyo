@@ -47,10 +47,10 @@
 		keyColumn="place_no" keyProperty="placeNo"
 		parameterType="com.ktds.uhddaeyo.model.dto.PlaceDto">
 		INSERT INTO place (user_no, place_name, place_tel,
-		address, capacity, start_time, end_time) VALUES
+		address, capacity, start_time, end_time, place_price) VALUES
 		(#{userNo},
 		#{placeName}, #{placeTel}, #{address}, #{capacity}, #{startTime},
-		#{endTime})
+		#{endTime}, #{placePrice})
 	</insert>
 
 	<insert id="insertPicture" parameterType="java.util.List">

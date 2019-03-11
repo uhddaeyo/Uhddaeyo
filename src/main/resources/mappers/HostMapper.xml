@@ -7,9 +7,29 @@
 <mapper namespace="com.ktds.uhddaeyo.mapper.HostMapper">
 	<select id="getGuestList"
 		resultType="com.ktds.uhddaeyo.model.dto.GuestReqDto">
-		SELECT u.name AS userName, c.date AS date, c.mem_cnt AS memCnt, m.place_no
-		AS placeNo FROM user u, customer_req c, customer_req_match m
-		WHERE u.user_no = c.user_no AND c.req_no = m.req_no
+		SELECT u.name AS userName, u.user_no AS userNo, c.date AS
+		date, c.mem_cnt AS memCnt, m.place_no
+		AS placeNo FROM user u,
+		customer_req c, customer_req_match m
+		WHERE u.user_no = c.user_no AND
+		c.req_no = m.req_no
 		AND m.place_no = #{ placeNo }
 	</select>
+
+	<select id="getResvList" resultType="com.ktds.uhddaeyo.model.dto.GuestReqDto">
+		SELECT u.name AS userName, s.resv_date AS date, r.mem_cnt AS memCnt
+		FROM user u, suggestion s, customer_req r WHERE
+		u.user_no = s.user_no AND s.user_no = r.user_no AND s.isresv='Y'
+		AND s.place_no = #{placeNo};
+	</select>
+	
+	<select id="selectPlaceName" resultType="String">
+		SELECT place_name FROM place WHERE place_no = #{placeNo}
+	</select>
+	
+	<insert id="insertSuggestion" parameterType="com.ktds.uhddaeyo.model.dto.SuggestionDto">
+		INSERT INTO suggestion (place_no, user_no, resv_date, message)
+		VALUES (#{place_no}, #{user_no}, #{resv_date}, #{message})
+	</insert>
+	
 </mapper>

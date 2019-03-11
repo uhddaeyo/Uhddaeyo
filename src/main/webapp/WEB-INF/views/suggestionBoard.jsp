@@ -7,13 +7,12 @@
 <title>초대장 모아보기</title>
 
 <script type="text/javascript">
- 	function suggestionPopup(place_no) {
+ 	function suggestionPopup(place_no, sug_no) {
 		//		var sugForm = document.sug_form;
 		var popupWidth = 420;
 		var popupHeight = 850;
 		var sugUrl = "suggestion";
-		
-		console.log(place_no);
+	
 		
 		var form = document.createElement("form");
 		form.setAttribute("charset", "UTF-8");
@@ -37,6 +36,13 @@
 		hiddenField.setAttribute("type", "hidden");
 		hiddenField.setAttribute("name", "place_no");
 		hiddenField.setAttribute("value", place_no);
+		form.appendChild(hiddenField);
+		
+		form.appendChild(hiddenField);
+		hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "sug_no");
+		hiddenField.setAttribute("value", sug_no);
 		form.appendChild(hiddenField);
 
 		var url = "suggest"
@@ -80,7 +86,7 @@
 							<td>${suggestion.message}</td>
 							<td>
 								<button class="form_btn" type="button" id="suggest_btn"
-									onclick="suggestionPopup(${suggestion.place_no})">자세히 보기</button>
+									onclick="suggestionPopup(${suggestion.place_no}, ${suggestion.sug_no })">자세히 보기</button>
 							</td>
 						</tr>
 					</c:forEach>

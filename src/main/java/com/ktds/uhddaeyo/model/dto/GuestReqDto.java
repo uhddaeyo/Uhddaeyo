@@ -9,9 +9,8 @@ public class GuestReqDto {
 	private String userName;
 	private String tagMsg;
 	private int memCnt;
-	private String price;
+	private int price;
 	private int placeNo;
-	
 	private Timestamp date;
 	
 	public GuestReqDto() {};
@@ -20,10 +19,10 @@ public class GuestReqDto {
 		this.placeNo = placeNo;
 	}
 
-	public GuestReqDto(int userNo, String tagMsg, int memCnt, String price) {
-		super();
+	public GuestReqDto(int userNo, String tagMsg, Timestamp date, int memCnt, int price) {
 		this.userNo = userNo;
 		this.tagMsg = tagMsg;
+		this.date = date;
 		this.memCnt = memCnt;
 		this.price = price;
 	}
@@ -68,11 +67,11 @@ public class GuestReqDto {
 		this.memCnt = memCnt;
 	}
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
