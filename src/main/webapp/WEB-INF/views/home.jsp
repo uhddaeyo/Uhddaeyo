@@ -23,5 +23,7 @@ ${sessionScope.userId}(${sessionScope.userName })
 	</c:otherwise>
 </c:choose>
 <P></P>
+
+<button onclick="location='inviteList'">초대 현황</button>
 </body>
 </html>
