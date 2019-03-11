@@ -59,9 +59,10 @@ public class UserController {
 				model.addObject("msg", "success");
 				break;
 			case 2:
-				model.setViewName("/host");
-				model.addObject("msg", "success");
-				break;
+				String url = "redirect:/host";
+				ModelAndView mv = new ModelAndView(url);
+				mv.addObject("msg", "success");
+				return mv;
 			}
 		} else {
 			model.setViewName("/login");
