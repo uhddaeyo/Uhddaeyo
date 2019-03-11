@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ktds.uhddaeyo.mapper.HostMapper">
+	<select id="selectPlaceInfo" resultType="com.ktds.uhddaeyo.model.dto.PlaceDto">
+		SELECT place_no AS placeNo, place_name AS placeName, place_tel AS placeTel, address, capacity, start_time AS startTime, end_time AS endTime
+		FROM place
+		WHERE user_no = #{userNo}
+	</select>
+	
+	<select id="selectPlaceTag" resultType="java.lang.String">
+		SELECT tag_contents
+		FROM hash_tag
+		WHERE place_no = #{placeNo}
+	</select>
+</mapper>
