@@ -28,6 +28,7 @@ public class SuggestionController {
 			SuggestionDto sdto, Model model) {
 
 		System.out.println("width = " + width + ", hegith = " + height);
+		System.out.println("sug_date = " + sdto.getSug_date());
 
 //		sdto.setUser_no((int)request.getSession().getAttribute("user_no"));
 		sdto.setUser_no(3); // 로그인 시 user_no 를 가져오게 수정한 후 위 두 줄의 주석 상태를 바꿈
@@ -68,7 +69,7 @@ public class SuggestionController {
 		return "suggestion";
 	}
 
-	@RequestMapping("/suggestionBoard")
+	@RequestMapping(value = "/suggestionBoard")
 	public ModelAndView selectHistoryList(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 //		int placeNo = (int)session.getAttribute("placeNo");
