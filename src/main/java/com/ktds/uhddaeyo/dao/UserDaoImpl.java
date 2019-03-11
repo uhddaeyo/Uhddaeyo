@@ -34,6 +34,9 @@ public class UserDaoImpl implements UserDao {
 			session.setAttribute("userId", user2.getId());
 			session.setAttribute("userName", user2.getName());
 			session.setAttribute("userType", user2.getType());
+			if(user2.getType() == 2) {
+				session.setAttribute("placeNo", userMapper.getPlaceNo(user2.getNo()));
+			}
 		}
 		return rslt;
 	}
@@ -61,6 +64,11 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	public List<Map<String, Object>> selectInviteList(int userNo) {
+		// TODO Auto-generated method stub
+		return userMapper.selectInviteList(userNo);
+	}
+	
 	public void insertHost(HostDto host) {
 		userMapper.insertHost(host);
 
@@ -70,18 +78,18 @@ public class UserDaoImpl implements UserDao {
 	public void insertPlace(PlaceDto place) {
 		userMapper.insertPlace(place);
 
-  }
-  
-  @Override
+	}
+
+	@Override
 	public List<Map<String, Object>> selectHistory(int userNo) {
 		return userMapper.selectHistory(userNo);
-		
+
 	}
 
 	@Override
 	public void insertPicture(List<PicDto> pic) {
 		userMapper.insertPicture(pic);
-		
+
 	}
 
 	@Override
@@ -92,7 +100,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void insertPlaceTags(List<PlaceTagDto> tag) {
 		userMapper.insertPlaceTags(tag);
-		
+
 	}
 
 	@Override
@@ -100,9 +108,9 @@ public class UserDaoImpl implements UserDao {
 		userMapper.deletePic(placeNo);
 		userMapper.deletePlace(placeNo);
 		userMapper.deleteUser(userNo);
-	}		
-	
-  @Override
+	}
+
+	@Override
 	public String reviewDetail(int placeNo) {
 		return userMapper.reviewDatail(placeNo);
 	}
@@ -110,6 +118,12 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void insertReview(ReviewDto review) {
 		userMapper.insertReview(review);
+	}
+
+	@Override
+	public int getPlaceNo(int userNo) {
+		// TODO Auto-generated method stub
+		return userMapper.getPlaceNo(userNo);
 	}
 
 }

@@ -13,9 +13,13 @@
 
 	<select id="viewMember"
 		resultType="com.ktds.uhddaeyo.model.dto.UserDto">
-		SELECT user_no AS no, id, pw AS passwd, name, type FROM user
-		WHERE id =
-		#{id} AND pw = #{passwd}
+		SELECT user_no AS no, id, pw AS passwd, name, type FROM
+		user WHERE id = #{id} AND pw = #{passwd}
+	</select>
+
+	<select id="getPlaceNo" resultType="Integer">
+		SELECT place_no FROM place p, user u
+		WHERE p.user_no = u.user_no AND p.user_no = #{userNo}
 	</select>
 
 	<select id="idCheck" parameterType="String" resultType="Integer">
@@ -30,6 +34,12 @@
 		VALUES
 		(#{id}, #{passwd}, #{name}, #{tel}, #{age}, #{gender}, 1)
 	</insert>
+	
+	<select id="selectInviteList" resultType="hashmap">
+		SELECT name, resv_date, message, isresv, place_no, mem_cnt
+		FROM suggestion a, user b, customer_req c
+		WHERE (a.user_no = b.user_no and a.user_no = c.user_no ) and a.place_no = 2
+	</select>
 
 	<insert id="insertHost" useGeneratedKeys="true"
 		keyColumn="user_no" keyProperty="userNo"
@@ -43,10 +53,10 @@
 		keyColumn="place_no" keyProperty="placeNo"
 		parameterType="com.ktds.uhddaeyo.model.dto.PlaceDto">
 		INSERT INTO place (user_no, place_name, place_tel,
-		address, capacity, start_time, end_time) VALUES
+		address, capacity, start_time, end_time, place_price) VALUES
 		(#{userNo},
 		#{placeName}, #{placeTel}, #{address}, #{capacity}, #{startTime},
-		#{endTime})
+		#{endTime}, #{placePrice})
 	</insert>
 
 	<insert id="insertPicture" parameterType="java.util.List">
@@ -68,30 +78,38 @@
 			(#{tag.placeNo}, #{tag.content})
 		</foreach>
 	</insert>
-	
+
 	<delete id="deleteUser" parameterType="Integer">
-		DELETE FROM user WHERE user_no = #{userNo}
+		DELETE FROM user WHERE
+		user_no = #{userNo}
 	</delete>
-	
+
 	<delete id="deletePlace" parameterType="Integer">
-		DELETE FROM place WHERE place_no = #{placeNo}
+		DELETE FROM place WHERE
+		place_no = #{placeNo}
 	</delete>
-	
+
 	<delete id="deletePic" parameterType="Integer">
-		DELETE FROM picture WHERE place_no = #{placeNo}
+		DELETE FROM picture WHERE
+		place_no = #{placeNo}
 	</delete>
-	
+
 	<select id="selectHistory" resultType="hashmap">
-		SELECT place_no, place_name, address, resv_date FROM VIEW_history__project_db__suggestion__place
-		WHERE user_no = #{userNo} and isresv = 'Y'
+		SELECT place_no,
+		place_name, address, resv_date FROM
+		VIEW_history__project_db__suggestion__place
+		WHERE user_no = #{userNo}
+		and isresv = 'Y'
 	</select>
-	
+
 	<select id="reviewDatail" resultType="String">
-		SELECT place_name FROM place where place_no = #{placeNo}
+		SELECT place_name FROM
+		place where place_no = #{placeNo}
 	</select>
 	
 	<insert id="insertReview" parameterType="com.ktds.uhddaeyo.model.dto.ReviewDto">
-		INSERT INTO comment(place_no,user_no,comment,star)
+		INSERT INTO review(place_no,user_no,review,star)
 		VALUES(#{place_no},#{user_no}, #{review}, #{star})
 	</insert>
+
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ktds.uhddaeyo.dao.UserDao;
+import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
 import com.ktds.uhddaeyo.model.dto.HashTagDto;
 import com.ktds.uhddaeyo.model.dto.HostDto;
@@ -23,10 +24,23 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	UserMapper userMapper;
 
 	@Override
 	public boolean loginCheck(UserDto user, HttpSession session) {
-		return userDao.loginCheck(user, session);
+		String r = userMapper.loginCheck(user);
+		boolean rslt = (r == null) ? false : true;
+		if(rslt) {
+			UserDto user2 = viewMember(user);
+			session.setAttribute("userNo", user2.getNo());
+			session.setAttribute("userId", user2.getId());
+			session.setAttribute("userName", user2.getName());
+			session.setAttribute("userType", user2.getType());
+		}
+		
+		return rslt;
 	}
 
 	@Override
@@ -98,6 +112,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void insertReview(ReviewDto review) {
 		userDao.insertReview(review);
+	}
+  
+	@Override
+	public List<Map<String, Object>> selectInviteList(int userNo) {
+		// TODO Auto-generated method stub
+		return userMapper.selectInviteList(userNo);
 	}
 
 }

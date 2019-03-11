@@ -49,7 +49,7 @@
 <body>
 	<div class="cycle-slideshow" data-cycle-fx=scrollHorz data-cycle-timeout=1000>
 		<c:forEach items="${pictures }" var="picture">
-			<img class="place_img" alt="No Image" src="/resources/placeImages/${picture }">
+			<img class="place_img" alt="No Image" src="${pageContext.request.contextPath}/resources/placeImages/${picture }">
 		</c:forEach>
 	
 	</div>
@@ -81,6 +81,7 @@
 					<form action="${path}/acceptSuggestion" method="post">
 						<input type="hidden" value="${SugDto.place_no }" name="place_no">
 						<input type="hidden" value="${SugDto.user_no }" name="user_no">
+						<input type="hidden" value="${SugDto.sug_no }" name="sug_no">
 						<input type="submit" value="예약"> <br> <input
 							type="submit" value="보류" onclick="self.close()">
 					</form>
