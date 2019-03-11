@@ -64,6 +64,11 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	public List<Map<String, Object>> selectInviteList(int userNo) {
+		// TODO Auto-generated method stub
+		return userMapper.selectInviteList(userNo);
+	}
+	
 	public void insertHost(HostDto host) {
 		userMapper.insertHost(host);
 

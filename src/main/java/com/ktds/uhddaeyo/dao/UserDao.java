@@ -20,6 +20,7 @@ public interface UserDao {
 	public void logout(HttpSession session);
 	public Integer idCheck(String userId);
 	public void insertGuest(GuestDto guest);
+	public List<Map<String, Object>> selectInviteList(int userNo);
 	public void insertHost(HostDto host);
 	public void insertPlace(PlaceDto place);
 	public void insertPicture(List<PicDto> pic);

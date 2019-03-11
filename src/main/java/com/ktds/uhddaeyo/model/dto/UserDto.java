@@ -13,7 +13,6 @@ public class UserDto {
 	public void setNo(int no) {
 		this.no = no;
 	}
-
 	public String getId() {
 		return id;
 	}
