@@ -99,5 +99,5 @@
 			</c:choose>
 		</tbody>
 	</table>
-</body>
+  </body>
 </html>
