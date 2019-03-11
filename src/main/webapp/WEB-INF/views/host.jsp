@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix ="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 	<title>Home</title>
@@ -23,5 +24,7 @@ ${sessionScope.userId}(${sessionScope.userName })
 	</c:otherwise>
 </c:choose>
 <P></P>
+
+<button onclick="location='inviteList'">초대 현황</button>
 </body>
 </html>

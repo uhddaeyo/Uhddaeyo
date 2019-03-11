@@ -1,6 +1,7 @@
 package com.ktds.uhddaeyo.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -88,6 +89,16 @@ public class UserController {
 		m.setViewName("/home");
 		return m;
 
+	}
+	
+	@RequestMapping("/inviteList")
+	public ModelAndView selectInviteList(HttpSession session) {
+		ModelAndView mv = new ModelAndView("/inviteList");
+		
+		int userNo = (int)session.getAttribute("userNo");
+		List<Map<String, Object>> selectInviteList = userService.selectInviteList(userNo);
+		mv.addObject("selectInviteList", selectInviteList);
+		return mv;
 	}
 
 }

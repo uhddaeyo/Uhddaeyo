@@ -1,5 +1,8 @@
 package com.ktds.uhddaeyo.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +52,13 @@ public class UserDaoImpl implements UserDao {
 		userMapper.insertGuest(guest);
 
 	}
+
+	@Override
+	public List<Map<String, Object>> selectInviteList(int userNo) {
+		// TODO Auto-generated method stub
+		return userMapper.selectInviteList(userNo);
+	}
+	
+	
 
 }

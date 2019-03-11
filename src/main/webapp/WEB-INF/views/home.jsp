@@ -24,6 +24,6 @@ ${sessionScope.userId}(${sessionScope.userName })
 </c:choose>
 <P></P>
 
-<button onclick="location='inviteList'">초대 현황</button>
+
 </body>
 </html>

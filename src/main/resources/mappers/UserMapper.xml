@@ -22,4 +22,10 @@
 		INSERT INTO user (id, pw, name, tel, age, gender, type) VALUES
 		(#{id}, #{passwd}, #{name}, #{tel}, #{age}, #{gender}, 1)
 	</insert>
+	
+	<select id="selectInviteList" resultType="hashmap">
+		SELECT name, resv_date, message, isresv, place_no, mem_cnt
+		FROM suggestion a, user b, customer_req c
+		WHERE (a.user_no = b.user_no and a.user_no = c.user_no ) and a.place_no = 2
+	</select>
 </mapper>
