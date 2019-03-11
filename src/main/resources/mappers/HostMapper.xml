@@ -31,5 +31,17 @@
 		INSERT INTO suggestion (place_no, user_no, resv_date, message)
 		VALUES (#{place_no}, #{user_no}, #{resv_date}, #{message})
 	</insert>
+
+<mapper namespace="com.ktds.uhddaeyo.mapper.HostMapper">
+	<select id="selectPlaceInfo" resultType="com.ktds.uhddaeyo.model.dto.PlaceDto">
+		SELECT place_no AS placeNo, place_name AS placeName, place_tel AS placeTel, address, capacity, start_time AS startTime, end_time AS endTime
+		FROM place
+		WHERE user_no = #{userNo}
+	</select>
 	
+	<select id="selectPlaceTag" resultType="java.lang.String">
+		SELECT tag_contents
+		FROM hash_tag
+		WHERE place_no = #{placeNo}
+	</select>
 </mapper>

@@ -15,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.uhddaeyo.model.dto.GuestReqDto;
 import com.ktds.uhddaeyo.model.dto.SuggestionDto;
+import org.springframework.web.servlet.ModelAndView;
+import com.ktds.uhddaeyo.model.dto.PlaceDto;
+
 import com.ktds.uhddaeyo.service.HostService;
 
 @Controller
@@ -68,4 +71,16 @@ public class HostController {
 		mv.addObject("guestList", guestList);
 		return mv;
 	}
+	
+	@RequestMapping("/host")
+	public ModelAndView selectPlaceInfo(HttpSession session) {
+		ModelAndView mv = new ModelAndView("/host");
+		int userNo = (int) session.getAttribute("userNo");
+		PlaceDto placeInfo = hostService.selectPlaceInfo(userNo);
+		List<String> placeTag = hostService.selectPlaceTag(placeInfo.getPlaceNo());
+		mv.addObject("placeInfo", placeInfo);
+		mv.addObject("placeTag", placeTag);
+		return mv;
+	}
+
 }
