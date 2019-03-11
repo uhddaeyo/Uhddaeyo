@@ -29,4 +29,5 @@ public interface UserDao {
 	public List<Map<String, Object>> selectHistory(int userNo);
 	public String reviewDetail(int placeNo);
 	public void insertReview(ReviewDto review);
+	public int getPlaceNo(int userNo);
 }

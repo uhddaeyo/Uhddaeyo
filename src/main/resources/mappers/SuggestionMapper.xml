@@ -10,13 +10,13 @@
 		resultType="com.ktds.uhddaeyo.model.dto.SuggestionDto">
 		SELECT * FROM suggestion AS s JOIN place AS p ON s.place_no
 		= p.place_no
-		WHERE s.place_no = #{place_no} AND s.user_no = #{user_no};
+		WHERE s.place_no = #{place_no} AND s.user_no = #{user_no} AND s.sug_no = #{sug_no};
 	</select>
 
 	<update id="acceptSuggestion"
 		parameterType="com.ktds.uhddaeyo.model.dto.SuggestionDto">
 		UPDATE suggestion SET isresv = 'Y' WHERE place_no =
-		#{place_no} AND user_no = #{user_no};
+		#{place_no} AND user_no = #{user_no} AND sug_no = #{sug_no};
 	</update>
 
 	<select id="selectTagsByPlaceNo" resultType="String">

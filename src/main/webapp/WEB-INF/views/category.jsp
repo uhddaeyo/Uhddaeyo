@@ -43,13 +43,6 @@
 			</c:if>
 		</c:forEach>
 
-		<h3>인당 가격</h3>
-		<c:forEach var="tag" items="${hashTagList}">
-			<c:if test="${tag.category.equals('인당가격') }">
-				<input type="checkbox" name="tag" value="${tag.content}" />
-				<c:out value="${tag.content }" />
-			</c:if>
-		</c:forEach>
 		<input type="hidden" name="placeNo" value="${placeNo }" /> <input
 			type="submit" value="전송" />
 	</form>
