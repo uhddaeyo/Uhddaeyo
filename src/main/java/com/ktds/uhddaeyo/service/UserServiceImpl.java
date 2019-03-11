@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ktds.uhddaeyo.dao.UserDao;
+import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
 import com.ktds.uhddaeyo.model.dto.HashTagDto;
 import com.ktds.uhddaeyo.model.dto.HostDto;
