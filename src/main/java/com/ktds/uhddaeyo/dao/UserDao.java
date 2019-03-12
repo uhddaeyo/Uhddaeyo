@@ -16,6 +16,7 @@ import com.ktds.uhddaeyo.model.dto.UserDto;
 
 public interface UserDao {
 	public boolean loginCheck(UserDto user, HttpSession session);
+	public String getUserPw(String id);
 	public UserDto viewMember(UserDto user);
 	public void logout(HttpSession session);
 	public Integer idCheck(String userId);
