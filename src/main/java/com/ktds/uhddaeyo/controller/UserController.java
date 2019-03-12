@@ -97,18 +97,4 @@ public class UserController {
 		return m;
 
 	}
-	
-	@RequestMapping("/reservationList")
-	public ModelAndView selectReservationList(HttpSession session) {
-		
-		ModelAndView mv = new ModelAndView("/reservationList");
-		
-		int userNo = (int)session.getAttribute("userNo");
-		List<Map<String,Object>> selectReservationList = userService.selectReservationList(userNo);
-		mv.addObject("selectReservationList", selectReservationList);
-		
-		return mv;
-	}
-	
-
 }

@@ -1,19 +1,13 @@
 package com.ktds.uhddaeyo.service;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ktds.uhddaeyo.dao.ReservationListDao;
 import com.ktds.uhddaeyo.dao.UserDao;
 import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
-import com.ktds.uhddaeyo.model.dto.ReservationDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 
 @Service
@@ -60,13 +54,6 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
-	
-	
-	@Override
-	public List<Map<String, Object>> selectReservationList(int userNo) {
-		// TODO Auto-generated method stub
-		return userMapper.selectReservationList(userNo);
-	}
 
 	/*
 	 * @Inject private ReservationListDao reserDao;

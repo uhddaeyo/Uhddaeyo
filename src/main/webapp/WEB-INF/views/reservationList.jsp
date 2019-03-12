@@ -16,15 +16,58 @@
 
 <title>어때요? :: UH DDAE YO</title>
 
-<!-- Bootstrap core CSS -->
+<%-- <!-- Bootstrap core CSS -->
 <link
 	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+	rel="stylesheet"/>
 
 <!-- Custom styles for this template -->
 <link
 	href="${pageContext.request.contextPath}/resources/css/modern-business.css"
-	rel="stylesheet">
+	rel="stylesheet" /> --%>
+	<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+
+
+var sug_no = 0;
+$(document).ready(function(){
+	
+	
+	$('#exampleModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget) // Button that triggered the modal
+		  var recipient = button.data('whatever') // Extract info from data-* attributes
+		  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		  var modal = $(this)
+		});
+	
+});
+	function cancelResv() {
+		$.ajax({
+			type: "POST",
+			url : "/cancelResv",
+			data: {
+				sug_no : sug_no
+			},
+			success : function(result) {
+				alert("해당 예약이 취소되었습니다.");
+				$("#exampleModal").modal("hide");
+				history.go(0);
+			},
+			error : function(e) {
+				alert("해당 예약 취소에 실패했습니다.");
+			}
+		});
+	}
+
+	function cancelBtn(e){
+		var s = e.id;
+		sug_no = s;
+		
+	}
+
+
+</script>
 
 </head>
 
@@ -72,18 +115,21 @@
 						<tbody>
 							<c:choose>
 								<c:when test="${fn:length(selectReservationList) > 0}">
-									<c:forEach items="${selectReservationList}" var="resv" varStatus ="status">
+									<c:forEach items="${selectReservationList}" var="resv"
+										varStatus="status">
 										<tr>
-											<th scope = "row">${status.count}</th>
+											<th scope="row">${status.count}</th>
 											<td style="text-align: center";>${resv.place_name}</td>
 											<td style="text-align: center";>${resv.mem_cnt}</td>
 											<td style="text-align: center";>${resv.resv_date}</td>
 											<td><button type="button" class="btn btn-danger"
 													data-toggle="modal" data-target="#checkModal"
 													data-backdrop="static">초대장 확인</button></td>
-											<td><button type="button" class="btn btn-danger"
-													data-toggle="modal" data-target="#cancleModal"
-													data-backdrop="static">예약 취소</button></td>
+											<td>
+											
+											<button type="button" class="btn btn-danger" data-toggle="modal"
+											data-target="#exampleModal" onclick="cancelBtn(this)" id="${resv.sug_no }" data-whatever="@getbootstrap">예약 취소</button>
+											
 										</tr>
 									</c:forEach>
 								</c:when>
@@ -101,33 +147,29 @@
 					</div>
 
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
-					<div class="modal fade" id="cancleModal" tabindex="-1"
-						role="dialog" aria-labelled="cancleModalLabel" aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="cancleModalLabel">예약 취소 확인</h5>
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									'확인'버튼을 누르면 해당 예약이 취소됩니다. <br> 정말 예약을 취소하시겠습니까?
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-danger"
-										data-dismiss="modal" id="cancleResv">확인</button>
-									<button type="button" class="btn btn-secondary"
-										data-dismiss="modal">취소</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-				
+      <div id="inner">
+        '확인'버튼을 누르면 해당 예약이 취소됩니다. <br>
+					정말 예약을 취소하시겠습니까?
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        <button type="button" onclick="cancelResv();"  class="btn btn-danger">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
 				
 				
 				

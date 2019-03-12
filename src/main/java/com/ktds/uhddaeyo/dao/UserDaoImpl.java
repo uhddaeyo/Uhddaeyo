@@ -54,12 +54,4 @@ public class UserDaoImpl implements UserDao {
 		userMapper.insertGuest(guest);
 
 	}
-
-	@Override
-	public List<Map<String, Object>> selectReservationList(int userNo) {
-		// TODO Auto-generated method stub
-		return userMapper.selectReservationList(userNo);
-	}
-
-
 }

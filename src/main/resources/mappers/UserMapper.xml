@@ -21,22 +21,5 @@
 	<insert id="insertGuest" parameterType="com.ktds.uhddaeyo.model.dto.GuestDto">
 		INSERT INTO user (id, pw, name, tel, age, gender, type) VALUES
 		(#{id}, #{passwd}, #{name}, #{tel}, #{age}, #{gender}, 1)
-	</insert>
-	
-	<!-- <select id="selectReservationList" resultType="com.ktds.uhddaeyo.model.dto.ReservationDto">
-		SELECT place_name, address, message, resv_date FROM suggestion, place
-		WHERE place.place_no = suggestion.place_no
-		and isresv = 'Y' and date(resv_date) > date(now()) 
-		</select>
-		-->
-	
-	<select id="selectReservationList" resultType="hashmap">
-		SELECT place_name, name, mem_cnt, resv_date 
-		FROM suggestion a, customer_req b, user c, place d
-		WHERE a.req_no = b.req_no and a.user_no = c.user_no and a.place_no = d.place_no
-		and isresv = "Y" and date(resv_date) > date(now()) and a.user_no = #{userNo}
-	</select>
-		
-		<!-- WHERE user_no = #{id} -->
-	
+	</insert>	
 </mapper>

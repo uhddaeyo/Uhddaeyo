@@ -14,5 +14,4 @@ public interface UserMapper {
 	public void logout(HttpSession session);
 	public Integer idCheck(String userId);
 	public void insertGuest(GuestDto guest);
-	public List<Map<String, Object>> selectReservationList(int userNo);
 }
