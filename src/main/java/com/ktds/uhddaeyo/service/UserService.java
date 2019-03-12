@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.uhddaeyo.model.dto.GuestDto;
+import com.ktds.uhddaeyo.model.dto.ReservationDto;
 import com.ktds.uhddaeyo.model.dto.HashTagDto;
 import com.ktds.uhddaeyo.model.dto.HostDto;
 import com.ktds.uhddaeyo.model.dto.PicDto;

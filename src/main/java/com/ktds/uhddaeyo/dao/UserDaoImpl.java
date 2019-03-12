@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
+
+import com.ktds.uhddaeyo.model.dto.ReservationDto;
 import com.ktds.uhddaeyo.model.dto.HashTagDto;
 import com.ktds.uhddaeyo.model.dto.HostDto;
 import com.ktds.uhddaeyo.model.dto.PicDto;
@@ -70,7 +72,7 @@ public class UserDaoImpl implements UserDao {
 		userMapper.insertGuest(guest);
 
 	}
-
+  
 	@Override
 	public List<Map<String, Object>> selectInviteList(int userNo) {
 		// TODO Auto-generated method stub

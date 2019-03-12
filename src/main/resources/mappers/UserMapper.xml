@@ -10,7 +10,7 @@
 		SELECT name FROM user WHERE
 		id = #{id} AND pw = #{passwd}
 	</select>
-	
+
 	<select id="getUserPw" resultType="String">
 		SELECT pw FROM user 
 		WHERE id=#{id}
@@ -116,5 +116,4 @@
 		INSERT INTO review(place_no,user_no,review,star)
 		VALUES(#{place_no},#{user_no}, #{review}, #{star})
 	</insert>
-
 </mapper>
