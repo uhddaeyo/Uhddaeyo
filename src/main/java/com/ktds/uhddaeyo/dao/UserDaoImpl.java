@@ -41,6 +41,14 @@ public class UserDaoImpl implements UserDao {
 		return rslt;
 	}
 
+	
+	@Override
+	public String getUserPw(String id) {
+		// TODO Auto-generated method stub
+		return userMapper.getUserPw(id);
+	}
+
+
 	@Override
 	public UserDto viewMember(UserDto user) {
 		return userMapper.viewMember(user);
