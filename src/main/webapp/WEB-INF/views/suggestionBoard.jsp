@@ -86,7 +86,8 @@
 							<td>${suggestion.message}</td>
 							<td>
 								<button class="form_btn" type="button" id="suggest_btn"
-									onclick="suggestionPopup(${suggestion.place_no}, '${suggestion.sug_date}')">자세히 보기</button>
+									onclick="suggestionPopup(${suggestion.place_no}, '${suggestion.sug_date}')">자세히
+									보기</button>
 							</td>
 						</tr>
 					</c:forEach>

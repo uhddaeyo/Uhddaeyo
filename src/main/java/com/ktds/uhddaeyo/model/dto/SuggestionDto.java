@@ -7,16 +7,27 @@ public class SuggestionDto {
 	private int sug_no;
 	private int place_no;
 	private int user_no;
-	private Timestamp sug_date; 
+	private Timestamp sug_date;
 	private Timestamp resv_date;
 	private String isresv;
 	private String place_name;
-	private String place_tel; 
-	private int capacity; 
-	private Time start_time; 
-	private Time end_time; 
-	private String address; 
-	private String message; 
+	private String place_tel;
+	private int capacity;
+	private Time start_time;
+	private Time end_time;
+	private String address;
+	private String message;
+
+	public SuggestionDto() {
+	};
+
+	public SuggestionDto(int place_no, int user_no, Timestamp resv_date, String message) {
+		super();
+		this.place_no = place_no;
+		this.user_no = user_no;
+		this.resv_date = resv_date;
+		this.message = message;
+	}
 
 	public int getCapacity() {
 		return capacity;
@@ -129,5 +140,5 @@ public class SuggestionDto {
 				+ ", place_tel=" + place_tel + ", capacity=" + capacity + ", start_time=" + start_time + ", end_time="
 				+ end_time + ", address=" + address + ", message=" + message + "]";
 	}
-	
+
 }

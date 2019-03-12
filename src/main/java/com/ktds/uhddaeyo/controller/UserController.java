@@ -59,9 +59,10 @@ public class UserController {
 				model.addObject("msg", "success");
 				break;
 			case 2:
-				model.setViewName("/host");
-				model.addObject("msg", "success");
-				break;
+				String url = "redirect:/host";
+				ModelAndView mv = new ModelAndView(url);
+				mv.addObject("msg", "success");
+				return mv;
 			}
 		} else {
 			model.setViewName("/login");
@@ -161,6 +162,16 @@ public class UserController {
 	public String cancelJoin(@RequestParam("placeNo") int placeNo, @RequestParam("userNo") int userNo) {
 		userService.cancelJoin(userNo, placeNo);
 		return "home";
+	}
+	
+	@RequestMapping("/inviteList")
+	public ModelAndView selectInviteList(HttpSession session) {
+		ModelAndView mv = new ModelAndView("/inviteList");
+		
+		int userNo = (int)session.getAttribute("userNo");
+		List<Map<String, Object>> selectInviteList = userService.selectInviteList(userNo);
+		mv.addObject("selectInviteList", selectInviteList);
+		return mv;
 	}
 
 }

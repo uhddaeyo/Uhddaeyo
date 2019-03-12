@@ -83,6 +83,7 @@
 			<tr id="reply_tr">
 				<td colspan="3"><input id="reply" type="text"
 					readonly="readonly" value="${review.reply}" onkeyup="press();"></td>
+
 			</tr>
 		</table>
 	</c:forEach>

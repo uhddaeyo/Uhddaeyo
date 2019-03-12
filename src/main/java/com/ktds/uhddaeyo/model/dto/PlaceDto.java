@@ -5,6 +5,7 @@ public class PlaceDto {
 	private int userNo;
 	private String placeName;
 	private String placeTel;
+	private int placePrice;
 	private String address;
 	private int capacity;
 	private String startTime;
@@ -33,6 +34,12 @@ public class PlaceDto {
 	}
 	public void setPlaceTel(String placeTel) {
 		this.placeTel = placeTel;
+	}
+	public int getPlacePrice() {
+		return placePrice;
+	}
+	public void setPlacePrice(int placePrice) {
+		this.placePrice = placePrice;
 	}
 	public String getAddress() {
 		return address;
