@@ -8,8 +8,14 @@ public class ReservationDto {
 	private String address;
 	private String message;
 	private String name;
+//	private int mem_cnt;
 	private Date resv_date;
 	
+	
+	/*
+	 * public int getMem_cnt() { return mem_cnt; } public void setMem_cnt(int
+	 * mem_cnt) { this.mem_cnt = mem_cnt; }
+	 */
 	public String getPlace_name() {
 		return place_name;
 	}
