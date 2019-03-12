@@ -6,7 +6,7 @@
 	<select id="selectReviewList"
 		resultType="com.ktds.uhddaeyo.model.dto.ReviewDto">
 		SELECT r.*, re.*, u.age, u.gender FROM review AS r
-		JOIN
+		LEFT JOIN
 		reply AS re ON r.review_no = re.review_no
 		JOIN user AS u ON r.user_no =
 		u.user_no

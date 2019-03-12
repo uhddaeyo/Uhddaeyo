@@ -11,7 +11,7 @@
 	function editText(reply_no) {
 		if ($('#set_reply_button').length) {
 			// 만약 이미 답글 등록 버튼을 누른 상태라면 함수를 바로 종료.
-			return;
+			return false;
 		}
 		
 		reply_form = document.getElementById("reply");
@@ -27,10 +27,16 @@
 		set_reply_button.setAttribute("onClick", "setReply(reply_form.value, " + reply_no + ")");
 		reply_tr.appendChild(set_reply_button);
 
-		return false;
+ 		return true;
 	}
 	
 	function setReply(reply, reply_no) {
+		
+		if (reply == "") {
+			alert("답글을 입력해 주세요.");
+			return;
+		}
+		
 		$.ajax({
 			type: "POST",
 			url: "setReply",
@@ -48,16 +54,14 @@
 			}
 		});
 	}
- </script>
-<script type="text/javascript">
-/*  if (${success} == true) {
-		alert("성공적으로 등록되었습니다.");
-		var set_reply_button = document.getElementById("set_reply_button");
-		set_reply_button.parentNode.removeChild(set_reply_button);
-	} else {
-		alert("답글 등록에 실패했습니다.");
+	
+	function press() {
+		if (window.event.keyCode == 13) {
+			console.log("clicked");
+			$('#set_reply_button').trigger('click');
+		}
 	}
- */ </script>
+ </script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -78,7 +82,7 @@
 			</tr>
 			<tr id="reply_tr">
 				<td colspan="3"><input id="reply" type="text"
-					readonly="readonly" value="${review.reply}"></td>
+					readonly="readonly" value="${review.reply}" onkeyup="press();"></td>
 			</tr>
 		</table>
 	</c:forEach>
