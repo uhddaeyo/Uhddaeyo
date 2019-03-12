@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
-	
+
 	@Autowired
 	UserMapper userMapper;
 
@@ -32,14 +32,17 @@ public class UserServiceImpl implements UserService {
 	public boolean loginCheck(UserDto user, HttpSession session) {
 		String r = userMapper.loginCheck(user);
 		boolean rslt = (r == null) ? false : true;
-		if(rslt) {
+		if (rslt) {
 			UserDto user2 = viewMember(user);
 			session.setAttribute("userNo", user2.getNo());
 			session.setAttribute("userId", user2.getId());
 			session.setAttribute("userName", user2.getName());
 			session.setAttribute("userType", user2.getType());
+			if (user2.getType() == 2) {
+				session.setAttribute("placeNo", userMapper.getPlaceNo(user2.getNo()));
+			}
 		}
-		
+
 		return rslt;
 	}
 
@@ -113,7 +116,7 @@ public class UserServiceImpl implements UserService {
 	public void insertReview(ReviewDto review) {
 		userDao.insertReview(review);
 	}
-  
+
 	@Override
 	public List<Map<String, Object>> selectInviteList(int userNo) {
 		// TODO Auto-generated method stub
