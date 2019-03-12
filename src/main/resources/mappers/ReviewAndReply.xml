@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ktds.uhddaeyo.mapper.ReviewAndReplyMapper">
+	<select id="selectReviewList"
+		resultType="com.ktds.uhddaeyo.model.dto.ReviewDto">
+		SELECT r.*, re.*, u.age, u.gender FROM review AS r
+		JOIN
+		reply AS re ON r.review_no = re.review_no
+		JOIN user AS u ON r.user_no =
+		u.user_no
+		WHERE place_no = #{place_no};
+	</select>
+	<update id="updateReply"
+		parameterType="com.ktds.uhddaeyo.model.dto.ReplyDto">
+		UPDATE reply SET reply = #{reply} WHERE reply_no = #{reply_no};
+	</update>
+</mapper>

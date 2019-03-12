@@ -10,7 +10,14 @@ import org.springframework.stereotype.Repository;
 
 import com.ktds.uhddaeyo.mapper.UserMapper;
 import com.ktds.uhddaeyo.model.dto.GuestDto;
+
 import com.ktds.uhddaeyo.model.dto.ReservationDto;
+import com.ktds.uhddaeyo.model.dto.HashTagDto;
+import com.ktds.uhddaeyo.model.dto.HostDto;
+import com.ktds.uhddaeyo.model.dto.PicDto;
+import com.ktds.uhddaeyo.model.dto.PlaceDto;
+import com.ktds.uhddaeyo.model.dto.PlaceTagDto;
+import com.ktds.uhddaeyo.model.dto.ReviewDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 
 @Repository
@@ -29,9 +36,20 @@ public class UserDaoImpl implements UserDao {
 			session.setAttribute("userId", user2.getId());
 			session.setAttribute("userName", user2.getName());
 			session.setAttribute("userType", user2.getType());
+			if(user2.getType() == 2) {
+				session.setAttribute("placeNo", userMapper.getPlaceNo(user2.getNo()));
+			}
 		}
 		return rslt;
 	}
+
+	
+	@Override
+	public String getUserPw(String id) {
+		// TODO Auto-generated method stub
+		return userMapper.getUserPw(id);
+	}
+
 
 	@Override
 	public UserDto viewMember(UserDto user) {
@@ -54,4 +72,68 @@ public class UserDaoImpl implements UserDao {
 		userMapper.insertGuest(guest);
 
 	}
+  
+	@Override
+	public List<Map<String, Object>> selectInviteList(int userNo) {
+		// TODO Auto-generated method stub
+		return userMapper.selectInviteList(userNo);
+	}
+	
+	public void insertHost(HostDto host) {
+		userMapper.insertHost(host);
+
+	}
+
+	@Override
+	public void insertPlace(PlaceDto place) {
+		userMapper.insertPlace(place);
+
+	}
+
+	@Override
+	public List<Map<String, Object>> selectHistory(int userNo) {
+		return userMapper.selectHistory(userNo);
+
+	}
+
+	@Override
+	public void insertPicture(List<PicDto> pic) {
+		userMapper.insertPicture(pic);
+
+	}
+
+	@Override
+	public List<HashTagDto> selectHashTags() {
+		return userMapper.selectHashTags();
+	}
+
+	@Override
+	public void insertPlaceTags(List<PlaceTagDto> tag) {
+		userMapper.insertPlaceTags(tag);
+
+	}
+
+	@Override
+	public void cancelJoin(int userNo, int placeNo) {
+		userMapper.deletePic(placeNo);
+		userMapper.deletePlace(placeNo);
+		userMapper.deleteUser(userNo);
+	}
+
+	@Override
+	public String reviewDetail(int placeNo) {
+		return userMapper.reviewDatail(placeNo);
+	}
+
+	@Override
+	public void insertReview(ReviewDto review) {
+		userMapper.insertReview(review);
+	}
+
+	@Override
+	public int getPlaceNo(int userNo) {
+		// TODO Auto-generated method stub
+		return userMapper.getPlaceNo(userNo);
+	}
+
 }
