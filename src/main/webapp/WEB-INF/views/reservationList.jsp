@@ -76,7 +76,7 @@
 										<tr>
 											<th scope = "row">${status.count}</th>
 											<td style="text-align: center";>${resv.place_name}</td>
-											<td style="text-align: center";></td>
+											<td style="text-align: center";>${resv.mem_cnt}</td>
 											<td style="text-align: center";>${resv.resv_date}</td>
 											<td><button type="button" class="btn btn-danger"
 													data-toggle="modal" data-target="#checkModal"

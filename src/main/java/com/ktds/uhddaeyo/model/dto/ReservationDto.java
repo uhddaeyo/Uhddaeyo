@@ -5,10 +5,8 @@ import java.util.Date;
 public class ReservationDto {
 	
 	private String place_name;
-	private String address;
-	private String message;
 	private String name;
-//	private int mem_cnt;
+	private int mem_cnt;
 	private Date resv_date;
 	
 	
@@ -22,19 +20,6 @@ public class ReservationDto {
 	public void setPlace_name(String place_name) {
 		this.place_name = place_name;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	
 	
 	public String getName() {
 		return name;
