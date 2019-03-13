@@ -7,14 +7,13 @@
 <title>초대장 모아보기</title>
 
 <script type="text/javascript">
- 	function suggestionPopup(place_no, sug_date) {
+ 	function suggestionPopup(sug_no) {
 		//		var sugForm = document.sug_form;
 		var popupWidth = 420;
 		var popupHeight = 850;
 		var sugUrl = "suggestion";
 		
-		console.log(place_no);
-		console.log(sug_date);
+		console.log(sug_no);
 		
 		var form = document.createElement("form");
 		form.setAttribute("charset", "UTF-8");
@@ -35,16 +34,10 @@
 
 		hiddenField = document.createElement("input");
 		hiddenField.setAttribute("type", "hidden");
-		hiddenField.setAttribute("name", "place_no");
-		hiddenField.setAttribute("value", place_no);
+		hiddenField.setAttribute("name", "sug_no");
+		hiddenField.setAttribute("value", sug_no);
 		form.appendChild(hiddenField);
 		
-		hiddenField = document.createElement("input");
-		hiddenField.setAttribute("type", "hidden");
-		hiddenField.setAttribute("name", "sug_date");
-		hiddenField.setAttribute("value", sug_date);
-		form.appendChild(hiddenField);
-
 		var url = "suggest"
 		var title = "suggest"
 		var status = "width=" + popupWidth + ", height= " + popupHeight
@@ -86,7 +79,7 @@
 							<td>${suggestion.message}</td>
 							<td>
 								<button class="form_btn" type="button" id="suggest_btn"
-									onclick="suggestionPopup(${suggestion.place_no}, '${suggestion.sug_date}')">자세히
+									onclick="suggestionPopup(${suggestion.sug_no})">자세히
 									보기</button>
 							</td>
 						</tr>

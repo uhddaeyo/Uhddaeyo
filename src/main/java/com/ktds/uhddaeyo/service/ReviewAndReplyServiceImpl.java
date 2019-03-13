@@ -20,7 +20,11 @@ public class ReviewAndReplyServiceImpl implements ReviewAndReplyService {
 		return mapper.selectReviewList(place_no);
 	}
 	@Override
-	public boolean updateReply(ReplyDto rdto) {
+	public int updateReply(ReplyDto rdto) {
 		return mapper.updateReply(rdto);
+	}
+	@Override
+	public int insertReply(ReplyDto rdto) {
+		return mapper.insertReply(rdto);
 	}
 }

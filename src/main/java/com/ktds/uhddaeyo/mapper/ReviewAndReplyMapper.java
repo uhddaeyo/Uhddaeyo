@@ -7,5 +7,6 @@ import com.ktds.uhddaeyo.model.dto.ReviewDto;
 
 public interface ReviewAndReplyMapper {
 	public List<ReviewDto> selectReviewList(int place_no);
-	public boolean updateReply(ReplyDto rdto);
+	public int insertReply(ReplyDto rdto);
+	public int updateReply(ReplyDto rdto);
 }

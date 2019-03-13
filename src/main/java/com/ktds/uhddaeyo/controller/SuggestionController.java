@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,18 +28,18 @@ public class SuggestionController {
 	@RequestMapping(value = "/suggestion", method = RequestMethod.POST)
 	public String PopupSuggestion(@RequestParam int width, @RequestParam int height, HttpServletRequest request,
 			SuggestionDto sdto, Model model) {
-		sdto.setUser_no((int)request.getSession().getAttribute("userNo"));
-		SuggestionDto resultDto = service.selectSuggestion(sdto);
+		sdto.setUser_no((int) request.getSession().getAttribute("userNo"));
+		sdto = service.selectSuggestion(sdto);
 
 		List<String> pictures = service.selectPicturesByPlaceNo(sdto.getPlace_no());
 		model.addAttribute("pictures", pictures);
 
 		List<String> tags = new ArrayList<String>();
-		if (resultDto == null)
+		if (sdto.getPlace_name() == null)
 			System.out.println("NULL");
 		else {
-			resultDto.setMessage(resultDto.getMessage().replace("\n", "<br>"));
-			tags = service.selectTagsByPlaceNo(resultDto.getPlace_no());
+			sdto.setMessage(sdto.getMessage().replace("\n", "<br>"));
+			tags = service.selectTagsByPlaceNo(sdto.getPlace_no());
 			model.addAttribute("tags", tags);
 		}
 
@@ -47,7 +48,7 @@ public class SuggestionController {
 
 		model.addAttribute("imgWidth", imgWidth);
 		model.addAttribute("imgHeight", imgHeight);
-		model.addAttribute("SugDto", resultDto); 
+		model.addAttribute("SugDto", sdto);
 
 		return "suggestion";
 	}
@@ -60,10 +61,20 @@ public class SuggestionController {
 	}
 
 	@RequestMapping("/{userNo}")
-	public ModelAndView selectHistoryList(@PathVariable int userNo, HttpSession session) {
+	public ModelAndView selectHistoryList(@PathVariable String userNo, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		
+		/* base64 encoding */
+		byte[] encoded = Base64.encodeBase64(userNo.getBytes());
+		System.out.println("encoded = " + new String(encoded));
+		byte[] decoded = Base64.decodeBase64(encoded);
+		System.out.println("decoded = " + new String(decoded));
+		
+		System.out.println(new String(Base64.decodeBase64("NjM=".getBytes())));
+		
+		
 		mv.setViewName("/suggestionBoard");
-		List<SuggestionDto> suggestionList = service.selectSuggestionList(userNo);
+		List<SuggestionDto> suggestionList = service.selectSuggestionList(Integer.parseInt(userNo));
 		session.setAttribute("userNo", userNo);
 		mv.addObject("suggestionList", suggestionList);
 		return mv;

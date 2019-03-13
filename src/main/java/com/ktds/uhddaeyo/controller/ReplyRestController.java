@@ -18,9 +18,13 @@ public class ReplyRestController {
 	ReviewAndReplyService service;
 	
 	@RequestMapping(value = "/setReply", method = RequestMethod.POST)
-	public boolean setReply (HttpServletRequest request, @RequestParam String reply, @RequestParam int reply_no) {
-		System.out.println(reply + " " + reply_no);
-		ReplyDto rdto = new ReplyDto(reply, reply_no);
-		return service.updateReply(rdto);
+	public int setReply (HttpServletRequest request, @RequestParam int reply_no, @RequestParam int review_no, @RequestParam String reply) {
+		System.out.println(reply + " " + reply_no + " " + review_no);
+		ReplyDto rdto = new ReplyDto(reply_no, review_no, reply);
+		if (reply_no == 0) {
+			return service.insertReply(rdto);
+		} else {
+			return service.updateReply(rdto);	
+		}
 	}
 }

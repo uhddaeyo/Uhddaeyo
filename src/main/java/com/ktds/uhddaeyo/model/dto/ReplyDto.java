@@ -1,12 +1,14 @@
 package com.ktds.uhddaeyo.model.dto;
 
 public class ReplyDto {
-	private String reply;
 	private int reply_no;
+	private int review_no;
+	private String reply;
 
-	public ReplyDto(String reply, int reply_no) {
-		this.reply = reply;
+	public ReplyDto(int reply_no, int review_no, String reply) {
 		this.reply_no = reply_no;
+		this.review_no = review_no;
+		this.reply = reply;
 	}
 
 	public int getReply_no() {
@@ -25,8 +27,16 @@ public class ReplyDto {
 		this.reply = reply;
 	}
 
+	public int getReview_no() {
+		return review_no;
+	}
+
+	public void setReview_no(int review_no) {
+		this.review_no = review_no;
+	}
+
 	@Override
 	public String toString() {
-		return "ReplyDto [reply_no=" + reply_no + ", reply=" + reply + "]";
+		return "ReplyDto [reply=" + reply + ", reply_no=" + reply_no + ", review_no=" + review_no + "]";
 	}
 }

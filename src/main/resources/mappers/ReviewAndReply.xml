@@ -14,6 +14,9 @@
 	</select>
 	<update id="updateReply"
 		parameterType="com.ktds.uhddaeyo.model.dto.ReplyDto">
-		UPDATE reply SET reply = #{reply} WHERE reply_no = #{reply_no};
+		 UPDATE reply SET reply = #{reply} WHERE reply_no = #{reply_no};
 	</update>
+	<insert id="insertReply" parameterType="com.ktds.uhddaeyo.model.dto.ReplyDto">
+		INSERT INTO reply(review_no, reply) values (#{review_no}, #{reply});
+	</insert>	
 </mapper>
