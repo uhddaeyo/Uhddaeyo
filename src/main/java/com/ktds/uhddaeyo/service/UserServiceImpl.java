@@ -27,6 +27,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDao userDao;
 
+	@Autowired
+	UserMapper userMapper;
+	
 	@Override
 	public boolean loginCheck(UserDto user, HttpSession session) {
 		boolean rslt = false;
@@ -44,7 +47,7 @@ public class UserServiceImpl implements UserService {
 				session.setAttribute("userName", user2.getName());
 				session.setAttribute("userType", user2.getType());
 				if (user2.getType() == 2) {
-					session.setAttribute("placeNo", userMapper.getPlaceNo(user2.getNo()));
+					session.setAttribute("placeNo", userDao.getPlaceNo(user2.getNo()));
 				}
 			}
 		} else {
