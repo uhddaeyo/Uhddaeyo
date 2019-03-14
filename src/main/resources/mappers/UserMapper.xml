@@ -10,6 +10,11 @@
 		SELECT name FROM user WHERE
 		id = #{id} AND pw = #{passwd}
 	</select>
+	
+	<select id="getUserPw" resultType="String">
+		SELECT pw FROM user 
+		WHERE id=#{id}
+	</select>
 
 	<select id="viewMember"
 		resultType="com.ktds.uhddaeyo.model.dto.UserDto">

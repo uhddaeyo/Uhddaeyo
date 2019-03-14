@@ -45,6 +45,11 @@
 							for="inputPassword" class="sr-only">Password</label> <input
 							type="password" id="passwd" name="passwd" class="form-control"
 							placeholder="Password" required><br />
+							<c:if test="${msg == 'failure' }">
+								<div style="color: red">
+									<h6>아이디 또는 비밀번호가 일치하지 않습니다!</h6>
+								</div>
+							</c:if>
 						<button class="btn btn-ln btn-danger btn-block" type="button"
 							id="btnLogin">Sign in</button>
 					</form>

@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ktds.uhddaeyo.dao.UserDao;
@@ -24,25 +26,36 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
-	
+
 	@Autowired
 	UserMapper userMapper;
 
 	@Override
 	public boolean loginCheck(UserDto user, HttpSession session) {
-		String r = userMapper.loginCheck(user);
-		boolean rslt = (r == null) ? false : true;
-		if(rslt) {
-			UserDto user2 = viewMember(user);
-			session.setAttribute("userNo", user2.getNo());
-			session.setAttribute("userId", user2.getId());
-			session.setAttribute("userName", user2.getName());
-			session.setAttribute("userType", user2.getType());
-			if (user2.getType() == 2) {
-				session.setAttribute("placeNo", userMapper.getPlaceNo(user2.getNo()));
+
+		boolean rslt = false;
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String rawPw = user.getPasswd();
+		String pw = userDao.getUserPw(user.getId());
+		if (passwordEncoder.matches(rawPw, pw)) {
+			user.setPasswd(pw);
+			String r = userMapper.loginCheck(user);
+			rslt = (r == null) ? false : true;
+			if (rslt) {
+				UserDto user2 = viewMember(user);
+				session.setAttribute("userNo", user2.getNo());
+				session.setAttribute("userId", user2.getId());
+				session.setAttribute("userName", user2.getName());
+				session.setAttribute("userType", user2.getType());
+				if (user2.getType() == 2) {
+					session.setAttribute("placeNo", userMapper.getPlaceNo(user2.getNo()));
+				}
 			}
+		} else {
+			rslt = false;
+
 		}
-		
+
 		return rslt;
 	}
 
@@ -63,12 +76,18 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void insertGuest(GuestDto guest) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encPassword = passwordEncoder.encode(guest.getPasswd());
+		guest.setPasswd(encPassword);
 		userDao.insertGuest(guest);
 
 	}
 
 	@Override
 	public void insertHost(HostDto host) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encPassword = passwordEncoder.encode(host.getPasswd());
+		host.setPasswd(encPassword);
 		userDao.insertHost(host);
 
 	}
@@ -116,7 +135,7 @@ public class UserServiceImpl implements UserService {
 	public void insertReview(ReviewDto review) {
 		userDao.insertReview(review);
 	}
-  
+
 	@Override
 	public List<Map<String, Object>> selectInviteList(int userNo) {
 		// TODO Auto-generated method stub

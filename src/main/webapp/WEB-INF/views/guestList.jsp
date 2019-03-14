@@ -48,9 +48,13 @@ $(document).ready(function(){
 		});
 	});
 });
+
+
+
 	function kakaoLink(e) {
 
 		var userId = e.id;
+		
 		Kakao.Link.sendCustom({
 			templateId : 15212,
 			templateArgs : {
