@@ -7,6 +7,7 @@
 <title>Home</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
+
 	$(document).ready(function() {
 		$('#exampleModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
@@ -82,7 +83,7 @@ ${sessionScope.userId}(${sessionScope.userName })
 					</button>
 				</div>
 				<div class="modal-body">
-					<form method="POST" action="/test">
+					<form method="POST" action="/customerReq">
 						<div id="tag"></div>
 
 						<h6>

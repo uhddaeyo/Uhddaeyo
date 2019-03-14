@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.uhddaeyo.model.dto.GuestReqDto;
 import com.ktds.uhddaeyo.model.dto.SuggestionDto;
-import org.springframework.web.servlet.ModelAndView;
 import com.ktds.uhddaeyo.model.dto.PlaceDto;
 
 import com.ktds.uhddaeyo.service.HostService;
@@ -31,7 +31,11 @@ public class HostController {
 		ModelAndView mv = new ModelAndView();
 
 		List<GuestReqDto> guestList = hostService.getGuestList((int) session.getAttribute("placeNo"));
-
+		for (GuestReqDto q : guestList) {
+			String s = String.valueOf(q.getUserNo());
+			byte[] en = Base64.encode(s.getBytes());
+			q.setEnUrl(new String(en));
+		}
 		mv.setViewName("/guestList");
 		mv.addObject("guestList", guestList);
 		return mv;
@@ -60,18 +64,18 @@ public class HostController {
 			@RequestParam("info") String info) {
 		ModelAndView mv = new ModelAndView();
 		String[] sInfo = info.split(",");
-		
-		SuggestionDto suggest = new SuggestionDto((int) session.getAttribute("placeNo"), Integer.parseInt(sInfo[1]),
-				Timestamp.valueOf(sInfo[0]), msg);
+		System.out.println(Timestamp.valueOf(sInfo[0]));
+		SuggestionDto suggest = new SuggestionDto(Integer.parseInt(sInfo[2]), (int) session.getAttribute("placeNo"),
+				Integer.parseInt(sInfo[1]), Timestamp.valueOf(sInfo[0]), msg);
 		hostService.insertSuggestion(suggest);
-		
+
 		List<GuestReqDto> guestList = hostService.getGuestList((int) session.getAttribute("placeNo"));
 
 		mv.setViewName("/guestList");
 		mv.addObject("guestList", guestList);
 		return mv;
 	}
-	
+
 	@RequestMapping("/host")
 	public ModelAndView selectPlaceInfo(HttpSession session) {
 		ModelAndView mv = new ModelAndView("/host");

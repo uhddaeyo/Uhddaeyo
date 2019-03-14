@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +23,7 @@ import com.ktds.uhddaeyo.service.SuggestionService;
 @Controller
 public class SuggestionController {
 
-	@Inject
+	@Autowired
 	SuggestionService service;
 
 	@RequestMapping(value = "/suggestion", method = RequestMethod.POST)

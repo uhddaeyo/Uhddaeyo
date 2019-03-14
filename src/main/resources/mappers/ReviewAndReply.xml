@@ -6,7 +6,7 @@
 	<select id="selectReviewList"
 		resultType="com.ktds.uhddaeyo.model.dto.ReviewDto">
 		SELECT r.*, re.*, u.age, u.gender FROM review AS r
-		JOIN
+		LEFT JOIN
 		reply AS re ON r.review_no = re.review_no
 		JOIN user AS u ON r.user_no =
 		u.user_no
@@ -14,6 +14,9 @@
 	</select>
 	<update id="updateReply"
 		parameterType="com.ktds.uhddaeyo.model.dto.ReplyDto">
-		UPDATE reply SET reply = #{reply} WHERE reply_no = #{reply_no};
+		 UPDATE reply SET reply = #{reply} WHERE reply_no = #{reply_no};
 	</update>
+	<insert id="insertReply" parameterType="com.ktds.uhddaeyo.model.dto.ReplyDto">
+		INSERT INTO reply(review_no, reply) values (#{review_no}, #{reply});
+	</insert>	
 </mapper>

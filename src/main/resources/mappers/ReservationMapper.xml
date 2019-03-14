@@ -7,7 +7,7 @@
 <!-- 해당 부분의 id는 MapperClass의 함수 이름과 유사하여야 합니다. -->
 	
 	<select id="selectReservationList" resultType="hashmap">
-		SELECT sug_no, place_name, name, mem_cnt, resv_date 
+		SELECT a.place_no, sug_no, place_name, name, mem_cnt, resv_date 
 		FROM suggestion a JOIN customer_req b ON a.req_no = b.req_no JOIN user c ON a.user_no = c.user_no
 		JOIN place d ON a.place_no = d.place_no
 		WHERE isresv = "Y" and date(resv_date) > date(now()) and a.user_no = #{userNo};

@@ -65,9 +65,58 @@ $(document).ready(function(){
 		sug_no = s;
 		
 	}
+	
+	function suggestionPopup(place_no, sug_no) {
+		var popupWidth = 420;
+		var popupHeight = 850;
+		var sugUrl = "suggestionResv";
+	
+		
+		var form = document.createElement("form");
+		form.setAttribute("charset", "UTF-8");
+		form.setAttribute("method", "Post");
+		form.setAttribute("action", sugUrl);
 
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "width");
+		hiddenField.setAttribute("value", popupWidth);
 
-</script>
+		form.appendChild(hiddenField);
+		hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "height");
+		hiddenField.setAttribute("value", popupHeight);
+		form.appendChild(hiddenField);
+
+		form.appendChild(hiddenField);
+		hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "place_no");
+		hiddenField.setAttribute("value", place_no);
+		form.appendChild(hiddenField);
+		
+		form.appendChild(hiddenField);
+		hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "sug_no");
+		hiddenField.setAttribute("value", sug_no);
+		form.appendChild(hiddenField);
+
+		var url = "suggest"
+		var title = "suggest"
+		var status = "width=" + popupWidth + ", height= " + popupHeight
+				+ ", left=" + (window.screen.width - popupWidth) / 2 + ", top="
+				+ (window.screen.height - popupHeight) / 2
+				+ ", resizable=no, scrollbars=no, status=no;";
+		window.open("", title, status);
+		form.target = title;
+		document.body.appendChild(form);
+		
+		form.submit();
+	}
+ </script>
+
 
 </head>
 
@@ -122,9 +171,8 @@ $(document).ready(function(){
 											<td style="text-align: center";>${resv.place_name}</td>
 											<td style="text-align: center";>${resv.mem_cnt}</td>
 											<td style="text-align: center";>${resv.resv_date}</td>
-											<td><button type="button" class="btn btn-danger"
-													data-toggle="modal" data-target="#checkModal"
-													data-backdrop="static">초대장 확인</button></td>
+											<td><button class="btn btn-danger" type="button" id="suggest_btn"
+									onclick="suggestionPopup(${resv.place_no}, ${resv.sug_no })">자세히 보기</button></td>
 											<td>
 											
 											<button type="button" class="btn btn-danger" data-toggle="modal"
