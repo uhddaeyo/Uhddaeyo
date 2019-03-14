@@ -12,15 +12,10 @@
 	</select>
 	
 	<select id="getUserPw" resultType="String">
-		SELECT pw FROM user 
+		SELECT pw FROM user
 		WHERE id=#{id}
 	</select>
-
-	<select id="getUserPw" resultType="String">
-		SELECT pw FROM user 
-		WHERE id=#{id}
-	</select>
-
+	
 	<select id="viewMember"
 		resultType="com.ktds.uhddaeyo.model.dto.UserDto">
 		SELECT user_no AS no, id, pw AS passwd, name, type FROM
@@ -28,7 +23,8 @@
 	</select>
 
 	<select id="getPlaceNo" resultType="Integer">
-		SELECT place_no FROM place p, user u
+		SELECT place_no FROM place p,
+		user u
 		WHERE p.user_no = u.user_no AND p.user_no = #{userNo}
 	</select>
 
@@ -44,12 +40,6 @@
 		VALUES
 		(#{id}, #{passwd}, #{name}, #{tel}, #{age}, #{gender}, 1)
 	</insert>
-	
-	<select id="selectInviteList" resultType="hashmap">
-		SELECT DISTINCT name, resv_date, message, isresv, place_no, mem_cnt
-		FROM suggestion a, user b, customer_req c
-		WHERE (a.user_no = b.user_no and a.user_no = c.user_no ) and a.place_no=#{placeNo}
-	</select>
 
 	<insert id="insertHost" useGeneratedKeys="true"
 		keyColumn="user_no" keyProperty="userNo"
@@ -65,7 +55,8 @@
 		INSERT INTO place (user_no, place_name, place_tel,
 		address, capacity, start_time, end_time, place_price) VALUES
 		(#{userNo},
-		#{placeName}, #{placeTel}, #{address}, #{capacity}, #{startTime},
+		#{placeName}, #{placeTel}, #{address}, #{capacity},
+		#{startTime},
 		#{endTime}, #{placePrice})
 	</insert>
 
@@ -116,8 +107,9 @@
 		SELECT place_name FROM
 		place where place_no = #{placeNo}
 	</select>
-	
-	<insert id="insertReview" parameterType="com.ktds.uhddaeyo.model.dto.ReviewDto">
+
+	<insert id="insertReview"
+		parameterType="com.ktds.uhddaeyo.model.dto.ReviewDto">
 		INSERT INTO review(place_no,user_no,review,star)
 		VALUES(#{place_no},#{user_no}, #{review}, #{star})
 	</insert>
