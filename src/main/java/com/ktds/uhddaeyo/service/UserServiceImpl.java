@@ -26,9 +26,6 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
-	
-	@Autowired
-	UserMapper userMapper;
 
 	@Override
 	public boolean loginCheck(UserDto user, HttpSession session) {

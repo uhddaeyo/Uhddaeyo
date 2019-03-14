@@ -40,3 +40,4 @@ public class ReplyDto {
 		return "ReplyDto [reply=" + reply + ", reply_no=" + reply_no + ", review_no=" + review_no + "]";
 	}
 }
+

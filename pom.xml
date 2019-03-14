@@ -27,6 +27,12 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.6</version>
+		</dependency>
+	
 		<!-- json 데이터 처리용 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

@@ -29,13 +29,7 @@ public class HostController {
 	@RequestMapping("/guestList")
 	public ModelAndView guestList(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-
 		List<GuestReqDto> guestList = hostService.getGuestList((int) session.getAttribute("placeNo"));
-		for (GuestReqDto q : guestList) {
-			String s = String.valueOf(q.getUserNo());
-			byte[] en = Base64.encode(s.getBytes());
-			q.setEnUrl(new String(en));
-		}
 		mv.setViewName("/guestList");
 		mv.addObject("guestList", guestList);
 		return mv;

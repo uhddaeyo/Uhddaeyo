@@ -10,3 +10,4 @@ public interface ReviewAndReplyMapper {
 	public int insertReply(ReplyDto rdto);
 	public int updateReply(ReplyDto rdto);
 }
+
