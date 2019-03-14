@@ -43,6 +43,7 @@ $(document).ready(function(){
 	
 });
 	function cancelResv() {
+		
 		$.ajax({
 			type: "POST",
 			url : "/cancelResv",

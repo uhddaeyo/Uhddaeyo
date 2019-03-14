@@ -1,27 +1,17 @@
 package com.ktds.uhddaeyo.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ktds.uhddaeyo.dao.HostDao;
-
 import com.ktds.uhddaeyo.model.dto.GuestReqDto;
-import com.ktds.uhddaeyo.model.dto.SuggestionDto;
-import com.ktds.uhddaeyo.dao.UserDao;
-import com.ktds.uhddaeyo.model.dto.GuestDto;
-import com.ktds.uhddaeyo.model.dto.HashTagDto;
-import com.ktds.uhddaeyo.model.dto.HostDto;
-import com.ktds.uhddaeyo.model.dto.PicDto;
 import com.ktds.uhddaeyo.model.dto.PlaceDto;
-import com.ktds.uhddaeyo.model.dto.PlaceTagDto;
-import com.ktds.uhddaeyo.model.dto.ReviewDto;
-import com.ktds.uhddaeyo.model.dto.UserDto;
-
+import com.ktds.uhddaeyo.model.dto.SuggestionDto;
 
 @Service
 public class HostServiceImpl implements HostService {
@@ -63,6 +53,21 @@ public class HostServiceImpl implements HostService {
 	@Override
 	public List<String> selectPlaceTag(int placeNo) {
 		return hostDao.selectPlaceTag(placeNo);
+	}
+
+	@Override
+	public List<Map<String, Object>> getGenderStat(int placeNo) {
+		return hostDao.getGenderStat(placeNo);
+	}
+
+	@Override
+	public Map<String, Object> getAgeStat(int placeNo) {
+		return hostDao.getAgeStat(placeNo);
+	}
+
+	@Override
+	public ArrayList<Long> getStar(int placeNo, String gender1, String gender2) {
+		return hostDao.getStar(placeNo,gender1, gender2);
 	}
 
 }

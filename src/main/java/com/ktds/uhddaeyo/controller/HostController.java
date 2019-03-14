@@ -1,7 +1,9 @@
 package com.ktds.uhddaeyo.controller;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -79,5 +81,27 @@ public class HostController {
 		mv.addObject("placeTag", placeTag);
 		return mv;
 	}
+	
+	@RequestMapping("guestAnalysis")
+	public ModelAndView guestAnalysis(int placeNo) {
+		ModelAndView mv = new ModelAndView("/guestAnalysis");
+		
+		List<Map<String, Object>> getGenderStat = hostService.getGenderStat(placeNo);
+		Map<String, Object> getAgeStat = hostService.getAgeStat(placeNo);
+		ArrayList<Long> getFemaleStar = hostService.getStar(placeNo, "F", null);
+		ArrayList<Long> getMaleStar = hostService.getStar(placeNo, "M",null);
+		
+		ArrayList<Long> getAllStar = hostService.getStar(placeNo, "F","M");
+		
+		System.out.println("-----------"+getAllStar);
+		mv.addObject("getGenderStat",getGenderStat);
+		mv.addObject("getAgeStat",getAgeStat);
+		mv.addObject("getFemaleStar",getFemaleStar);
+		mv.addObject("getMaleStar",getMaleStar);
+		mv.addObject("getAllStar",getAllStar);
+		
+		return mv;
+	}
+
 
 }
