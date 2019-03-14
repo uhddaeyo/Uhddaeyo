@@ -22,7 +22,6 @@ public class ReviewController {
 	public String getReviews (Model model, HttpSession session) {
 		int place_no = (int) session.getAttribute("placeNo");
 		List<ReviewDto> reviews = service.selectReviewList(place_no);
-		System.out.println(reviews.toString());
 		model.addAttribute("reviews", reviews);
 		return "review";
 	}

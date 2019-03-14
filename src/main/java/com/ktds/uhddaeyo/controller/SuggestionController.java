@@ -80,7 +80,7 @@ public class SuggestionController {
 
 		mv.setViewName("/suggestionBoard");
 		List<SuggestionDto> suggestionList = service.selectSuggestionList(Integer.parseInt(dercryptStr));
-		session.setAttribute("userNo", dercryptStr);
+		session.setAttribute("userNo", Integer.parseInt(dercryptStr));
 		mv.addObject("suggestionList", suggestionList);
 		return mv;
 	}

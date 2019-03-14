@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,12 +52,12 @@ public class HostController {
 		return hashList;
 	}
 
+
 	@RequestMapping("/invite")
 	public ModelAndView insertSuggestion(HttpSession session, @RequestParam("msg") String msg,
 			@RequestParam("info") String info) {
 		ModelAndView mv = new ModelAndView();
 		String[] sInfo = info.split(",");
-		System.out.println(Timestamp.valueOf(sInfo[0]));
 		SuggestionDto suggest = new SuggestionDto(Integer.parseInt(sInfo[2]), (int) session.getAttribute("placeNo"),
 				Integer.parseInt(sInfo[1]), Timestamp.valueOf(sInfo[0]), msg);
 		hostService.insertSuggestion(suggest);
