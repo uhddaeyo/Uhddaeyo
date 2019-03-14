@@ -17,7 +17,7 @@
 	</select>
 
 	<select id="getResvList" resultType="com.ktds.uhddaeyo.model.dto.GuestReqDto">
-		SELECT DISTINCT u.name AS userName, s.resv_date AS date, r.mem_cnt AS memCnt
+		SELECT DISTINCT u.name AS userName, s.resv_date AS date, r.mem_cnt AS memCnt, r.memo AS memo
 		FROM user u, suggestion s, customer_req r WHERE
 		u.user_no = s.user_no AND s.user_no = r.user_no AND s.isresv='Y'
 		AND s.place_no = #{placeNo};

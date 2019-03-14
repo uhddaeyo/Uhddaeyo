@@ -13,6 +13,7 @@ public class GuestReqDto {
 	private int placeNo;
 	private Timestamp date;
 	private String enUrl;
+	private String memo;
 	
 	public GuestReqDto() {};
 	public GuestReqDto(int reqNo, int placeNo) {
@@ -96,6 +97,12 @@ public class GuestReqDto {
 	}
 	public void setEnUrl(String enUrl) {
 		this.enUrl = enUrl;
+	}
+	public String getMemo() {
+		return memo;
+	}
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 	
 }
