@@ -26,13 +26,15 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	UserMapper userMapper;
 
 	@Autowired
 	UserMapper userMapper;
 
 	@Override
 	public boolean loginCheck(UserDto user, HttpSession session) {
-
 		boolean rslt = false;
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String rawPw = user.getPasswd();
@@ -53,9 +55,7 @@ public class UserServiceImpl implements UserService {
 			}
 		} else {
 			rslt = false;
-
 		}
-
 		return rslt;
 	}
 

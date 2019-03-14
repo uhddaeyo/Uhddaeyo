@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 해당 부분의 namespace는 project package + Mapper Package + Mapper Interface 이름입니다. -->
+<mapper namespace="com.ktds.uhddaeyo.mapper.ReservationMapper">
+<!-- 해당 부분의 id는 MapperClass의 함수 이름과 유사하여야 합니다. -->
+	
+	<select id="selectReservationList" resultType="hashmap">
+		SELECT sug_no, place_name, name, mem_cnt, resv_date 
+		FROM suggestion a JOIN customer_req b ON a.req_no = b.req_no JOIN user c ON a.user_no = c.user_no
+		JOIN place d ON a.place_no = d.place_no
+		WHERE isresv = "Y" and date(resv_date) > date(now()) and a.user_no = #{userNo};
+	</select>
+	
+	<update id="cancelResv">
+		UPDATE suggestion SET isresv = 'N' WHERE sug_no = #{sug_no};
+	</update>
+</mapper>
