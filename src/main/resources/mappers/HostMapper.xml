@@ -17,10 +17,11 @@
 	</select>
 
 	<select id="getResvList" resultType="com.ktds.uhddaeyo.model.dto.GuestReqDto">
-		SELECT DISTINCT u.name AS userName, s.resv_date AS date, r.mem_cnt AS memCnt, r.memo AS memo
-		FROM user u, suggestion s, customer_req r WHERE
-		u.user_no = s.user_no AND s.user_no = r.user_no AND s.isresv='Y'
-		AND s.place_no = #{placeNo};
+		SELECT sug_no AS sugNo, u.name AS userName, s.resv_date AS date, cr.mem_cnt AS memCnt, s.memo AS memo
+		FROM customer_req AS cr 
+		JOIN user AS u ON cr.user_no = u.user_no
+		JOIN suggestion AS s ON cr.req_no = s.req_no
+		WHERE isresv = 'Y' AND place_no = #{placeNo};
 	</select>
 	
 	<select id="selectPlaceName" resultType="String">
@@ -28,8 +29,8 @@
 	</select>
 	
 	<insert id="insertSuggestion" parameterType="com.ktds.uhddaeyo.model.dto.SuggestionDto">
-		INSERT INTO suggestion (place_no, user_no, resv_date, message)
-		VALUES (#{place_no}, #{user_no}, #{resv_date}, #{message})
+		INSERT INTO suggestion (req_no, place_no, user_no, resv_date, message, memo)
+		VALUES (#{req_no}, #{place_no}, #{user_no}, #{resv_date}, #{message}, #{message})
 	</insert>
 
 	<select id="selectPlaceInfo" resultType="com.ktds.uhddaeyo.model.dto.PlaceDto">
@@ -66,4 +67,7 @@
 		ORDER BY star
 	</select>
 	
+	<update id="saveMemo" parameterType="com.ktds.uhddaeyo.model.dto.GuestReqDto">
+		UPDATE suggestion SET memo = #{memo} WHERE sug_no = #{sugNo};
+	</update>
 </mapper>

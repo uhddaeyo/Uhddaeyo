@@ -16,4 +16,5 @@ public interface HostMapper {
 	public List<Map<String, Object>> getGenderStat(int placeNo);
 	public List<Map<String, Object>> getAgeStat(int placeNo);
 	public List<Map<String, Object>> getStar(Map<String, Object> info);
+	public boolean saveMemo(GuestReqDto grdto);
 }
