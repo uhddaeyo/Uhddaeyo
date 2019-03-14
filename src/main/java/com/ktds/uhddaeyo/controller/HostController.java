@@ -31,7 +31,7 @@ public class HostController {
 		ModelAndView mv = new ModelAndView();
 
 		List<GuestReqDto> guestList = hostService.getGuestList((int) session.getAttribute("placeNo"));
-
+		
 		mv.setViewName("/guestList");
 		mv.addObject("guestList", guestList);
 		return mv;

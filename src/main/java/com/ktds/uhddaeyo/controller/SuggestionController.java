@@ -59,6 +59,7 @@ public class SuggestionController {
 	public String acceptSuggestion(SuggestionDto sdto, Model model) {
 		boolean success = service.acceptSuggestion(sdto);
 		model.addAttribute("success", success);
+		
 		return "suggestion";
 	}
 
