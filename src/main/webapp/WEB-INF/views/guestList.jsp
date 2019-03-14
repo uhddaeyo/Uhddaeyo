@@ -1,3 +1,4 @@
+<%@page import="com.ktds.uhddaeyo.common.AES256Util"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -89,6 +90,11 @@ $(document).ready(function(){
 								</thead>
 								<tbody>
 									<c:forEach items="${guestList}" var="guest" varStatus="idx">
+										<c:set var="userNo" value="${guest.userNo }"></c:set>
+										<%
+											AES256Util aes256Util = new AES256Util();
+											String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
+										%>
 										<tr align="center">
 											<td width="50" style="vertical-align: middle">${idx.count}</td>
 											<td width="100" style="vertical-align: middle">${guest.userName }</td>
@@ -99,7 +105,7 @@ $(document).ready(function(){
 											data-target="#exampleModal" id="invite" name="${guest.date },${guest.userNo}">초대장 작성하기</button></td>
 											<td style="vertical-align: middle"><button type="button"
 													onclick="kakaoLink(this);" name="${guest.userName }"
-													id="${guest.userNo}" class="btn btn-outline-danger">알림</button></td>
+													id=<%=encryptUserNo %> class="btn btn-outline-danger">알림</button></td>
 											
 										</tr>
 									</c:forEach>
