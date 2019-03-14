@@ -103,5 +103,10 @@ public class HostController {
 		return mv;
 	}
 
-
+	@RequestMapping(value = "/saveMemo", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean saveMemo(GuestReqDto grdto) {
+		System.out.println(grdto.getSugNo() + " " + grdto.getMemo());
+		return hostService.saveMemo(grdto);
+	}
 }

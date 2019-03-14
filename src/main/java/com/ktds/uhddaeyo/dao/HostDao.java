@@ -19,4 +19,5 @@ public interface HostDao {
 	public List<Map<String, Object>> getGenderStat(int placeNo);
 	public Map<String, Object> getAgeStat(int placeNo);
 	public ArrayList<Long> getStar(int placeNo, String gender1, String gender2);
+	public boolean saveMemo(GuestReqDto grdto);
 }

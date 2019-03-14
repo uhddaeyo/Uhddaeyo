@@ -13,8 +13,6 @@
 		WHERE isresv = "Y" and date(resv_date) > date(now()) and a.user_no = #{userNo};
 	</select>
 	
-	
-	
 	<update id="cancelResv">
 		UPDATE suggestion SET isresv = 'N' WHERE sug_no = #{sug_no};
 	</update>

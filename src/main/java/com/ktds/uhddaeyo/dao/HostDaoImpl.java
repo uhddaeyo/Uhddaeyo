@@ -110,4 +110,9 @@ public class HostDaoImpl implements HostDao {
 		}
 		return cntList;
 	}
+	
+	@Override
+	public boolean saveMemo(GuestReqDto grdto) {
+		return hostMapper.saveMemo(grdto);
+	}
 }

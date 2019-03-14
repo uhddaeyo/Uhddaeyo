@@ -67,7 +67,11 @@ public class HostServiceImpl implements HostService {
 
 	@Override
 	public ArrayList<Long> getStar(int placeNo, String gender1, String gender2) {
-		return hostDao.getStar(placeNo,gender1, gender2);
+		return hostDao.getStar(placeNo, gender1, gender2);
 	}
 
+	@Override
+	public boolean saveMemo(GuestReqDto grdto) {
+		return hostDao.saveMemo(grdto);
+	}
 }
