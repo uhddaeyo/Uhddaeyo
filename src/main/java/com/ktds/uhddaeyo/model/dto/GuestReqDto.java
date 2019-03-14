@@ -12,6 +12,7 @@ public class GuestReqDto {
 	private int price;
 	private int placeNo;
 	private Timestamp date;
+	private String enUrl;
 	
 	public GuestReqDto() {};
 	public GuestReqDto(int reqNo, int placeNo) {
@@ -90,5 +91,11 @@ public class GuestReqDto {
 	public void setDate(Timestamp date) {
 		this.date = date;
 	}
-
+	public String getEnUrl() {
+		return enUrl;
+	}
+	public void setEnUrl(String enUrl) {
+		this.enUrl = enUrl;
+	}
+	
 }

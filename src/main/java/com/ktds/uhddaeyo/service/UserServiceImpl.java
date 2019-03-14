@@ -27,9 +27,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDao userDao;
 
-	@Autowired
-	UserMapper userMapper;
-
 	@Override
 	public boolean loginCheck(UserDto user, HttpSession session) {
 		boolean rslt = false;
@@ -134,9 +131,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectInviteList(int userNo) {
+	public List<Map<String, Object>> selectInviteList(int placeNo) {
 		// TODO Auto-generated method stub
-		return userMapper.selectInviteList(userNo);
+		return userMapper.selectInviteList(placeNo);
 	}
 
 }

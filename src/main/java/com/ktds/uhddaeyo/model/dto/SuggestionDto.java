@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 public class SuggestionDto {
 	private int sug_no;
+	private int req_no;
 	private int place_no;
 	private int user_no;
 	private Timestamp sug_date;
@@ -21,12 +22,20 @@ public class SuggestionDto {
 	public SuggestionDto() {
 	};
 
-	public SuggestionDto(int place_no, int user_no, Timestamp resv_date, String message) {
-		super();
+	public SuggestionDto(int req_no, int place_no, int user_no, Timestamp resv_date, String message) {
+		this.req_no = req_no;
 		this.place_no = place_no;
 		this.user_no = user_no;
 		this.resv_date = resv_date;
 		this.message = message;
+	}
+
+	public int getReq_no() {
+		return req_no;
+	}
+
+	public void setReq_no(int req_no) {
+		this.req_no = req_no;
 	}
 
 	public int getCapacity() {

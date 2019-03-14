@@ -8,7 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -19,18 +20,18 @@ $(document).ready(function(){
 		  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 		  var modal = $(this)
 		});
-	
-	$("#invite").click(function(){
-		var n= $(this).attr('name');
+
+function inviteClick(e){
+		var n = e.id;
 		$.ajax({
-			async : true,
 			type : 'POST',
 			cache : false,
-			url : '<c:url value='/invitation' />',
+			url : '/invitation',
 			dataType : 'json',
 			contentType : 'application/json; charset=UTF-8',
 			success : function(data){
-				console.log(data);
+				document.getElementById('name').innerHTML="";
+				document.getElementById('tags').innerHTML="";
 				$.each(data, function(i, f){
 					if(i == 0){
 						$('#name').append(f);
@@ -47,8 +48,8 @@ $(document).ready(function(){
 				alert(e);
 			}
 		});
-	});
-});
+	}
+
 
 
 
@@ -103,7 +104,7 @@ $(document).ready(function(){
 													value="${guest.date }" pattern="yyyy-MM-dd HH:mm" /></td>
 											<td style="vertical-align: middle">${guest.memCnt }</td>
 											<td style="vertical-align: middle"><button type="button" class="btn btn-outline-danger" data-toggle="modal" 
-											data-target="#exampleModal" id="invite" name="${guest.date },${guest.userNo}">초대장 작성하기</button></td>
+											data-target="#exampleModal" onclick="inviteClick(this);" id="${guest.date },${guest.userNo},${guest.reqNo}">초대장 작성하기</button></td>
 											<td style="vertical-align: middle"><button type="button"
 													onclick="kakaoLink(this);" name="${guest.userName }"
 													id=<%=encryptUserNo %> class="btn btn-outline-danger">알림</button></td>

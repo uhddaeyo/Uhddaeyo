@@ -40,8 +40,6 @@ import com.ktds.uhddaeyo.service.UserService;
 @Controller
 public class UserController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
 	@Autowired
 	UserService userService;
 
@@ -176,8 +174,8 @@ public class UserController {
 	public ModelAndView selectInviteList(HttpSession session) {
 		ModelAndView mv = new ModelAndView("/inviteList");
 		
-		int userNo = (int)session.getAttribute("userNo");
-		List<Map<String, Object>> selectInviteList = userService.selectInviteList(userNo);
+		int placeNo = (int)session.getAttribute("placeNo");
+		List<Map<String, Object>> selectInviteList = userService.selectInviteList(placeNo);
 		mv.addObject("selectInviteList", selectInviteList);
 		return mv;
 	}

@@ -27,7 +27,7 @@ public interface UserService {
 
 	public void insertGuest(GuestDto guest);
 	
-	public List<Map<String, Object>> selectInviteList(int userNo);
+	public List<Map<String, Object>> selectInviteList(int placeNo);
 
 	public List<Map<String, Object>> selectHistory(int userNo);
 
