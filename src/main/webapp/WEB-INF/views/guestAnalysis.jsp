@@ -1,45 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
 <html>
 <head>
-	<%@ include file="/WEB-INF/include/include-header.jsp"%>
-    <%@ include file="/WEB-INF/include/include-css.jsp"%>
-    <title>Chart.js demo</title>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js'></script>
+<%@ include file="/WEB-INF/include/include-header.jsp"%>
+<%@ include file="/WEB-INF/include/include-css.jsp"%>
+<title>Chart.js demo</title>
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js'></script>
 </head>
 <body>
-<%@include file="header.jsp"%>
+	<%@include file="header.jsp"%>
+
 <div class="container">
-      <%@include file="/WEB-INF/include/menu.jsp"%>
    <div class="row">
+      <%@include file="/WEB-INF/include/menu.jsp"%>
       <div class="col-lg-9">
 
-    <canvas id="genderCnt" width="100" height="50"></canvas>    
-    <canvas id="ageCnt" width="100" height="50"></canvas>
-    <canvas id="starByGender" width="100" height="50"></canvas>
-    <canvas id="starAll" width="100" height="50"></canvas>
-    
-    <script>
+<br><br><br>
+<div class="chart-container" style="position: relative; height:60vh; width:45vw">
+	<div style="float: left; width: 50%; padding:10px;">
+		<canvas id="genderCnt" width="400" height="350"></canvas>
+		<br><br><br><br>
+		<canvas id="starByGender" width="400" height="350"></canvas>
+	</div>
+	<div style="float: right; width: 50%; padding:10px;">
+		<canvas id="ageCnt" width="400" height="350"></canvas>
+		<br><br><br><br>
+		<canvas id="starAll" width="400" height="350"></canvas>
+	</div>
+	<div id="footer">
+		<!--<h4>Female avg : ${getGenderStat.get(0).avg} | Male avg : ${getGenderStat.get(1).avg}</h4>-->
+	</div>
+</div>
+	<script>
     	/*성비 */
 	    var Favg = ${getGenderStat.get(0).avg};
 		var Mavg = ${getGenderStat.get(1).avg};
     	
-		console.log(Favg);
-		console.log(Mavg);
-		
     	Fcnt = ${getGenderStat.get(0).cnt};
 		Mcnt = ${getGenderStat.get(1).cnt};
-		
-		console.log(Fcnt);
-		console.log(Mcnt);
-		
 		
 		var Fratio = Math.round(Fcnt/(Fcnt+Mcnt)*100);
 		var Mratio = Math.round(Mcnt/(Fcnt+Mcnt)*100);
 		
 	    new Chart(document.getElementById("genderCnt"), {
-	        type: 'pie',
+	        type: 'doughnut',
 	        data: {
 	          labels: ["Female","Male"],
 	          datasets: [{
@@ -51,14 +56,19 @@
 	        options: {
 	          title: {
 	            display: true,
+	            fontSize: 24,
 	            text: 'Gender Ratio'
+	          },
+	          legend :{
+	        	  position :'left'
 	          }
+	        
 	        }
 	    });
 	    
 	    /*나이 비율 */
 	    new Chart(document.getElementById("ageCnt"), {
-	        type: 'pie',
+	        type: 'doughnut',
 	        data: {
 	          labels: ${getAgeStat.age},
 	          datasets: [{
@@ -70,7 +80,11 @@
 	        options: {
 	          title: {
 	            display: true,
+	            fontSize: 24,
 	            text: 'Age Ratio'
+	          },
+	          legend :{
+	        	  position :'left'
 	          }
 	        }
 	    });
@@ -95,6 +109,7 @@
 		    options: {
 				title: {
 		        display: true,
+		        fontSize: 24,
 		        text: 'Star Rating by Gender'
 		      },
 				scales: {
@@ -124,6 +139,7 @@
 		      legend: { display: false },
 		      title: {
 		        display: true,
+		        fontSize: 24,
 		        text: 'Star Rating'
 		      },
 		      scales: {
@@ -137,12 +153,11 @@
 		});
 	        
     </script>
-    <h3> Female avg : ${getGenderStat.get(0).avg}</h3>
-	<h3> Male avg : ${getGenderStat.get(1).avg}</h3>
-       
-    
-	</div>
-</div>
-</div>
+	
+
+
+				</div>
+			</div>
+		</div>
 </body>
 </html>
