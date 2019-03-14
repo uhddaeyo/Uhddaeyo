@@ -38,6 +38,9 @@ public class UserServiceImpl implements UserService {
 			session.setAttribute("userId", user2.getId());
 			session.setAttribute("userName", user2.getName());
 			session.setAttribute("userType", user2.getType());
+			if (user2.getType() == 2) {
+				session.setAttribute("placeNo", userMapper.getPlaceNo(user2.getNo()));
+			}
 		}
 		
 		return rslt;

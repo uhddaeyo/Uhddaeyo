@@ -1,5 +1,7 @@
 package com.ktds.uhddaeyo.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ktds.uhddaeyo.common.AES256Util;
 import com.ktds.uhddaeyo.model.dto.SuggestionDto;
 import com.ktds.uhddaeyo.service.SuggestionService;
 
@@ -63,19 +65,21 @@ public class SuggestionController {
 	@RequestMapping("/{userNo}")
 	public ModelAndView selectHistoryList(@PathVariable String userNo, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		
-		/* base64 encoding */
-		byte[] encoded = Base64.encodeBase64(userNo.getBytes());
-		System.out.println("encoded = " + new String(encoded));
-		byte[] decoded = Base64.decodeBase64(encoded);
-		System.out.println("decoded = " + new String(decoded));
-		
-		System.out.println(new String(Base64.decodeBase64("NjM=".getBytes())));
-		
-		
+		AES256Util aes256Util;
+		String dercryptStr = "";
+		try {
+			aes256Util = new AES256Util();
+			dercryptStr = aes256Util.decrypt(userNo);
+			System.out.println("decoded = " + dercryptStr);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (GeneralSecurityException e) {
+			e.printStackTrace();
+		}
+
 		mv.setViewName("/suggestionBoard");
-		List<SuggestionDto> suggestionList = service.selectSuggestionList(Integer.parseInt(userNo));
-		session.setAttribute("userNo", userNo);
+		List<SuggestionDto> suggestionList = service.selectSuggestionList(Integer.parseInt(dercryptStr));
+		session.setAttribute("userNo", dercryptStr);
 		mv.addObject("suggestionList", suggestionList);
 		return mv;
 	}
