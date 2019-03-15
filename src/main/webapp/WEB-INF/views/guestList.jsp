@@ -52,6 +52,7 @@ function inviteClick(e){
 }
 function kakaoLink(e) {
 	var userId = e.id;
+	var url = "kakaoinvitelink/" + userId;
 	
 	Kakao.Link.sendCustom({
 		templateId : 15212,
@@ -59,7 +60,7 @@ function kakaoLink(e) {
 			'des' : '제안서 보기를 클릭해서 도착한 제안서를 확인해보세요!',
 			'title' : '고객님 여기 어때요?',
 			'btn' : '제안서 보기',
-			'url' : userId,
+			'url' : url,
 		}
 	});
 }
@@ -165,6 +166,6 @@ function kakaoLink(e) {
     </div>
   </div>
    <script type='text/javascript'>
-      Kakao.init('6cdf98015be8c7ef4e8199b691b6326c');
+      Kakao.init('cd1e5dbbd5ca1a96ec393c7c7518dee7');
    </script>
 </body>

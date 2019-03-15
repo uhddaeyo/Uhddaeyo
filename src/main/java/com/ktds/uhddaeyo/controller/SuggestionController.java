@@ -63,7 +63,7 @@ public class SuggestionController {
 		return "suggestion";
 	}
 
-	@RequestMapping("/{userNo}")
+	@RequestMapping("/kakaoinvitelink/{userNo}")
 	public ModelAndView selectHistoryList(@PathVariable String userNo, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		AES256Util aes256Util;
