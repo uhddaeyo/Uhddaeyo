@@ -1,24 +1,17 @@
 <%@page import="com.ktds.uhddaeyo.common.AES256Util"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-<meta charset="utf-8">
 <meta name="viewport"
    content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<%@ include file="/WEB-INF/include/include-header.jsp"%>
 <title>어때요? :: UH DDAE YO</title>
-
-<!-- Bootstrap core CSS -->
-<%@ include file="WEB-INF/include/include-css.jsp"%>
-
 </head>
 
-<body style="font-family: Noto Sans KR;">
+<body>
 
    <%@ include file="WEB-INF/views/header.jsp"%>
 

@@ -73,19 +73,14 @@ public class GuestController {
 		return mv;
 	}
 
-	@RequestMapping("/reviewDetail")
-	public String reviewDetail(int place_no, Model model) {
-		String placeName = userService.reviewDetail(place_no);
-		model.addAttribute("placeName", placeName);
-		model.addAttribute("placeNo", place_no);
-		return "/reviewDetail";
-	}
-
 	@RequestMapping("/insertReview")
-	public String insertReview(HttpSession session, ReviewDto review) {
-		int userNo = (int) session.getAttribute("userNo");
-		review.setUser_no(userNo);
+	public String insertReview(HttpSession session, @RequestParam("place_no") int place_no, 
+			@RequestParam("msg") String msg,
+			@RequestParam("star") int star) {
+		int user_no = (int) session.getAttribute("userNo");
+		ReviewDto review = new ReviewDto(user_no, place_no,star,msg);
 		userService.insertReview(review);
+		
 		return "historyList";
 	}
 

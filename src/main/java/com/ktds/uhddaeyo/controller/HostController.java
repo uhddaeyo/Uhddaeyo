@@ -79,21 +79,21 @@ public class HostController {
 		List<String> placeTag = hostService.selectPlaceTag(placeInfo.getPlaceNo());
 		mv.addObject("placeInfo", placeInfo);
 		mv.addObject("placeTag", placeTag);
+		
 		return mv;
 	}
 	
-	@RequestMapping("guestAnalysis")
-	public ModelAndView guestAnalysis(int placeNo) {
-		ModelAndView mv = new ModelAndView("/guestAnalysis");
+	@RequestMapping("/guestAnalysis")
+	public ModelAndView guestAnalysis(HttpSession session) {
+		int placeNo = (int) session.getAttribute("placeNo");
 		
+		ModelAndView mv = new ModelAndView("/guestAnalysis");
 		List<Map<String, Object>> getGenderStat = hostService.getGenderStat(placeNo);
 		Map<String, Object> getAgeStat = hostService.getAgeStat(placeNo);
 		ArrayList<Long> getFemaleStar = hostService.getStar(placeNo, "F", null);
 		ArrayList<Long> getMaleStar = hostService.getStar(placeNo, "M",null);
-		
 		ArrayList<Long> getAllStar = hostService.getStar(placeNo, "F","M");
 		
-		System.out.println("-----------"+getAllStar);
 		mv.addObject("getGenderStat",getGenderStat);
 		mv.addObject("getAgeStat",getAgeStat);
 		mv.addObject("getFemaleStar",getFemaleStar);

@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<!-- Bootstrap core CSS -->
-<%@ include file="/WEB-INF/include/include-css.jsp"%>
-
+<%@ include file="/WEB-INF/include/include-header.jsp"%>
+<%@ include file="/WEB-INF/include/include-css.jsp"%>   
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
    $(document).ready(function() {
@@ -58,7 +55,7 @@
    }
 </script>
 </head>
-<body style="font-family: Noto Sans KR;">
+<body>
    <%@include file="header.jsp"%>
    <div class="container" align="center">
       <br /> <br /> <br /> <br />

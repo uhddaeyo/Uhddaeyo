@@ -14,6 +14,7 @@
 		WHERE u.user_no = c.user_no AND
 		c.req_no = m.req_no
 		AND m.place_no = #{ placeNo }
+		ORDER BY c.date
 	</select>
 
 	<select id="getResvList" resultType="com.ktds.uhddaeyo.model.dto.GuestReqDto">

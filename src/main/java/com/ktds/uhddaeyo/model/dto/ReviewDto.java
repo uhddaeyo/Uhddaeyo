@@ -15,6 +15,17 @@ public class ReviewDto {
 	private int age;
 	private String gender;
 
+	public ReviewDto() {
+		
+	}
+	
+	public ReviewDto(int user_no, int place_no, int star, String review) {
+		this.user_no = user_no;
+		this.place_no = place_no;
+		this.star = star;
+		this.review = review;
+	}
+	
 	public int getUser_no() {
 		return user_no;
 	}

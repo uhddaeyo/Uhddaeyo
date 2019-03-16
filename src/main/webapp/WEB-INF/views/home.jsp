@@ -1,16 +1,12 @@
 <%@page import="com.ktds.uhddaeyo.common.AES256Util"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport"
    content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap core CSS -->
+<%@ include file="/WEB-INF/include/include-header.jsp"%>
 <%@ include file="/WEB-INF/include/include-css.jsp"%>
-
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
    $(document).ready(function() {
