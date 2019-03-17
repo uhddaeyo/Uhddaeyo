@@ -11,7 +11,7 @@
  	function suggestionPopup(sug_no) {
 		var popupWidth = 420;
 		var popupHeight = 850;
-		var sugUrl = "suggestion";
+		var sugUrl = "/suggestion";
 		
 		console.log(sug_no);
 		

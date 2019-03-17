@@ -50,15 +50,19 @@
 								href="${pageContext.request.contextPath}/login">Login</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="nav-item"><a class="nav-link">${sessionScope.userName }님
-									환영합니다.</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/logout">Logout</a></li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-			</div>
-		</div>
-	</nav> 
+				<li class="nav-item">
+					<a class="nav-link"><b><font color="black">${sessionScope.userName }</font></b>님 환영합니다.</a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" href = "${pageContext.request.contextPath}/logout">Logout</a>
+				</li>
+			</c:otherwise>
+        </c:choose>
+          <li class="nav-item">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </body>
 </html>

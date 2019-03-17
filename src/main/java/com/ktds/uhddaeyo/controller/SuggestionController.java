@@ -32,7 +32,7 @@ public class SuggestionController {
 			SuggestionDto sdto, Model model) {
 		sdto.setUser_no((int) request.getSession().getAttribute("userNo"));
 		sdto = service.selectSuggestion(sdto);
-
+		System.out.println(sdto.getPlace_no());
 		List<String> pictures = service.selectPicturesByPlaceNo(sdto.getPlace_no());
 		model.addAttribute("pictures", pictures);
 
@@ -81,7 +81,6 @@ public class SuggestionController {
 		mv.setViewName("/suggestionBoard");
 		
 		List<SuggestionDto> suggestionList = service.selectSuggestionList(Integer.parseInt(dercryptStr));
-		
 		session.setAttribute("userNo", Integer.parseInt(dercryptStr));
 		mv.addObject("suggestionList", suggestionList);
 		return mv;

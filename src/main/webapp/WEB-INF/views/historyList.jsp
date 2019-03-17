@@ -62,6 +62,23 @@ function reviewClick(e) {
    
    <div class="container">
       <div class="row">
+         <!-- 요기 div 태그 안을 바꿔주면 됩니당 -->
+
+         <div class="col-lg-3" style="margin-top: 40px;">
+            <h1 class="my-4" align="center">MENU</h1>
+            <div class="list-group">
+<c:set var="userNo" value="${sessionScope.userNo}"></c:set>
+         <%
+										AES256Util aes256Util = new AES256Util();
+										String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
+									%>
+               <a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item">초대장 모아보기</a>
+               <a href="${pageContext.request.contextPath}/reservationList" class="list-group-item">나의 예약내역</a> 
+               <a href="${pageContext.request.contextPath}/historyList" class="list-group-item active">나의 이용내역</a>
+            </div>
+         </div>
+
+         <div class="col-lg-9">
 
 			<div class="col-lg-2" style="margin-top: 45px; margin-right: 30px">
 				<div class="site-logo" style="font-family: Segoe Scrip;" align="center">
