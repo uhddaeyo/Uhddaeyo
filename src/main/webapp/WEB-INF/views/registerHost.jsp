@@ -49,7 +49,7 @@
 		if (passwd != passwdCon) {
 			alert('비밀번호가 일치하지 않습니다!');
 			return;
-	  } else if(target.options[target.selectedIndex].value == '인당 가격'){
+	  } else if(target.options[target.selectedIndex].value == 0){
 	         alert('가격대를 선택하세요!');
 	         return;
 	  } else {
@@ -196,7 +196,7 @@
 							<label class="col-form-label"
 								style="margin-right: 28px; padding-left: 15px; padding-right: 53px;"><b>인당 가격</b></label>
 						 <form:select class="form-control" path="place.placePrice" id="place.placePrice" name="place.placePrice" cssStyle="width: 58%">
-								<form:option value="인당 가격" selected="selected" >인당 가격</form:option>
+								<form:option value="0" selected="selected" >인당 가격</form:option>
 								<form:option value="9999">1만원 대 이하</form:option>
 								<form:option value="10000">1만원 대</form:option>
 								<form:option value="20000">2만원 대</form:option>
