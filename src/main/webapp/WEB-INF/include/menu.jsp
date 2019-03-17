@@ -3,22 +3,35 @@
 <html>
 <head>
 <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <meta name="description" content="">
+ <meta name="author" content="">
 
-  <title>어때요?</title>
+<script type="text/javascript">
+ 	$(document).ready(function(){
+ 		$('.list-group a').on('click', function() {
+ 			$('a').removeClass('active')
+ 			$(this).addClass('active')
+ 		})
+ 	}) 
+</script>
 
-  <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ <!-- Bootstrap core CSS -->
+ <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet">
+ <!-- Custom styles for this template -->
+ <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet">
+
+ <title>어때요?</title>
 </head>
+
 <body>
- <div class="col-lg-3" style="margin-top: 40px;">
-				<h1 class="my-4" align="center">MENU</h1>
-				<div class="list-group">
+ <div class="col-lg-2" style="margin-top: 45px; margin-right : 30px">
+	<!-- <h1 class="my-4" align="center" style="font-family:Segoe Script" >Menu</h1> -->
+	<div class="site-logo" style="font-family:Segoe Scrip;" align="center">
+		<img class="menu-logo" src="resources/logoImage/menu1.jpg" width="130" height="50"/>
+	</div>
+	<div class="list-group" style="text-align:center; margin-top:30px;">
 				
 				<c:choose>
 					<c:when test="${sessionScope.userType == 1 }">

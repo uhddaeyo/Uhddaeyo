@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<!-- Bootstrap core CSS -->
-<%@ include file="/WEB-INF/include/include-css.jsp"%>
-
+<%@ include file="/WEB-INF/include/include-header.jsp"%>
+<%@ include file="/WEB-INF/include/include-css.jsp"%>   
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
    $(document).ready(function() {
@@ -58,7 +55,7 @@
    }
 </script>
 </head>
-<body style="font-family: Noto Sans KR;">
+<body>
    <%@include file="header.jsp"%>
    <div class="container" align="center">
       <br /> <br /> <br /> <br />
@@ -144,7 +141,7 @@
                   <div class="form-group row">
                      <label class="col-form-label"
                         style="margin-right: 85px; padding-left: 15px; padding-right: 15px;">연령대</label>
-                     <select class="form-control" id="age" style="width: 58%">
+                     <select class="form-control" id="age" name="age" style="width: 58%">
                         <option selected>나이대 선택</option>
                         <option value=10>10대</option>
                         <option value=20>20대</option>

@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
+<%@ include file="/WEB-INF/include/include-header.jsp"%>
+<%@ include file="/WEB-INF/include/include-css.jsp"%>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<title>Insert title here</title>
 <script>
 	$(document).ready(function() {
 		$("#idck").click(function() {
@@ -39,7 +39,9 @@
 				}
 			});
 		});
+
 	});
+
 	function clickSubmit() {
 		var passwd = document.getElementById('passwd').value;
 		var passwdCon = document.getElementById('passwdCon').value;
@@ -47,10 +49,8 @@
 		if (passwd != passwdCon) {
 			alert('비밀번호가 일치하지 않습니다!');
 			return;
-		} else if (target.options[target.selectedIndex].value == '나이대 선택') {
-			alert('나이를 선택하세요!');
-			return;
-		} else {
+		} 
+		else {
 			document.form1.action = '/host/signUp';
 			document.form1.submit();
 		}
@@ -59,10 +59,12 @@
 		new daum.Postcode({
 			oncomplete : function(data) {
 				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
 				// 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
 				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 				var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
 				var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
 				// 법정동명이 있을 경우 추가한다. (법정리는 제외)
 				// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
 				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
@@ -81,9 +83,11 @@
 				if (fullRoadAddr !== '') {
 					fullRoadAddr += extraRoadAddr;
 				}
+
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
 				console.log(data.zonecode);
 				console.log(fullRoadAddr);
+
 				/*                $("[name=addr1]").val(data.zonecode); */
 				/* $("[name=addr2]").val(fullRoadAddr); */
 				document.getElementById('addr2').value = fullRoadAddr;
@@ -97,93 +101,135 @@
 </head>
 <body>
 	<%@include file="header.jsp"%>
-	<div align="center">
-		<br /> <br />
-		<h1>점주 회원가입</h1>
-		<h2>기본 정보</h2>
-		<table width="600px">
+	<div class="container" align="center">
+		<br /> <br /> <br /> <br />
+		<h2>점주 회원가입</h2>
+		<table width="450px" style="margin-top: 50px;">
 			<tr>
-				<td><form:form commandName="host" id="form1" name="form1"
-						method="post" class="form-signin" action="/host/signUp"
+				<td>
+					<h4 style="margin-bottom: 40px;">기본정보</h4>
+					
+					<form:form commandName="host" id="form1" name="form1" method="post"
+						class="form-signin" action="/host/signUp"
 						enctype="multipart/form-data">
-						<label for="id">아이디</label>
-						<form:input type="text" id="id" path="id" cssClass="form-control"
-							placeholder="아이디를 입력하세요" required="required" />
-						<input type="button" id="idck"
-							class="btn btn-outline-danger my-2 my-sm-0" value="중복 확인" />
-						<br />
-						<label for="passwd">비밀번호</label>
-						<form:input type="password" id="passwd" path="passwd"
-							class="form-control" placeholder="비밀번호를 입력하세요"
-							required="required" />
-						<br />
-						<label for="passwd">비밀번호 확인</label>
-						<input type="password" id="passwdCon" name="passwdCon"
-							class="form-control" placeholder="비밀번호를 입력하세요"
-							required="required">
-						<br />
-						<label for="name">이름</label>
-						<form:input type="text" id="name" path="name" class="form-control"
-							placeholder="이름을 입력하세요" required="required" />
-						<label for="tel">휴대폰 번호</label>
-						<form:input type="tel" id="tel" path="tel" class="form-control"
-							placeholder="휴대폰 번호를 입력하세요" required="required" />
-						<br />
-
-						<h2>가게 정보</h2>
-
-						<label for="placeName">상호명</label>
-						<form:input type="text" path="place.placeName"
-							id="place.placeName" required="required" />
-						<br />
-						<label for="placeTel">전화번호</label>
-						<form:input type="text" path="place.placeTel" id="place.placeTel"
-							required="required" />
-						<br />
-						<label for="capacity">최대 수용 인원</label>
-						<form:input type="text" path="place.capacity" id="place.capacity"
-							required="required" />
-						<br />
-						<label for="placePrice">인당 가격</label>
-						<form:select class="custom-select" path="place.placePrice" id="place.placePrice" name="place.placePrice">
-								<form:option value="0" selected="selected" >인당 가격</form:option>
-								<form:option value="9999">1만원 대 이하</form:option>
-								<form:option value="10000">1만원 대</form:option>
-								<form:option value="20000">2만원 대</form:option>
-								<form:option value="30000">3만원 대</form:option>
-								<form:option value="40000">4만원 대</form:option>
-								<form:option value="50000">5만원 대</form:option>
-								<form:option value="60000">5만원 대 이상</form:option>
-							</form:select>
-						<br />
-						<label>영업시간</label>
-						<form:input type="time" class='form-control' step="1800"
-							path="place.startTime" id="place.startTime" required="required" />
-						<form:input type="time" class='form-control' step="1800"
-							path="place.endTime" id="place.endTime" required="required" />
-						<br />
-
-						<div class="form-group">
-							<button type="button" class="btn btn-default"
-								onclick="execPostCode();">
-								<i class="fa fa-search"></i> 주소 찾기
-							</button>
+						
+						<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 82px; padding-left: 15px; padding-right: 15px;">아이디</label>
+							<div>
+								<input type="text" class="form-control" id="id" name="id"
+									placeholder="아이디를 입력하세요" required autofocus>
+							</div>
+							
+							<button type="button" id="idck" class="btn btn-outline-primary" style="margin-left:10px;">중복확인</button>
 						</div>
-						<div class="form-group">
-							<form:input class="form-control" path="place.address"
-								style="top: 5px;" placeholder="주소 찾기 버튼을 눌러 주소를 입력해주세요!"
-								name="addr2" id="addr2" type="text" readonly="readonly" />
+						
+						<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 67px; padding-left: 15px; padding-right: 16px;">비밀번호</label>
+							<div style="width: 58%;">
+								<input type="password" class="form-control" id="passwd" name="passwd"
+									placeholder="비밀번호를 입력하세요" required autofocus>
+							</div>
 						</div>
-						<br />
-						<label for="picture">사진</label>
-						<div id="pic">
-							<input type="file" multiple="multiple" id="pic1"
+						
+						<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 32px; padding-left: 15px; padding-right: 23px;">비밀번호
+								확인</label>
+							<div style="width: 58%;">
+								<input type="password" class="form-control" id="passwdCon" name="passwdCon"
+									placeholder="비밀번호를 입력하세요" required autofocus>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 100px; padding-left: 15px; padding-right: 8px;">이름</label>
+							<div style="width: 58%;">
+								<input type="text" class="form-control" id="name" name="name"
+									placeholder="이름을 입력하세요" required autofocus>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 48px; padding-left: 15px; padding-right: 18px;">휴대폰
+								번호</label>
+							<div style="width: 58%;">
+								<input type="text" class="form-control" id="tel" name="tel"
+									placeholder="휴대폰 번호를 입력하세요" required autofocus>
+							</div>
+						</div>
+						
+						<h4 style="margin-top: 60px; margin-bottom: 40px;">가게 정보</h4>
+						
+						<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 82px; padding-left: 15px; padding-right: 15px;">상호명</label>
+							<div style="width: 58%;">
+								<input type="text" class="form-control" id="place.placeName" path="place.placeName"
+									placeholder="상호명을 입력하세요" required autofocus>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 67px; padding-left: 15px; padding-right: 16px;">전화번호</label>
+							<div style="width: 58%;">
+								<input type="text" class="form-control" id="place.placeTel" path="placeTel"
+									placeholder="전화번호를 입력하세요" required autofocus>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 28px; padding-left: 15px; padding-right: 25px;">최대 수용 인원</label>
+							<div style="width: 58%;">
+								<input type="text" class="form-control" id="place.capacity" path="place.capacity"
+									placeholder="수용인원을 입력하세요" required autofocus>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 65px; padding-left: 15px; padding-right: 15px;">영업 시간</label>
+							<div style="width: 58%;">
+								<p style="margin-top:7px; margin-bottom:10px;">오픈 시간</p> <form:input type="time" class='form-control' step="1800"
+									path="place.startTime" id="place.startTime" required="required"/> 
+								<p style="margin-top:10px; margin-bottom:10px;">마감 시간</p><form:input type="time" class='form-control' step="1800"
+									path="place.endTime" id="place.endTime" required="required"/>
+							</div>	
+						</div>
+						
+						<div class="form-group row" style="maring-top:10px;">
+						<label class="col-form-label"
+								style="margin-right: 100px; padding-left: 15px; padding-right: 8px;">주소</label>
+							<div class="form-group" style="width:57%;">
+								<button type="button" class="btn btn-outline-primary"
+									onclick="execPostCode();" style="margin-bottom:10px;">주소 찾기
+								</button>
+								<form:input class="form-control" path="place.address" placeholder="주소 찾기 버튼을 눌러 주소를 입력해주세요!"
+									name="addr2" id="addr2" type="text" readonly="readonly" />
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 100px; padding-left: 15px; padding-right: 8px;">사진</label>
+							<div id="pic" style="width: 58%;" >
+								<input type="file" multiple="multiple" id="pic1"
 								class="form-control" name="pic" required="required">
+							</div>
 						</div>
-						<input type="submit" class="btn btn-ln btn-danger btn-block"
-							id="submitBtn" onclick="clickSubmit();" value="Sign Up"
-							disabled="disabled">
-						<button type="button" onclick="location.href='/login'">취소</button>
+						
+						<div class="form-group"  style="text-align: center; margin-top: 70px;">
+							<button type="button" class="btn btn-outline-primary"  style="margin-right: 20px; width: 20%"
+								onclick="location.href='/login'">취소</button>
+                     		<button type="button" class="btn btn-primary" style="width: 20%"
+                     			id="submitBtn" onclick="clickSubmit();" value="Sign Up">다음</button>
+                		</div>
+          				
 					</form:form></td>
 			</tr>
 		</table>

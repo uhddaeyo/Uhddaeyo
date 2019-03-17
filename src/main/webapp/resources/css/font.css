@@ -1,0 +1,6 @@
+@font-face{
+	font-family: "포천 오성과 한음";
+	src:url('/resources/font/OSeongandHanEum-Regular.woff') format('woff');
+}
+
+body, table, div, p {font-family:'포천 오성과 한음'}
