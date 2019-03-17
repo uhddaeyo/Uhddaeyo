@@ -59,17 +59,17 @@
    <%@include file="header.jsp"%>
    <div class="container" align="center">
       <br /> <br /> <br /> <br />
-      <h2>고객 회원가입</h2>
+      <h2><b>고객 회원가입</b></h2>
       <table width="450px" style="margin-top: 50px;">
          <tr>
             <td>
-               <h4 style="margin-bottom: 40px;">기본정보</h4>
+               <h4 style="margin-bottom: 40px;"><b>기본정보</b></h4>
                
                <form id="form1" name="form1" method="post" class="form-signin"
                   action="/guest/signUp">
                   <div class="form-group row">
                      <label class="col-form-label"
-                        style="margin-right: 82px; padding-left: 15px; padding-right: 15px;">아이디</label>
+                        style="margin-right: 82px; padding-left: 15px; padding-right: 15px;"><b>아이디</b></label>
                      <div>
                         <input type="text" class="form-control" id="id" name="id"
                            placeholder="아이디를 입력하세요" required autofocus>
@@ -80,7 +80,7 @@
                   
                   <div class="form-group row">
                      <label class="col-form-label"
-                        style="margin-right: 67px; padding-left: 15px; padding-right: 16px;">비밀번호</label>
+                        style="margin-right: 67px; padding-left: 15px; padding-right: 16px;"><b>비밀번호</b></label>
 
                      <div style="width: 58%;">
                         <input type="password" class="form-control" id="passwd" name="passwd"
@@ -90,8 +90,8 @@
                   
                   <div class="form-group row">
                      <label class="col-form-label"
-                        style="margin-right: 32px; padding-left: 15px; padding-right: 23px;">비밀번호
-                        확인</label>
+                        style="margin-right: 32px; padding-left: 15px; padding-right: 23px;"><b>비밀번호
+                        확인</b></label>
                      <div style="width: 58%;">
                         <input type="password" class="form-control" id="passwdCon" name="passwdCon"
                            placeholder="비밀번호를 입력하세요" required autofocus>
@@ -100,7 +100,7 @@
                   
                   <div class="form-group row">
                      <label class="col-form-label"
-                        style="margin-right: 100px; padding-left: 15px; padding-right: 7px;">이름</label>
+                        style="margin-right: 100px; padding-left: 15px; padding-right: 7px;"><b>이름</b></label>
                      <div style="width: 58%;">
                         <input type="text" class="form-control" id="name" name="name"
                            placeholder="이름을 입력하세요" required autofocus>
@@ -109,19 +109,19 @@
                   
                   <div class="form-group row">
                      <label class="col-form-label"
-                        style="margin-right: 48px; padding-left: 15px; padding-right: 18px;">휴대폰
-                        번호</label>
+                        style="margin-right: 48px; padding-left: 15px; padding-right: 18px;"><b>휴대폰
+                        번호</b></label>
                      <div style="width: 58%;">
                         <input type="text" class="form-control" id="tel" name="tel"
                            placeholder="휴대폰 번호를 입력하세요" required autofocus>
                      </div>
                   </div>
                   
-                  <h4 style="margin-top: 60px; margin-bottom: 40px;">추가정보(선택가능)</h4>
+                  <h4 style="margin-top: 60px; margin-bottom: 40px;"><b>추가정보(선택가능)</b></h4>
                   
                   <div class="form-group row">
                      <label class="col-form-label"
-                        style="margin-right: 120px; padding-left: 15px; padding-right: 15px;">성별</label>
+                        style="margin-right: 120px; padding-left: 15px; padding-right: 15px;"><b>성별</b></label>
 
                      <div class="form-group row">
                         <div class="custom-control custom-radio"
@@ -140,7 +140,7 @@
                   
                   <div class="form-group row">
                      <label class="col-form-label"
-                        style="margin-right: 85px; padding-left: 15px; padding-right: 15px;">연령대</label>
+                        style="margin-right: 85px; padding-left: 15px; padding-right: 15px;"><b>연령대</b></label>
                      <select class="form-control" id="age" name="age" style="width: 58%">
                         <option selected>나이대 선택</option>
                         <option value=10>10대</option>

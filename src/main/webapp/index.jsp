@@ -74,18 +74,18 @@
             <div class="carousel-item active"
                style="background-image: url('resources/images/table1.jpg')">
                <div class="carousel-caption d-none d-md-block">
-                  <h3>
+                  <h2>
                      <b>컨셉에 맞는 식사 장소를 제안해 드립니다!</b>
-                  </h3>
+                  </h2>
                   <!--  <p>This is a description for the first slide.</p>-->
                </div>
             </div>
             <div class="carousel-item"
                style="background-image: url('resources/images/table2.jpg')">
                <div class="carousel-caption d-none d-md-block">
-                  <h3>
+                  <h2>
                      <b>멀리가지 말고 근처에서 회식하자!</b>
-                  </h3>
+                  </h2>
                   <!--  <p>This is a description for the second slide.</p>-->
                </div>
             </div>
@@ -93,9 +93,9 @@
             <div class="carousel-item"
                style="background-image: url('resources/images/table3.jpg')">
                <div class="carousel-caption d-none d-md-block">
-                  <h3>
+                  <h2>
                      <b>숨겨진 맛집공간을 찾아서!</b>
-                  </h3>
+                  </h2>
                   <!-- <p>This is a description for the third slide.</p>-->
                </div>
             </div>

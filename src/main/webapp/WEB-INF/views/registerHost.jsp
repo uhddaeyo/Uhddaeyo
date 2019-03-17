@@ -45,12 +45,14 @@
 	function clickSubmit() {
 		var passwd = document.getElementById('passwd').value;
 		var passwdCon = document.getElementById('passwdCon').value;
-		var target = document.getElementById('age');
+		var target = document.getElementById('place.placePrice');
 		if (passwd != passwdCon) {
 			alert('비밀번호가 일치하지 않습니다!');
 			return;
-		} 
-		else {
+	  } else if(target.options[target.selectedIndex].value == '인당 가격'){
+	         alert('가격대를 선택하세요!');
+	         return;
+	  } else {
 			document.form1.action = '/host/signUp';
 			document.form1.submit();
 		}
@@ -103,11 +105,11 @@
 	<%@include file="header.jsp"%>
 	<div class="container" align="center">
 		<br /> <br /> <br /> <br />
-		<h2>점주 회원가입</h2>
+		<h2><b>점주 회원가입</b></h2>
 		<table width="450px" style="margin-top: 50px;">
 			<tr>
 				<td>
-					<h4 style="margin-bottom: 40px;">기본정보</h4>
+					<h4 style="margin-bottom: 40px;"><b>기본정보</b></h4>
 					
 					<form:form commandName="host" id="form1" name="form1" method="post"
 						class="form-signin" action="/host/signUp"
@@ -115,7 +117,7 @@
 						
 						<div class="form-group row">
 							<label class="col-form-label"
-								style="margin-right: 82px; padding-left: 15px; padding-right: 15px;">아이디</label>
+								style="margin-right: 82px; padding-left: 15px; padding-right: 15px;"><b>아이디</b></label>
 							<div>
 								<input type="text" class="form-control" id="id" name="id"
 									placeholder="아이디를 입력하세요" required autofocus>
@@ -126,7 +128,7 @@
 						
 						<div class="form-group row">
 							<label class="col-form-label"
-								style="margin-right: 67px; padding-left: 15px; padding-right: 16px;">비밀번호</label>
+								style="margin-right: 67px; padding-left: 15px; padding-right: 16px;"><b>비밀번호</b></label>
 							<div style="width: 58%;">
 								<input type="password" class="form-control" id="passwd" name="passwd"
 									placeholder="비밀번호를 입력하세요" required autofocus>
@@ -135,8 +137,8 @@
 						
 						<div class="form-group row">
 							<label class="col-form-label"
-								style="margin-right: 32px; padding-left: 15px; padding-right: 23px;">비밀번호
-								확인</label>
+								style="margin-right: 32px; padding-left: 15px; padding-right: 23px;"><b>비밀번호
+								확인</b></label>
 							<div style="width: 58%;">
 								<input type="password" class="form-control" id="passwdCon" name="passwdCon"
 									placeholder="비밀번호를 입력하세요" required autofocus>
@@ -145,7 +147,7 @@
 						
 						<div class="form-group row">
 							<label class="col-form-label"
-								style="margin-right: 100px; padding-left: 15px; padding-right: 8px;">이름</label>
+								style="margin-right: 100px; padding-left: 15px; padding-right: 8px;"><b>이름</b></label>
 							<div style="width: 58%;">
 								<input type="text" class="form-control" id="name" name="name"
 									placeholder="이름을 입력하세요" required autofocus>
@@ -154,57 +156,71 @@
 						
 						<div class="form-group row">
 							<label class="col-form-label"
-								style="margin-right: 48px; padding-left: 15px; padding-right: 18px;">휴대폰
-								번호</label>
+								style="margin-right: 48px; padding-left: 15px; padding-right: 18px;"><b>휴대폰
+								번호</b></label>
 							<div style="width: 58%;">
 								<input type="text" class="form-control" id="tel" name="tel"
 									placeholder="휴대폰 번호를 입력하세요" required autofocus>
 							</div>
 						</div>
 						
-						<h4 style="margin-top: 60px; margin-bottom: 40px;">가게 정보</h4>
+						<h4 style="margin-top: 60px; margin-bottom: 40px;"><b>가게 정보</b></h4>
 						
 						<div class="form-group row">
 							<label class="col-form-label"
-								style="margin-right: 82px; padding-left: 15px; padding-right: 15px;">상호명</label>
+								style="margin-right: 82px; padding-left: 15px; padding-right: 15px;"><b>상호명</b></label>
 							<div style="width: 58%;">
-								<input type="text" class="form-control" id="place.placeName" path="place.placeName"
-									placeholder="상호명을 입력하세요" required autofocus>
+								<form:input type="text" class="form-control" id="place.placeName" path="place.placeName"
+									placeholder="상호명을 입력하세요" required="autofocus" />
 							</div>
 						</div>
 						
 						<div class="form-group row">
 							<label class="col-form-label"
-								style="margin-right: 67px; padding-left: 15px; padding-right: 16px;">전화번호</label>
+								style="margin-right: 67px; padding-left: 15px; padding-right: 16px;"><b>전화번호</b></label>
 							<div style="width: 58%;">
-								<input type="text" class="form-control" id="place.placeTel" path="placeTel"
-									placeholder="전화번호를 입력하세요" required autofocus>
+								<form:input type="text" class="form-control" id="place.placeTel" path="place.placeTel"
+									placeholder="전화번호를 입력하세요" required="autofocus" />
 							</div>
 						</div>
 						
 						<div class="form-group row">
 							<label class="col-form-label"
-								style="margin-right: 28px; padding-left: 15px; padding-right: 25px;">최대 수용 인원</label>
+								style="margin-right: 28px; padding-left: 15px; padding-right: 25px;"><b>최대 수용 인원</b></label>
 							<div style="width: 58%;">
-								<input type="text" class="form-control" id="place.capacity" path="place.capacity"
-									placeholder="수용인원을 입력하세요" required autofocus>
+								<form:input type="text" class="form-control" id="place.capacity" path="place.capacity"
+									placeholder="수용인원을 입력하세요" required="autofocus" />
 							</div>
 						</div>
-						
+							<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 28px; padding-left: 15px; padding-right: 53px;"><b>인당 가격</b></label>
+						 <form:select class="form-control" path="place.placePrice" id="place.placePrice" name="place.placePrice" cssStyle="width: 58%">
+								<form:option value="인당 가격" selected="selected" >인당 가격</form:option>
+								<form:option value="9999">1만원 대 이하</form:option>
+								<form:option value="10000">1만원 대</form:option>
+								<form:option value="20000">2만원 대</form:option>
+								<form:option value="30000">3만원 대</form:option>
+								<form:option value="40000">4만원 대</form:option>
+								<form:option value="50000">5만원 대</form:option>
+								<form:option value="60000">5만원 대 이상</form:option>
+							</form:select>
+							</div>
+						<br />
 						<div class="form-group row">
 							<label class="col-form-label"
-								style="margin-right: 65px; padding-left: 15px; padding-right: 15px;">영업 시간</label>
+								style="margin-right: 65px; padding-left: 15px; padding-right: 15px;"><b>영업 시간</b></label>
 							<div style="width: 58%;">
-								<p style="margin-top:7px; margin-bottom:10px;">오픈 시간</p> <form:input type="time" class='form-control' step="1800"
+								<p style="margin-top:7px; margin-bottom:10px;"><b>오픈 시간</b></p> <form:input type="time" class='form-control' step="1800"
 									path="place.startTime" id="place.startTime" required="required"/> 
-								<p style="margin-top:10px; margin-bottom:10px;">마감 시간</p><form:input type="time" class='form-control' step="1800"
+								<p style="margin-top:10px; margin-bottom:10px;"><b>마감 시간</b></p><form:input type="time" class='form-control' step="1800"
 									path="place.endTime" id="place.endTime" required="required"/>
 							</div>	
 						</div>
 						
 						<div class="form-group row" style="maring-top:10px;">
 						<label class="col-form-label"
-								style="margin-right: 100px; padding-left: 15px; padding-right: 8px;">주소</label>
+								style="margin-right: 100px; padding-left: 15px; padding-right: 8px;"><b>주소</b></label>
 							<div class="form-group" style="width:57%;">
 								<button type="button" class="btn btn-outline-primary"
 									onclick="execPostCode();" style="margin-bottom:10px;">주소 찾기
@@ -216,7 +232,7 @@
 						
 						<div class="form-group row">
 							<label class="col-form-label"
-								style="margin-right: 100px; padding-left: 15px; padding-right: 8px;">사진</label>
+								style="margin-right: 100px; padding-left: 15px; padding-right: 8px;"><b>사진</b></label>
 							<div id="pic" style="width: 58%;" >
 								<input type="file" multiple="multiple" id="pic1"
 								class="form-control" name="pic" required="required">
@@ -227,7 +243,7 @@
 							<button type="button" class="btn btn-outline-primary"  style="margin-right: 20px; width: 20%"
 								onclick="location.href='/login'">취소</button>
                      		<button type="button" class="btn btn-primary" style="width: 20%"
-                     			id="submitBtn" onclick="clickSubmit();" value="Sign Up">다음</button>
+                     			id="submitBtn" onclick="clickSubmit();" disabled="disabled" value="Sign Up">다음</button>
                 		</div>
           				
 					</form:form></td>

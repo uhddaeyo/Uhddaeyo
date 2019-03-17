@@ -125,8 +125,8 @@ public class UserController {
 		userService.insertPlace(host.getPlace());
 
 		List<MultipartFile> fileList = req.getFiles("pic");
-		// 蹂몄씤 �뙆�씪 寃쎈줈濡� 諛붽씀湲�
-		String path = "C:\\Users\\�쁽�젙\\git\\Uhddaeyo\\src\\main\\webapp\\resources\\placeImage\\";
+
+		String path = "C:\\Users\\현정\\git\\Uhddaeyo\\src\\main\\webapp\\resources\\placeImages\\";
 		UUID uuid = UUID.randomUUID();
 		List<PicDto> pics = new ArrayList<>();
 
