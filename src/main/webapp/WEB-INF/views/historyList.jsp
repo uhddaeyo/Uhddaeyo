@@ -64,39 +64,22 @@ function reviewClick(e) {
       <div class="row">
          <!-- 요기 div 태그 안을 바꿔주면 됩니당 -->
 
-         <div class="col-lg-3" style="margin-top: 40px;">
-            <h1 class="my-4" align="center">MENU</h1>
-            <div class="list-group">
-<c:set var="userNo" value="${sessionScope.userNo}"></c:set>
-         <%
-										AES256Util aes256Util = new AES256Util();
-										String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
-									%>
-               <a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item">초대장 모아보기</a>
-               <a href="${pageContext.request.contextPath}/reservationList" class="list-group-item">나의 예약내역</a> 
-               <a href="${pageContext.request.contextPath}/historyList" class="list-group-item active">나의 이용내역</a>
-            </div>
-         </div>
-
-         <div class="col-lg-9">
-
 			<div class="col-lg-2" style="margin-top: 45px; margin-right: 30px">
 				<div class="site-logo" style="font-family: Segoe Scrip;" align="center">
 					<img class="menu-logo" src="resources/logoImage/menu1.jpg" width="130" height="50" />
 				</div>
 				<div class="list-group" style="text-align: center; margin-top: 30px;">
-					<c:set var="userNo" value="${sessionScope.userNo}"></c:set>
-					<%
-						AES256Util aes256Util = new AES256Util();
-						String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
-					%>
-					<a href="${path}/<%=encryptUserNo %>" class="list-group-item">초대장
-						모아보기</a> <a href="${pageContext.request.contextPath}/reservationList"
-						class="list-group-item">나의 예약내역</a> <a
-						href="${pageContext.request.contextPath}/historyList"
-						class="list-group-item active">나의 이용내역</a>
+				<c:set var="userNo" value="${sessionScope.userNo}"></c:set>
+         <%
+										AES256Util aes256Util = new AES256Util();
+										String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
+									%>
+					   <a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item">초대장 모아보기</a>
+               <a href="${pageContext.request.contextPath}/reservationList" class="list-group-item">나의 예약내역</a> 
+               <a href="${pageContext.request.contextPath}/historyList" class="list-group-item active">나의 이용내역</a>
+            </div>
 				</div>
-			</div>
+	
 
 			<div class="col-lg-9">
 			<h2 style="margin-top: 55px;">
@@ -130,20 +113,7 @@ function reviewClick(e) {
                </c:choose>
 			</div>
 			
-			<div style="text-align: center;">
-				<div style="display: inline-block;">
-                  <ul class="pagination">
-                     <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-                     <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                     <li class="page-item"><a class="page-link" href="#">2</a></li>
-                     <li class="page-item"><a class="page-link" href="#">3</a></li>
-                     <li class="page-item"><a class="page-link" href="#">4</a></li>
-                     <li class="page-item"><a class="page-link" href="#">5</a></li>
-                     <li class="page-item"><a class="page-link" href="#">&raquo;</a>
-                     </li>
-                  </ul>
-               </div>
-            </div>
+
          </div>
 		</div>
 	</div>
@@ -205,6 +175,7 @@ function reviewClick(e) {
 			</div>
 		</div>
 	</div>
+
 
 </body>
 </html>

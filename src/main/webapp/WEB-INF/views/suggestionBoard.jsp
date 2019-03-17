@@ -59,15 +59,17 @@
       <div class="row">
          <!-- 요기 div 태그 안을 바꿔주면 됩니당 -->
 
-         <div class="col-lg-3" style="margin-top: 40px;">
-            <h1 class="my-4" align="center">MENU</h1>
-            <div class="list-group">
+         <div class="col-lg-2" style="margin-top: 45px; margin-right: 30px">
+            <div class="site-logo" style="font-family: Segoe Scrip;" align="center">
+					<img class="menu-logo" src="${path }/resources/logoImage/menu1.jpg" width="130" height="50" />
+				</div>
+            <div class="list-group" style="text-align: center; margin-top: 30px;">
             <c:set var="userNo" value="${sessionScope.userNo}"></c:set>
          <%
 										AES256Util aes256Util = new AES256Util();
 										String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
 									%>
-               <a href="${path}/<%=encryptUserNo %>" class="list-group-item active">초대장 모아보기</a>
+               <a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item active">초대장 모아보기</a>
                <a href="${pageContext.request.contextPath}/reservationList" class="list-group-item">나의 예약내역</a> 
                <a href="${pageContext.request.contextPath}/historyList" class="list-group-item">나의 이용내역</a>
             </div>
@@ -88,7 +90,7 @@
                            <div class="card h-100" style="height: 252px; border-color: #BDBDBD;">
                               <div class="card-body"
                                  style="width: auto; margin-top: 20px;">
-                                 <h4 class="card-title" style="margin-bottom:15px;"> <a class="text-primary"> ${suggestion.place_name} </a>
+                                 <h4 class="card-title" style="margin-bottom:15px;"> <a class="text-primary"><b> ${suggestion.place_name}</b> </a>
                                  </h4>
                                  <p class="card-text" style="height:90px;">${suggestion.message}</p>
                                  <button type="button" class="btn btn-outline-primary review"  id="suggest_btn"   onclick="suggestionPopup(${suggestion.sug_no})">자세히보기</button>   
