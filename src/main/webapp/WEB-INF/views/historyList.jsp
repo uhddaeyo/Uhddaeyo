@@ -46,7 +46,6 @@ $(document).ready(function(){
       
  //review Detail 창 가져오기
 function reviewClick(e) {
-	console.log(e.name);
 	document.getElementById('placeName').innerHTML = "";
 	$('#placeName').append(e.name);
 	

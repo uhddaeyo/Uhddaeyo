@@ -1,4 +1,4 @@
-<%@page import="com.ktds.uhddaeyo.common.AES256Util"%>
+<%@ page import="com.ktds.uhddaeyo.common.AES256Util"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -115,7 +115,7 @@ function kakaoLink(e) {
 											<td width="50" style="vertical-align: middle;">${idx.count}</td>
 											<td width="100" style="vertical-align: middle">${guest.userName }</td>
 											<td width="200" style="vertical-align: middle"><fmt:formatDate
-													value="${guest.date }" pattern="yyyy-MM-dd HH:mm" /></td>
+													value="${guest.date }" pattern="yyyy-MM-dd HH:mm" />
 											<td style="vertical-align: middle">${guest.memCnt }</td>
 
 											<td style="vertical-align: middle">

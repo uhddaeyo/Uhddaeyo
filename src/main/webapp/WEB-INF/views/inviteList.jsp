@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<html lang="ko">
+<!DOCTYPE html>
+<html>
 <head>
 <%@ include file="/WEB-INF/include/include-header.jsp"%>
 <%@ include file="/WEB-INF/include/include-css.jsp"%>
@@ -24,7 +25,7 @@
 				<a href="${pageContext.request.contextPath}/review" class="list-group-item">가게리뷰</a>
 				<a href="${pageContext.request.contextPath}/guestAnalysis?placeNo=${placeInfo.placeNo}" class="list-group-item">고객분석</a>
 			</div>
-	  </div>
+	 		</div>
 
 			<div class="col-lg-9"  style = "font-size:15px">
 				<h2 style="margin-top: 55px;">
@@ -51,8 +52,7 @@
 										varStatus="status">
 
 										<tr align="center">
-											<td width="50" style="vertical-align: middle;">${status.count}
-											</th>
+											<td width="50" style="vertical-align: middle;">${status.count}</td>
 											<td width="100" style="vertical-align: middle;">${invite.name}</td>
 											<td width="200" style="vertical-align: middle"><fmt:formatDate
 													value="${invite.resv_date}" pattern="yyyy-MM-dd HH:mm" />

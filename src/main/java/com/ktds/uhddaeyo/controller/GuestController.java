@@ -74,14 +74,17 @@ public class GuestController {
 	}
 
 	@RequestMapping("/insertReview")
-	public String insertReview(HttpSession session, @RequestParam("place_no") int place_no, 
+	public ModelAndView insertReview(HttpSession session, @RequestParam("place_no") int place_no, 
 			@RequestParam("msg") String msg,
 			@RequestParam("star") int star) {
 		int user_no = (int) session.getAttribute("userNo");
 		ReviewDto review = new ReviewDto(user_no, place_no,star,msg);
 		userService.insertReview(review);
 		
-		return "historyList";
+		String url = "redirect:/historyList";
+		ModelAndView mv = new ModelAndView(url);
+		
+		return mv;
 	}
 
 }

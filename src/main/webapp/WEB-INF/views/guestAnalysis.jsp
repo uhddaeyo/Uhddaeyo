@@ -68,7 +68,7 @@
 	    new Chart(document.getElementById("genderCnt"), {
 	        type: 'doughnut',
 	        data: {
-	          labels: ["Female","Male"],
+	          labels: ["여성","남성"],
 	          datasets: [{
 	            //label: "Population (millions)",
 	            backgroundColor: ["#D9230F", "#D9D9D9","#2782A3","#544542","#DA6F63"],
@@ -79,7 +79,8 @@
 	          title: {
 	            display: true,
 	            fontSize: 24,
-	            text: 'Gender Ratio'
+	            fontFamily : '포천 오성과 한음 Regular',
+	            text: '고객 성별 비율'
 	          },
 	          legend :{
 	        	  position :'left'
@@ -88,6 +89,15 @@
 	        }
 	    });
 	    
+	    
+	    function add(accumulator, a) {
+		    return accumulator + a;
+		}
+	    
+	    const total = ${getAgeStat.cnt}.reduce(add);
+		console.log(total)
+	    let ageRatio = ${getAgeStat.cnt}.map(x => {return Math.round(x/total*100)});
+		
 	    /*나이 비율 */
 	    new Chart(document.getElementById("ageCnt"), {
 	        type: 'doughnut',
@@ -96,14 +106,15 @@
 	          datasets: [{
 	            //label: "Population (millions)",
 	            backgroundColor: ["#D9230F", "#D9D9D9","#2782A3","#544542","#DA6F63"],
-	            data: ${getAgeStat.cnt}
+	            data: ageRatio
 	          }]
 	        },
 	        options: {
 	          title: {
 	            display: true,
 	            fontSize: 24,
-	            text: 'Age Ratio'
+	            fontFamily : '포천 오성과 한음 Regular',
+	            text: '고객 나이 비율'
 	          },
 	          legend :{
 	        	  position :'left'
@@ -118,11 +129,11 @@
 		      labels: ["1점","2점","3점","4점","5점"],
 		      datasets: [
 		        {
-		          label: "Female",
+		          label: "여성",
 		          backgroundColor: "#D9230F",
 		          data: ${getFemaleStar}
 		        }, {
-		          label: "Male",
+		          label: "남성",
 		          backgroundColor: "#D9D9D9",
 		          data: ${getMaleStar}
 		        }
@@ -132,7 +143,8 @@
 				title: {
 		        display: true,
 		        fontSize: 24,
-		        text: 'Star Rating by Gender'
+		        fontFamily : '포천 오성과 한음 Regular',
+		        text: '성별 별점 평가'
 		      },
 				scales: {
 					yAxes: [{
@@ -162,7 +174,8 @@
 		      title: {
 		        display: true,
 		        fontSize: 24,
-		        text: 'Star Rating'
+		        fontFamily : '포천 오성과 한음 Regular',
+		        text: '전체 별점 평가'
 		      },
 		      scales: {
 					yAxes: [{

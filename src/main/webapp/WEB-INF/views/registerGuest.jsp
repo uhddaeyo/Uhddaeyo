@@ -141,7 +141,7 @@
                   <div class="form-group row">
                      <label class="col-form-label"
                         style="margin-right: 85px; padding-left: 15px; padding-right: 15px;">연령대</label>
-                     <select class="form-control" id="age" style="width: 58%">
+                     <select class="form-control" id="age" name="age" style="width: 58%">
                         <option selected>나이대 선택</option>
                         <option value=10>10대</option>
                         <option value=20>20대</option>
