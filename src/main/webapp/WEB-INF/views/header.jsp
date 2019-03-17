@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -10,6 +11,10 @@
 <meta name="author" content="">
 
 <title>어때요?</title>
+<!-- font -->
+<link href="${pageContext.request.contextPath}/resources/css/font.css" 
+	  rel="stylesheet" />
+
 <!-- Bootstrap core CSS -->
 <link
 	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css"
@@ -29,7 +34,7 @@
 	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	crossorigin="anonymous"></script>
 </head>
-<body style="font-family: 포천 오성과 한음 Regular">
+<body>
 	<!-- Navigation --> 
 	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
 		<div class="container">
