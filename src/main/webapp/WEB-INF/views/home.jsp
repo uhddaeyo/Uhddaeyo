@@ -127,7 +127,7 @@
 									%>
          <button type="button" class="btn btn-outline-primary" style="width: 200px; height: 80px;"
          
-            onclick="location='${path}/<%=encryptUserNo %>'">
+            onclick="location='${path}/kakaoinvitelink/<%=encryptUserNo %>'">
             My Page</button>
       </div>
    </div>

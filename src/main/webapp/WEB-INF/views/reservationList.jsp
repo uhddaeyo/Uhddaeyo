@@ -1,3 +1,4 @@
+<%@page import="com.ktds.uhddaeyo.common.AES256Util"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -124,10 +125,14 @@ $(document).ready(function(){
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<body>
+<body style="font-family: Noto Sans KR;">
 
 	<%@include file="header.jsp"%>
-
+<c:set var="userNo" value="${sessionScope.userNo}"></c:set>
+<%
+         AES256Util aes256Util = new AES256Util();
+         String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
+									%>
 	<!-- Page Content -->
 	<div class="container">
 		<div class="row">
@@ -137,9 +142,9 @@ $(document).ready(function(){
 			<div class="col-lg-3" style="margin-top: 40px;">
 				<h1 class="my-4" align="center">MENU</h1>
 				<div class="list-group">
-					<a href="#" class="list-group-item">초대장 모아보기</a> <a href="#"
-						class="list-group-item active">나의 예약내역</a> <a href="#"
-						class="list-group-item">나의 이용내역</a>
+					<a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item">초대장 모아보기</a> 
+					<a href="${pageContext.request.contextPath}/reservationList" class="list-group-item active">나의 예약내역</a>
+					<a href="${pageContext.request.contextPath}/historyList" class="list-group-item">나의 이용내역</a>
 				</div>
 			</div>
 
@@ -169,14 +174,14 @@ $(document).ready(function(){
 										varStatus="status">
 										<tr>
 											<th scope="row">${status.count}</th>
-											<td style="text-align: center";>${resv.place_name}</td>
-											<td style="text-align: center";>${resv.mem_cnt}</td>
-											<td style="text-align: center";>${resv.resv_date}</td>
-											<td><button class="btn btn-danger" type="button" id="suggest_btn"
+											<td style="text-align: center;">${resv.place_name}</td>
+											<td style="text-align: center;">${resv.mem_cnt}</td>
+											<td style="text-align: center;">${resv.resv_date}</td>
+											<td><button class="btn btn btn-outline-primary" type="button" id="suggest_btn"
 									onclick="suggestionPopup(${resv.place_no}, ${resv.sug_no })">자세히 보기</button></td>
 											<td>
 											
-											<button type="button" class="btn btn-danger" data-toggle="modal"
+											<button type="button" class="btn btn btn-outline-primary" data-toggle="modal"
 											data-target="#exampleModal" onclick="cancelBtn(this)" id="${resv.sug_no }" data-whatever="@getbootstrap">예약 취소</button>
 											
 										</tr>
@@ -214,7 +219,7 @@ $(document).ready(function(){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-        <button type="button" onclick="cancelResv();"  class="btn btn-danger">확인</button>
+        <button type="button" onclick="cancelResv();"  class="btn btn btn-primary">확인</button>
       </div>
     </div>
   </div>

@@ -37,7 +37,7 @@
 			</c:when>
 			<c:otherwise>
 				<li class="nav-item">
-					<a class="nav-link">${sessionScope.userName }님 환영합니다.</a>
+					<a class="nav-link"><b><font color="black">${sessionScope.userName }</font></b>님 환영합니다.</a>
 				</li>
 				<li class="nav-item">
 				<a class="nav-link" href = "${pageContext.request.contextPath}/logout">Logout</a>
