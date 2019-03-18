@@ -14,6 +14,7 @@
 		WHERE u.user_no = c.user_no AND
 		c.req_no = m.req_no
 		AND m.place_no = #{ placeNo }
+		AND date(c.date) > date(now())
 		ORDER BY c.date
 	</select>
 
@@ -22,7 +23,7 @@
 		FROM customer_req AS cr 
 		JOIN user AS u ON cr.user_no = u.user_no
 		JOIN suggestion AS s ON cr.req_no = s.req_no
-		WHERE isresv = 'Y' AND place_no = #{placeNo};
+		WHERE isresv = 'Y' AND  date(resv_date) > date(now()) AND  place_no = #{placeNo};
 	</select>
 	
 	<select id="selectPlaceName" resultType="String">
