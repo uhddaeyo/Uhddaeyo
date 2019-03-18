@@ -15,6 +15,7 @@ public class ReviewDto {
 	private int age;
 	private String gender;
 	private String id;
+	private String place_name;
 
 	public ReviewDto() {
 
@@ -121,6 +122,14 @@ public class ReviewDto {
 
 	public void setId(String id) {
 		this.id = id;
+  }
+  
+	public String getPlace_name() {
+		return place_name;
+	}
+
+	public void setPlace_name(String place_name) {
+		this.place_name = place_name;
 	}
 
 	@Override

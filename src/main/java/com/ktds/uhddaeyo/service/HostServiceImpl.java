@@ -74,4 +74,12 @@ public class HostServiceImpl implements HostService {
 	public boolean saveMemo(GuestReqDto grdto) {
 		return hostDao.saveMemo(grdto);
 	}
+
+	@Override
+	public void sentInvite(int idx) {
+		hostDao.sentInvite(idx);
+		
+	}
+	
+	
 }

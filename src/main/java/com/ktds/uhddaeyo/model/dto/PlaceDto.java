@@ -14,7 +14,9 @@ public class PlaceDto {
 	private String endTime;
 	private BigDecimal latitude;
 	private BigDecimal longitude;
-
+	private String placeExp;
+	private int star;
+	
 	public int getPlaceNo() {
 		return placeNo;
 	}
@@ -103,6 +105,19 @@ public class PlaceDto {
 		this.longitude = longitude;
 	}
 
+	public String getPlaceExp() {
+		return placeExp;
+	}
+	public void setPlaceExp(String placeExp) {
+		this.placeExp = placeExp;
+	}
+	public int getStar() {
+		return star;
+	}
+	public void setStar(int star) {
+		this.star = star;
+	}
+	
 	@Override
 	public String toString() {
 		return "PlaceDto [placeNo=" + placeNo + ", userNo=" + userNo + ", placeName=" + placeName + ", placeTel="

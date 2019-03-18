@@ -57,7 +57,9 @@
 		form.submit();
 	}
  </script>
-
+<style>
+.h-500{height: 100% !important}
+</style>
 </head>
 <body style="font-family: Noto Sans KR;">
 	<%@include file="header.jsp"%>
@@ -71,23 +73,20 @@
 					<img class="menu-logo" src="${path }/resources/logoImage/menu1.jpg"
 						width="130" height="50" />
 				</div>
-				<div class="list-group"
-					style="text-align: center; margin-top: 30px;">
-					<c:set var="userNo" value="${sessionScope.userNo}"></c:set>
-					<%
-						AES256Util aes256Util = new AES256Util();
-						String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
-					%>
-					<a
-						href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>"
-						class="list-group-item active">초대장 모아보기</a> <a
-						href="${pageContext.request.contextPath}/reservationList"
-						class="list-group-item">나의 예약내역</a> <a
-						href="${pageContext.request.contextPath}/historyList"
-						class="list-group-item">나의 이용내역</a>
-				</div>
-			</div>
-			<!-- /.col-lg-3 -->
+		
+        <div class="list-group" style="text-align: center; margin-top: 30px;">
+            <c:set var="userNo" value="${sessionScope.userNo}"></c:set>
+            <%
+						  AES256Util aes256Util = new AES256Util();
+							String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
+						%>
+            <a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item active">초대장 모아보기</a>
+            <a href="${pageContext.request.contextPath}/reqList" class="list-group-item">나의 요청내역</a>
+            <a href="${pageContext.request.contextPath}/reservationList" class="list-group-item">나의 예약내역</a> 
+            <a href="${pageContext.request.contextPath}/historyList" class="list-group-item">나의 이용내역</a>
+        </div>
+    </div>
+         <!-- /.col-lg-3 -->
 
 			<div class="col-lg-9">
 
@@ -117,9 +116,7 @@
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
-
 							<h3>조회된 결과가 없습니다.</h3>
-
 						</c:otherwise>
 					</c:choose>
 				</div>

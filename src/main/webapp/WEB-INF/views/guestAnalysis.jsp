@@ -24,7 +24,7 @@
 				<a href="${pageContext.request.contextPath}/inviteList" class="list-group-item">초대현황</a>
 				<a href="${pageContext.request.contextPath}/resvList" class="list-group-item">예약현황</a>
 				<a href="${pageContext.request.contextPath}/review" class="list-group-item">가게리뷰</a>
-				<a href="${pageContext.request.contextPath}/guestAnalysis}" class="list-group-item active">고객분석</a>
+				<a href="${pageContext.request.contextPath}/guestAnalysis" class="list-group-item active">고객분석</a>
 			</div>
 	  </div>
 			<div class="col-lg-9">
@@ -79,7 +79,7 @@
 	          title: {
 	            display: true,
 	            fontSize: 24,
-	            fontFamily : '포천 오성과 한음 Regular',
+	            fontFamily : '포천 오성과 한음',
 	            text: '고객 성별 비율'
 	          },
 	          legend :{
@@ -113,7 +113,7 @@
 	          title: {
 	            display: true,
 	            fontSize: 24,
-	            fontFamily : '포천 오성과 한음 Regular',
+	            fontFamily : '포천 오성과 한음',
 	            text: '고객 나이 비율'
 	          },
 	          legend :{
@@ -143,7 +143,7 @@
 				title: {
 		        display: true,
 		        fontSize: 24,
-		        fontFamily : '포천 오성과 한음 Regular',
+		        fontFamily : '포천 오성과 한음',
 		        text: '성별 별점 평가'
 		      },
 				scales: {
@@ -174,7 +174,7 @@
 		      title: {
 		        display: true,
 		        fontSize: 24,
-		        fontFamily : '포천 오성과 한음 Regular',
+		        fontFamily : '포천 오성과 한음',
 		        text: '전체 별점 평가'
 		      },
 		      scales: {
