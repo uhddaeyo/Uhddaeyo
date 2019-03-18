@@ -5,7 +5,7 @@
 <mapper namespace="com.ktds.uhddaeyo.mapper.ReviewAndReplyMapper">
 	<select id="selectReviewList"
 		resultType="com.ktds.uhddaeyo.model.dto.ReviewDto">
-		SELECT r.*, re.*, u.age, u.gender FROM review AS r
+		SELECT r.*, re.*, u.age, u.gender, u.id FROM review AS r
 		LEFT JOIN
 		reply AS re ON r.review_no = re.review_no
 		JOIN user AS u ON r.user_no =

@@ -10,6 +10,8 @@
 <%@ include file="/WEB-INF/include/include-css.jsp"%>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27b7ba470a0448e650efe0a033ec1e1f&libraries=services"></script>
+
 <script>
 	$(document).ready(function() {
 		$("#idck").click(function() {
@@ -57,6 +59,9 @@
 			document.form1.submit();
 		}
 	}
+
+	var geocoder = new daum.maps.services.Geocoder();
+
 	function execPostCode() {
 		new daum.Postcode({
 			oncomplete : function(data) {
@@ -96,6 +101,18 @@
 				/* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
 				document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
 				document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+				
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(fullRoadAddr, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+                        var result = results[0]; //첫번째 결과의 값을 활용
+                        console.log("x= " + result.x + " y=" + result.y);
+                        document.getElementById("latitude").value = result.x;
+                        document.getElementById("longitude").value = result.y;
+                    }
+                });
+
 			}
 		}).open();
 	}
@@ -227,6 +244,7 @@
 								</button>
 								<form:input class="form-control" path="place.address" placeholder="주소 찾기 버튼을 눌러 주소를 입력해주세요!"
 									name="addr2" id="addr2" type="text" readonly="readonly" />
+								
 							</div>
 						</div>
 						
@@ -250,7 +268,11 @@
 							<button type="button" class="btn btn-outline-primary"  style="margin-right: 20px; width: 20%"
 								onclick="location.href='/login'">취소</button>
                      		<button type="button" class="btn btn-primary" style="width: 20%"
-                     			id="submitBtn" onclick="clickSubmit();" disabled="disabled" value="Sign Up">다음</button>
+                     			id="submitBtn" onclick="clickSubmit();" disabled="disabled" value="Sign Up">다음</button><br>
+                     	
+                     		<form:input path="place.latitude" type="hidden" id="latitude" value="위도" />
+                     		<form:input path="place.longitude" type="hidden" id="longitude" value="경도" />
+                     		
                 		</div>
           				
 					</form:form></td>

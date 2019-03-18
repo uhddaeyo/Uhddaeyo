@@ -8,6 +8,9 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
+
+	var reply_form;
+	
 	function editText(reply_no, review_no) {
 		if ($('#set_reply_button').length) {
 			// 만약 이미 답글 등록 버튼을 누른 상태라면 함수를 바로 종료.
@@ -18,20 +21,11 @@
 		reply_form.value="";
 		reply_form.removeAttribute("readonly");
 		reply_form.focus();
-		
-		reply_tr = document.getElementById("reply_tr" + review_no);
-		
-		var set_reply_button = document.createElement("button");
-		set_reply_button.setAttribute("id", "set_reply_button");
-		set_reply_button.innerText = '등록하기';
-		set_reply_button.setAttribute("onClick", "setReply(" + reply_no + ", " + review_no + " , reply_form.value)");
-		reply_tr.appendChild(set_reply_button);
-
- 		return true;
 	}
 	
-	function setReply(reply_no, review_no, reply) {
+	function setReply(reply_no, review_no) {
 		
+		reply = reply_form.value;
 		if (reply == "") {
 			alert("답글을 입력해 주세요.");
 			return;
@@ -72,19 +66,27 @@
 	<c:forEach items="${reviews }" var="review">
 		<table>
 			<tr>
+			<td>${review.id}</td>
+			</tr>
+			<tr>
 				<td>별점 : ${review.star}</td>
 				<td style="font-size: 12px">(${review.age},<c:choose>
 						<c:when test="${review.gender=='F'}">여</c:when>
 						<c:otherwise>남</c:otherwise>
 					</c:choose>)
-				<td><a href="#" onclick="return editText(${review.reply_no}, ${review.review_no})">답글달기</a></td>
+				<td><a href="javascript:editText(${review.reply_no}, ${review.review_no})">답글달기</a></td>
 			</tr>
 			<tr>
 				<td colspan="3">${review.review}</td>
 			</tr>
 			<tr id="reply_tr${review.review_no}">
-				<td colspan="3"><input id="reply${review.review_no}" type="text"
-					readonly="readonly" value="${review.reply}" onkeyup="press();"></td>
+				<td colspan="3">
+				<textarea id="reply${review.review_no}" readonly="readonly" onkeyup="press();">${review.reply}</textarea></td>
+				
+				<td>
+					<button id="set_reply_button${review.review_no }" value="등록하기"
+						onclick="setReply(${review.reply_no}, ${review.review_no})">등록하기</button>
+				</td>
 			</tr>
 		</table>
 	</c:forEach>

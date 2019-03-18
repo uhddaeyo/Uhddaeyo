@@ -53,11 +53,11 @@
 	<insert id="insertPlace" useGeneratedKeys="true"
 		keyColumn="place_no" keyProperty="placeNo"
 		parameterType="com.ktds.uhddaeyo.model.dto.PlaceDto">
-		INSERT INTO place (user_no, place_name, place_tel,
-		address, capacity, start_time, end_time, place_price, place_exp)
-		VALUES
+
+		INSERT INTO place (user_no, place_name, place_tel, latitude, longitude,
+		address, capacity, start_time, end_time, place_price) VALUES
 		(#{userNo},
-		#{placeName}, #{placeTel}, #{address}, #{capacity},
+		#{placeName}, #{placeTel}, #{latitude}, #{longitude}, #{address}, #{capacity},
 		#{startTime},
 		#{endTime}, #{placePrice}, #{placeExp})
 	</insert>

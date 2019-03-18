@@ -1,5 +1,6 @@
 package com.ktds.uhddaeyo.model.dto;
 
+import java.math.BigDecimal;
 import java.sql.Time;
 import java.sql.Timestamp;
 
@@ -18,6 +19,8 @@ public class SuggestionDto {
 	private Time end_time;
 	private String address;
 	private String message;
+	private BigDecimal longitude;
+	private BigDecimal latitude;
 
 	public SuggestionDto() {
 	};
@@ -142,12 +145,28 @@ public class SuggestionDto {
 		this.message = message;
 	}
 
-	@Override
-	public String toString() {
-		return "SuggestionDto [sug_no=" + sug_no + ", place_no=" + place_no + ", user_no=" + user_no + ", sug_date="
-				+ sug_date + ", resv_date=" + resv_date + ", isresv=" + isresv + ", place_name=" + place_name
-				+ ", place_tel=" + place_tel + ", capacity=" + capacity + ", start_time=" + start_time + ", end_time="
-				+ end_time + ", address=" + address + ", message=" + message + "]";
+	public BigDecimal getLatitude() {
+		return latitude;
 	}
 
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
+	}
+
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
+	}
+
+	@Override
+	public String toString() {
+		return "SuggestionDto [sug_no=" + sug_no + ", req_no=" + req_no + ", place_no=" + place_no + ", user_no="
+				+ user_no + ", sug_date=" + sug_date + ", resv_date=" + resv_date + ", isresv=" + isresv
+				+ ", place_name=" + place_name + ", place_tel=" + place_tel + ", capacity=" + capacity + ", start_time="
+				+ start_time + ", end_time=" + end_time + ", address=" + address + ", message=" + message
+				+ ", latitude=" + latitude + ", longitude=" + longitude + "]";
+	}
 }
