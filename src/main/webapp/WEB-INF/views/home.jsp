@@ -8,6 +8,11 @@
 <%@ include file="/WEB-INF/include/include-header.jsp"%>
 <%@ include file="/WEB-INF/include/include-css.jsp"%>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
+</script>
+<script src="http://malsup.github.com/jquery.cycle2.js">
+</script>
 <script>
    $(document).ready(function() {
       $('#exampleModal').on('show.bs.modal', function(event) {
@@ -53,6 +58,13 @@
          });
       });
 </script>
+<style type="text/css">
+.place_img {
+	width: 328px;
+	height: 187px;
+}
+.h-500{height: 200px !important}
+</style>
 </head>
 <body style="font-family: Noto Sans KR;">
    <%@include file="header.jsp"%>
@@ -109,7 +121,10 @@
       </div>
    </header>
 
-   <!-- Button -->
+     <!-- Button -->
+   <c:choose>
+      <c:when test="${sessionScope.userType != 1 }"></c:when>
+      <c:otherwise>
    <div class="container" style="margin-top:20px;">
       <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
          <button type="button" id="reqSend" class="btn btn-primary btn-lg" style="margin-right: 50px; width: 200px; height: 80px;"
@@ -127,6 +142,8 @@
             My Page</button>
       </div>
    </div>
+      </c:otherwise>
+   </c:choose>
    <!-- Button -->
    
    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -202,158 +219,121 @@
          <b>오늘의 추천맛집</b>
       </h2>
 
+
       <!-- Marketing Icons Section -->
       <div class="row">
+      <c:forEach items="${placeList}" var="place" varStatus="idx">
          <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
-               <a href="#"><img class="card-img-top"
-                  src="resources/images/table4.jpg" alt=""></a>
+            
+            <div class="cycle-slideshow" data-cycle-fx=scrollHorz data-cycle-timeout=1000>
+            <c:forEach items="${picList }" var="pic">
+            
+               <c:if test="${pic.place_no eq place.placeNo }">
+			<img width="328" height="187" class="place_img" alt="No Image" 
+			src="${pageContext.request.contextPath}/resources/placeImages/${pic.photo_name }" />
+
+			</c:if>
+			
+			</c:forEach>
+			</div>
+			
                <div class="card-body">
                   <h4 class="card-title">
-                     <a href="#">우마이돈</a>
+                    <b><font color="#D9230F">${place.placeName }</font></b>
+                     <c:choose>
+                     	<c:when test="${place.star eq 5 }">
+                     		<c:out value="🌟🌟🌟🌟🌟" />
+                     	</c:when>
+                     	<c:when test="${place.star eq 4 }">
+                     		<c:out value="🌟🌟🌟🌟" />
+                     	</c:when>
+                     	<c:when test="${place.star eq 3 }">
+                     		<c:out value="🌟🌟🌟" />
+                     	</c:when>
+                     	<c:when test="${place.star eq 2 }">
+                     		<c:out value="🌟🌟"/>
+                     	</c:when>
+                     	<c:otherwise>
+                     		<c:out value="🌟"/>
+                     	</c:otherwise>
+                     </c:choose>
+                   
                   </h4>
                   <p class="card-text">
-                     <i><b>#점심 #만원이내 #가성비</b> <br>
-                     <br></i> 방배 맛집 Top 1.<br> 돈까스가 맛있는 일식집 우마이돈 <br>영업시간
-                     11:00AM ~ 24:00AM<br>서초구 서초동1489-1 B1층
+                     <i><b>
+                     <c:forEach items="${hashList}" var="hash" varStatus="idx">
+                     	<c:if test="${hash.place_no eq place.placeNo }">
+                     		<c:out value="#${hash.tag_contents }" />
+                     	</c:if>
+                     </c:forEach></b> <br>
+                     <br></i> ${place.placeExp }  <br><b>영업시간</b>
+                     ${place.startTime } ~ ${place.endTime }<br><b>주소</b>&nbsp;${place.address }
                   </p>
 
                </div>
             </div>
+            
          </div>
-         <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-               <a href="#"><img class="card-img-top"
-                  src="resources/images/table5.jpg" alt=""></a>
-               <div class="card-body">
-                  <h4 class="card-title">
-                     <a href="#">둘둘치킨</a>
-                  </h4>
-                  <p class="card-text">
-                     <i><b>#푸짐한 #회식 #주차가능</b><br>
-                     <br></i> 퇴근후 치맥 한잔하기 좋은 곳 <br>영업시간 15:00AM ~ 23:00PM<br>서초구
-                     방배동 935-40
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-               <a href="#"><img class="card-img-top"
-                  src="resources/images/table6.jpg" alt=""></a>
-               <div class="card-body">
-                  <h4 class="card-title">
-                     <a href="#">아빠는 요리사</a>
-                  </h4>
-                  <p class="card-text">
-                     <i><b>#가성비좋은 #저렴한</b><br>
-                     <br></i> 즉석떡볶이 맛집 <br>영업시간 11:00AM ~ 20:00PM<br>서초구
-                     방배동 1001-35
-                  </p>
-               </div>
-            </div>
-         </div>
+         </c:forEach>
+
          </div>
          <!-- /.row -->
-
          <!-- Portfolio Section -->
          <h2 class="my-4" align="center">
             <b>리뷰 ZONE</b>
          </h2>
 
          <div class="row">
+         <c:forEach items="${reviewList}" var="row">
             <div class="col-lg-4 col-sm-6 portfolio-item">
-               <div class="card h-100">
-                  <a href="#"><img class="card-img-top"
-                     src="http://placehold.it/700x400" alt=""></a>
+               <div class="card h-500">
                   <div class="card-body">
                      <h4 class="card-title">
-                        <a href="#">Project One</a>
+                       <b><font color="#D9230F">${row.place_name }</font></b>
+                     
+                     <c:choose>
+                     	<c:when test="${row.star eq 5 }">
+                     		<c:out value="🌟🌟🌟🌟🌟" />
+                     	</c:when>
+                     	<c:when test="${row.star eq 4 }">
+                     		<c:out value="🌟🌟🌟🌟" />
+                     	</c:when>
+                     	<c:when test="${row.star eq 3 }">
+                     		<c:out value="🌟🌟🌟" />
+                     	</c:when>
+                     	<c:when test="${row.star eq 2 }">
+                     		<c:out value="🌟🌟"/>
+                     	</c:when>
+                     	<c:otherwise>
+                     		<c:out value="🌟"/>
+                     	</c:otherwise>
+                     </c:choose>
+                     <div align="right">
+                     <br />
+                     <h6>
+                     <c:choose>
+                     <c:when test="${row.gender eq 'F' }">
+                     		<c:out value="${row.age }대 여"/>
+                     	</c:when>
+                     	<c:otherwise>
+                     		<c:out value="${row.age }대 남"/>
+                     	</c:otherwise>
+                     </c:choose>
+                     </h6>
+                     </div>
                      </h4>
-                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Amet numquam aspernatur eum quasi sapiente
-                        nesciunt? Voluptatibus sit, repellat sequi itaque deserunt,
-                        dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+                     <br />
+                     <p class="card-text">${row.review }</p>
                   </div>
                </div>
             </div>
-            <div class="col-lg-4 col-sm-6 portfolio-item">
-               <div class="card h-100">
-                  <a href="#"><img class="card-img-top"
-                     src="http://placehold.it/700x400" alt=""></a>
-                  <div class="card-body">
-                     <h4 class="card-title">
-                        <a href="#">Project Two</a>
-                     </h4>
-                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Nam viverra euismod odio, gravida pellentesque
-                        urna varius vitae.</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 portfolio-item">
-               <div class="card h-100">
-                  <a href="#"><img class="card-img-top"
-                     src="http://placehold.it/700x400" alt=""></a>
-                  <div class="card-body">
-                     <h4 class="card-title">
-                        <a href="#">Project Three</a>
-                     </h4>
-                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Quos quisquam, error quod sed cumque, odio
-                        distinctio velit nostrum temporibus necessitatibus et facere
-                        atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 portfolio-item">
-               <div class="card h-100">
-                  <a href="#"><img class="card-img-top"
-                     src="http://placehold.it/700x400" alt=""></a>
-                  <div class="card-body">
-                     <h4 class="card-title">
-                        <a href="#">Project Four</a>
-                     </h4>
-                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Nam viverra euismod odio, gravida pellentesque
-                        urna varius vitae.</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 portfolio-item">
-               <div class="card h-100">
-                  <a href="#"><img class="card-img-top"
-                     src="http://placehold.it/700x400" alt=""></a>
-                  <div class="card-body">
-                     <h4 class="card-title">
-                        <a href="#">Project Five</a>
-                     </h4>
-                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Nam viverra euismod odio, gravida pellentesque
-                        urna varius vitae.</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 portfolio-item">
-               <div class="card h-100">
-                  <a href="#"><img class="card-img-top"
-                     src="http://placehold.it/700x400" alt=""></a>
-                  <div class="card-body">
-                     <h4 class="card-title">
-                        <a href="#">Project Six</a>
-                     </h4>
-                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Itaque earum nostrum suscipit ducimus nihil
-                        provident, perferendis rem illo, voluptate atque, sit eius in
-                        voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-                  </div>
-               </div>
-            </div>
-         </div>
+            </c:forEach>
+            
          <!-- /.row -->
       
       <hr>
-
+</div>
       <!-- Call to Action Section -->
       <div class="row mb-4">
          <div class="col-md-8">

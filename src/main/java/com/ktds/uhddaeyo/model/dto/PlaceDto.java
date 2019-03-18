@@ -10,6 +10,8 @@ public class PlaceDto {
 	private int capacity;
 	private String startTime;
 	private String endTime;
+	private String placeExp;
+	private int star;
 	
 	public int getPlaceNo() {
 		return placeNo;
@@ -66,5 +68,17 @@ public class PlaceDto {
 		this.endTime = endTime;
 	}
 	
+	public String getPlaceExp() {
+		return placeExp;
+	}
+	public void setPlaceExp(String placeExp) {
+		this.placeExp = placeExp;
+	}
+	public int getStar() {
+		return star;
+	}
+	public void setStar(int star) {
+		this.star = star;
+	}
 	
 }

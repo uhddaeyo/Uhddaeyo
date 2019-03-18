@@ -63,9 +63,8 @@ public class HostController {
 		SuggestionDto suggest = new SuggestionDto(Integer.parseInt(sInfo[2]), (int) session.getAttribute("placeNo"),
 				Integer.parseInt(sInfo[1]), Timestamp.valueOf(sInfo[0]), msg);
 		hostService.insertSuggestion(suggest);
-
+		hostService.sentInvite(Integer.parseInt(sInfo[3]));
 		List<GuestReqDto> guestList = hostService.getGuestList((int) session.getAttribute("placeNo"));
-
 		mv.setViewName("/guestList");
 		mv.addObject("guestList", guestList);
 		return mv;

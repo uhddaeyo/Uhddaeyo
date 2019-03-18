@@ -110,7 +110,7 @@ function kakaoLink(e) {
 											AES256Util aes256Util = new AES256Util();
 											String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
 										%>
-
+										
 										<tr align="center">
 											<td width="50" style="vertical-align: middle;">${idx.count}</td>
 											<td width="100" style="vertical-align: middle">${guest.userName }</td>
@@ -119,15 +119,27 @@ function kakaoLink(e) {
 											<td style="vertical-align: middle">${guest.memCnt }</td>
 
 											<td style="vertical-align: middle">
-											<button type="button" class="btn btn btn-outline-primary" data-toggle="modal"
+											<c:choose>
+											<c:when test="${guest.sent eq 'N'}">
+											<button type="button" class="btn btn btn-primary" data-toggle="modal"
 													data-target="#exampleModal" onclick="inviteClick(this);"
-													id="${guest.date },${guest.userNo},${guest.reqNo}">초대장 작성하기
-											</button></td>
+													id="${guest.date },${guest.userNo},${guest.reqNo},${guest.idx}">초대장 작성하기
+											</button>
+											</c:when>
+											<c:otherwise>
+											<button type="button" class="btn btn btn-primary" data-toggle="modal"
+													data-target="#exampleModal" onclick="inviteClick(this);"
+													id="${guest.date },${guest.userNo},${guest.reqNo},${guest.idx}" disabled="disabled">초대장 작성하기
+											</button>
+											</c:otherwise>
+											</c:choose>
+											</td>
 											<td style="vertical-align: middle"><button type="button"
 													onclick="kakaoLink(this);" name="${guest.userName }"
 													id=<%=encryptUserNo %> class="btn btn btn-outline-primary">알림</button></td>
 
 										</tr>
+
 									</c:forEach>
 								</c:when>
 								<c:otherwise>

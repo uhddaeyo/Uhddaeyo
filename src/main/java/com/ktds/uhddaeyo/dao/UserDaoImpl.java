@@ -135,5 +135,33 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		return userMapper.getPlaceNo(userNo);
 	}
+	
+	@Override
+	public List<PlaceDto> getPlaceByStar() {
+		return userMapper.getPlaceByStar();
+	}
+
+
+	@Override
+	public List<Map<String, Object>> getPlaceHashList(List<PlaceDto> place) {
+		// TODO Auto-generated method stub
+		return userMapper.getPlaceHashList(place);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> getPlacePic(List<PlaceDto> place) {
+		// TODO Auto-generated method stub
+		return userMapper.getPlacePic(place);
+	}
+
+
+	@Override
+	public List<ReviewDto> getMainReviewList() {
+		// TODO Auto-generated method stub
+		return userMapper.getMainReviewList();
+	}
+	
+	
 
 }

@@ -86,5 +86,15 @@ public class GuestController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/reqList")
+	public ModelAndView getReqList(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		List<GuestReqDto> reqList = guestService.getReqList((int) session.getAttribute("userNo"));
+		mv.setViewName("/reqList");
+		mv.addObject("reqList", reqList);
+		return mv;
+		
+	}
 
 }

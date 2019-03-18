@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class GuestReqDto {
 
+	private int idx;
 	private int sugNo;
 	private int reqNo;
 	private int userNo;
@@ -15,6 +16,7 @@ public class GuestReqDto {
 	private Timestamp date;
 	private String enUrl;
 	private String memo;
+	private String sent;
 
 	public GuestReqDto() {
 	};
@@ -30,6 +32,13 @@ public class GuestReqDto {
 		this.date = date;
 		this.memCnt = memCnt;
 		this.price = price;
+	}
+	public int getIdx() {
+		return idx;
+	}
+
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 
 	public int getSugNo() {
@@ -118,6 +127,14 @@ public class GuestReqDto {
 
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+
+	public String getSent() {
+		return sent;
+	}
+
+	public void setSent(String sent) {
+		this.sent = sent;
 	}
 
 }

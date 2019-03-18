@@ -51,7 +51,9 @@
 		form.submit();
 	}
  </script>
-
+<style>
+.h-500{height: 100% !important}
+</style>
 </head>
 <body style="font-family: Noto Sans KR;">
    <%@include file="header.jsp"%>
@@ -70,6 +72,7 @@
 										String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
 									%>
                <a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item active">초대장 모아보기</a>
+               <a href="${pageContext.request.contextPath}/reqList" class="list-group-item">나의 요청내역</a>
                <a href="${pageContext.request.contextPath}/reservationList" class="list-group-item">나의 예약내역</a> 
                <a href="${pageContext.request.contextPath}/historyList" class="list-group-item">나의 이용내역</a>
             </div>
@@ -87,7 +90,7 @@
                   <c:when test="${fn:length(suggestionList) > 0}">
                      <c:forEach items="${suggestionList}" var="suggestion">
                         <div class="col-lg-4 col-md-6 mb-4" style="height: 254px;">
-                           <div class="card h-100" style="height: 252px; border-color: #BDBDBD;">
+                           <div class="card h-500" style="height: 252px; border-color: #BDBDBD;">
                               <div class="card-body"
                                  style="width: auto; margin-top: 20px;">
                                  <h4 class="card-title" style="margin-bottom:15px;"> <a class="text-primary"><b> ${suggestion.place_name}</b> </a>
