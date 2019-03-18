@@ -28,7 +28,7 @@ public class SuggestionController {
 	SuggestionService service;
 
 	@RequestMapping(value = "/suggestion", method = RequestMethod.POST)
-	public String PopupSuggestion(@RequestParam int width, @RequestParam int height, HttpServletRequest request,
+	public String PopupSuggestion(@RequestParam double width, @RequestParam double height, HttpServletRequest request,
 			SuggestionDto sdto, Model model) {
 		sdto.setUser_no((int) request.getSession().getAttribute("userNo"));
 		sdto = service.selectSuggestion(sdto);
@@ -52,6 +52,7 @@ public class SuggestionController {
 		model.addAttribute("imgHeight", imgHeight);
 		model.addAttribute("SugDto", sdto);
 
+		System.out.println(sdto.toString());
 		return "suggestion";
 	}
 

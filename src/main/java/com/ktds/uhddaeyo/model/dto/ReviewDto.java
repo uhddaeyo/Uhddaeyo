@@ -14,18 +14,19 @@ public class ReviewDto {
 	private Timestamp reply_date;
 	private int age;
 	private String gender;
+	private String id;
 
 	public ReviewDto() {
-		
+
 	}
-	
+
 	public ReviewDto(int user_no, int place_no, int star, String review) {
 		this.user_no = user_no;
 		this.place_no = place_no;
 		this.star = star;
 		this.review = review;
 	}
-	
+
 	public int getUser_no() {
 		return user_no;
 	}
@@ -114,10 +115,18 @@ public class ReviewDto {
 		this.gender = gender;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewDto [review_no=" + review_no + ", user_no=" + user_no + ", place_no=" + place_no + ", star="
 				+ star + ", review=" + review + ", review_date=" + review_date + ", reply_no=" + reply_no + ", reply="
-				+ reply + ", reply_date=" + reply_date + ", age=" + age + ", gender=" + gender + "]";
+				+ reply + ", reply_date=" + reply_date + ", age=" + age + ", gender=" + gender + ", id=" + id + "]";
 	}
 }
