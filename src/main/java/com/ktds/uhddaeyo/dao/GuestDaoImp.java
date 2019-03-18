@@ -31,4 +31,10 @@ public class GuestDaoImp implements GuestDao {
 
 	}
 
+	@Override
+	public List<GuestReqDto> getReqList(int userNo) {
+		// TODO Auto-generated method stub
+		return guestMapper.getReqList(userNo);
+	}
+
 }

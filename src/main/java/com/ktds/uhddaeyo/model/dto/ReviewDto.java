@@ -14,7 +14,8 @@ public class ReviewDto {
 	private Timestamp reply_date;
 	private int age;
 	private String gender;
-
+	private String place_name;
+	
 	public ReviewDto() {
 		
 	}
@@ -112,6 +113,14 @@ public class ReviewDto {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public String getPlace_name() {
+		return place_name;
+	}
+
+	public void setPlace_name(String place_name) {
+		this.place_name = place_name;
 	}
 
 	@Override

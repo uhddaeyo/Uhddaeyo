@@ -115,4 +115,11 @@ public class HostDaoImpl implements HostDao {
 	public boolean saveMemo(GuestReqDto grdto) {
 		return hostMapper.saveMemo(grdto);
 	}
+
+	@Override
+	public void sentInvite(int idx) {
+		hostMapper.sentInvite(idx);
+	}
+	
+	
 }

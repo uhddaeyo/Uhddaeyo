@@ -39,8 +39,8 @@
 	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
 		<div class="container">
 			<header class="navbar-brand">
-				<!-- <img src = "resources/logoImage/logo2.jpg" width="40" height="40"> --> 
-				[Uhddaeyo] 어때요?
+				 <!-- <img src = "resources/logoImage/main.png" width="150" height="43">  -->
+ [Uhddaeyo] 어때요? 
 			</header>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">

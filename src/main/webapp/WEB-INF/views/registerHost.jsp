@@ -239,6 +239,13 @@
 							</div>
 						</div>
 						
+						<div class="form-group row">
+							<label class="col-form-label"
+								style="margin-right: 67px; padding-left: 15px; padding-right: 40px;"><b>소개</b></label>
+							<div style="width: 58%;">
+							<form:textarea class="form-control" path="place.placeExp"></form:textarea>
+							</div>
+						</div>
 						<div class="form-group"  style="text-align: center; margin-top: 70px;">
 							<button type="button" class="btn btn-outline-primary"  style="margin-right: 20px; width: 20%"
 								onclick="location.href='/login'">취소</button>

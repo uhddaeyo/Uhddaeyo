@@ -13,4 +13,6 @@ public interface GuestMapper {
 	public int insertGuestReq(GuestReqDto reqDto);
 
 	public void insertMatchedReq(List<GuestReqDto> matchedReq);
+	
+	public List<GuestReqDto> getReqList(int userNo);
 }

@@ -30,6 +30,12 @@ public class GuestServiceImpl implements GuestService {
 		guestDao.insertMatchedReq(matchedReq);
 		
 	}
+
+	@Override
+	public List<GuestReqDto> getReqList(int userNo) {
+		// TODO Auto-generated method stub
+		return guestDao.getReqList(userNo);
+	}
 	
 	
 
