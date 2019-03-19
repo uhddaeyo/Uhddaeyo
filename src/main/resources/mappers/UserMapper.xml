@@ -55,7 +55,7 @@
 		parameterType="com.ktds.uhddaeyo.model.dto.PlaceDto">
 
 		INSERT INTO place (user_no, place_name, place_tel, latitude, longitude,
-		address, capacity, start_time, end_time, place_price) VALUES
+		address, capacity, start_time, end_time, place_price, place_exp) VALUES
 		(#{userNo},
 		#{placeName}, #{placeTel}, #{latitude}, #{longitude}, #{address}, #{capacity},
 		#{startTime},

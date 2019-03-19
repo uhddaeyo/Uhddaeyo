@@ -12,46 +12,20 @@
 
 <script type="text/javascript">
  	function suggestionPopup(sug_no) {
-		var popupWidth = window.screen.width * 0.25;
-		var popupHeight = window.screen.height * 0.75;
-		
-		console.log("width = " + popupWidth + " height = " + popupHeight);
-		
-		var sugUrl = "/suggestion";
+		var url = "/suggestionDetail";
 		
 		console.log(sug_no);
 		
 		var form = document.createElement("form");
 		form.setAttribute("charset", "UTF-8");
 		form.setAttribute("method", "Post");
-		form.setAttribute("action", sugUrl);
-
-		var hiddenField = document.createElement("input");
-		hiddenField.setAttribute("type", "hidden");
-		hiddenField.setAttribute("name", "width");
-		hiddenField.setAttribute("value", popupWidth);
-		form.appendChild(hiddenField);
-		
-		hiddenField = document.createElement("input");
-		hiddenField.setAttribute("type", "hidden");
-		hiddenField.setAttribute("name", "height");
-		hiddenField.setAttribute("value", popupHeight);
-		form.appendChild(hiddenField);
+		form.setAttribute("action", url);
 
 		hiddenField = document.createElement("input");
 		hiddenField.setAttribute("type", "hidden");
 		hiddenField.setAttribute("name", "sug_no");
 		hiddenField.setAttribute("value", sug_no);
 		form.appendChild(hiddenField);
-		
-		var url = "suggest"
-		var title = "suggest"
- 		var status = "width=" + popupWidth + ", height= " + popupHeight
-				+ ", left=" + ((window.screen.width - popupWidth) / 2) + ", top="
-				+ ((window.screen.height - popupHeight) / 2.6)
-				+ ", resizable=no, scrollbars=no, status=no;";
- 		window.open("", title, status);
-		form.target = title;
 		
 		document.body.appendChild(form);
 		form.submit();
