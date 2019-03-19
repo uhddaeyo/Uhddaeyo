@@ -26,10 +26,21 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <beans:property name="maxUploadSize" value="100000000"/>
-        <beans:property name="maxInMemorySize" value="100000000"/>
-    </beans:bean>
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="100000000" />
+		<beans:property name="maxInMemorySize"
+			value="100000000" />
+	</beans:bean>
+
+	<interceptors>
+		<interceptor>
+			<mapping path="/historyList" />
+			<mapping path="/reqList" />
+			<mapping path="/reservationList" />
+			<beans:bean class="com.ktds.uhddaeyo.controller.LoginInterceptor" />
+		</interceptor>
+	</interceptors>
 
 	<context:component-scan
 		base-package="com.ktds.uhddaeyo" />

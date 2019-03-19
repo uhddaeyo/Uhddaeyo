@@ -92,9 +92,9 @@
             <div class="carousel-item"
                style="background-image: url('resources/images/table2.jpg')">
                <div class="carousel-caption d-none d-md-block">
-                  <h3>
+                  <h1>
                      <b>멀리가지 말고 근처에서 회식하자!</b>
-                  </h3>
+                  </h1>
                   <!--  <p>This is a description for the second slide.</p>-->
                </div>
             </div>
@@ -102,9 +102,9 @@
             <div class="carousel-item"
                style="background-image: url('resources/images/table3.jpg')">
                <div class="carousel-caption d-none d-md-block">
-                  <h3>
+                  <h1>
                      <b>숨겨진 맛집공간을 찾아서!</b>
-                  </h3>
+                  </h1>
                   <!-- <p>This is a description for the third slide.</p>-->
                </div>
             </div>
@@ -127,19 +127,19 @@
       <c:otherwise>
    <div class="container" style="margin-top:20px;">
       <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
-         <button type="button" id="reqSend" class="btn btn-primary btn-lg" style="margin-right: 50px; width: 200px; height: 80px;"
+         <button type="button" id="reqSend" class="btn btn-primary btn-lg" style="margin-right: 50px; padding-top: 16px; width: 200px; height: 80px;"
             data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-            어디가지? 고민말고<br>요청서 보내기
+            <h4><b>어디가지? 고민말고<br>요청서 보내기</b></h4>
          </button>
          <c:set var="userNo" value="${sessionScope.userNo}"></c:set>
          <%
 										AES256Util aes256Util = new AES256Util();
 										String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
 									%>
-         <button type="button" class="btn btn-outline-primary" style="width: 200px; height: 80px;"
+         <button type="button" class="btn btn-outline-primary" style="width: 200px; padding-top: 16px; height: 80px;"
          
             onclick="location='${path}/kakaoinvitelink/<%=encryptUserNo %>'">
-            My Page</button>
+             <h4><b>My Page</b></h4></button>
       </div>
    </div>
       </c:otherwise>
