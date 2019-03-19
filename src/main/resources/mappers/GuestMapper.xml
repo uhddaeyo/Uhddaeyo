@@ -12,7 +12,7 @@
 		>= #{capacity} AND p.place_no = h.place_no AND #{price}-4000 <![CDATA[ <= ]]>
 		p.place_price <![CDATA[ <= ]]>
 		#{price}+5000
-		AND p.address like CONCAT('%',#{place},'%')
+		AND REPLACE (p.address,' ','') like REPLACE(CONCAT('%',#{place},'%'),' ','')
 		and
 		h.tag_contents in (
 		<foreach collection="tags" item="tags" separator=",">
