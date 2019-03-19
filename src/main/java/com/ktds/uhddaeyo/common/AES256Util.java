@@ -21,7 +21,7 @@ public class AES256Util {
 	 * @param key 암/복호화를 위한 키값
 	 * @throws UnsupportedEncodingException 키값의 길이가 16이하일 경우 발생
 	 */
-	final static String key = "GlobalNo.1KTDSTeam3";
+	final static String key = "No.1ITTransformationLeader";
 
 	public AES256Util() throws UnsupportedEncodingException {
 		this.iv = key.substring(0, 16);

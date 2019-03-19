@@ -110,7 +110,7 @@ function kakaoLink(e) {
 											AES256Util aes256Util = new AES256Util();
 											String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
 										%>
-
+										
 										<tr align="center">
 											<td width="50" style="vertical-align: middle;">${idx.count}</td>
 											<td width="100" style="vertical-align: middle">${guest.userName }</td>
@@ -119,15 +119,27 @@ function kakaoLink(e) {
 											<td style="vertical-align: middle">${guest.memCnt }</td>
 
 											<td style="vertical-align: middle">
-											<button type="button" class="btn btn btn-outline-primary" data-toggle="modal"
+											<c:choose>
+											<c:when test="${guest.sent eq 'N'}">
+											<button type="button" class="btn btn btn-primary" data-toggle="modal"
 													data-target="#exampleModal" onclick="inviteClick(this);"
-													id="${guest.date },${guest.userNo},${guest.reqNo}">초대장 작성하기
-											</button></td>
+													id="${guest.date },${guest.userNo},${guest.reqNo},${guest.idx}">초대장 작성하기
+											</button>
+											</c:when>
+											<c:otherwise>
+											<button type="button" class="btn btn btn-primary" data-toggle="modal"
+													data-target="#exampleModal" onclick="inviteClick(this);"
+													id="${guest.date },${guest.userNo},${guest.reqNo},${guest.idx}" disabled="disabled">초대장 작성하기
+											</button>
+											</c:otherwise>
+											</c:choose>
+											</td>
 											<td style="vertical-align: middle"><button type="button"
 													onclick="kakaoLink(this);" name="${guest.userName }"
 													id=<%=encryptUserNo %> class="btn btn btn-outline-primary">알림</button></td>
 
 										</tr>
+
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
@@ -140,20 +152,7 @@ function kakaoLink(e) {
 
 					</table>
 				</div>
-				<div style="text-align: center;">
-					<div style="display: inline-block;">
-						<ul class="pagination">
-							<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-							<li class="page-item active"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#">&raquo;</a>
-							</li>
-						</ul>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -197,6 +196,6 @@ function kakaoLink(e) {
 		</div>
 	</div>
 	<script type='text/javascript'>
-		Kakao.init('cd1e5dbbd5ca1a96ec393c7c7518dee7');
+		Kakao.init('9efa9b059b975522916cd89a10436da0');
 	</script>
 </body>

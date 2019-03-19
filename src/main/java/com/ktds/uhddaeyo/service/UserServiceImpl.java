@@ -136,7 +136,32 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<Map<String, Object>> selectInviteList(int placeNo) {
 		// TODO Auto-generated method stub
-		return userMapper.selectInviteList(placeNo);
+		return userDao.selectInviteList(placeNo);
 	}
+
+	@Override
+	public List<PlaceDto> getPlaceByStar() {
+		return userDao.getPlaceByStar();
+	}
+
+	@Override
+	public List<Map<String, Object>> getPlaceHashList(List<PlaceDto> place) {
+		// TODO Auto-generated method stub
+		return userDao.getPlaceHashList(place);
+	}
+
+	@Override
+	public List<Map<String, Object>> getPlacePic(List<PlaceDto> place) {
+		// TODO Auto-generated method stub
+		return userDao.getPlacePic(place);
+	}
+
+	@Override
+	public List<ReviewDto> getMainReviewList() {
+		// TODO Auto-generated method stub
+		return userDao.getMainReviewList();
+	}
+	
+	
 
 }

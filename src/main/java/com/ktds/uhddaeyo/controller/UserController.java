@@ -11,12 +11,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.Locale;
-import org.springframework.ui.Model;
-import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,9 +25,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.uhddaeyo.model.dto.GuestDto;
 import com.ktds.uhddaeyo.model.dto.ReservationDto;
+import com.ktds.uhddaeyo.model.dto.ReviewDto;
 import com.ktds.uhddaeyo.model.dto.HashTagDto;
 import com.ktds.uhddaeyo.model.dto.HostDto;
 import com.ktds.uhddaeyo.model.dto.PicDto;
+import com.ktds.uhddaeyo.model.dto.PlaceDto;
 import com.ktds.uhddaeyo.model.dto.PlaceTagDto;
 import com.ktds.uhddaeyo.model.dto.UserDto;
 import com.ktds.uhddaeyo.service.UserService;
@@ -62,6 +59,14 @@ public class UserController {
 			switch (type) {
 			case 1:
 				model.setViewName("/home");
+				List<PlaceDto> place = userService.getPlaceByStar();
+				List<Map<String, Object>> hashList = userService.getPlaceHashList(place);
+				List<Map<String, Object>> picList = userService.getPlacePic(place);
+				List<ReviewDto> review = userService.getMainReviewList();
+				model.addObject("placeList", place);
+				model.addObject("hashList", hashList);
+				model.addObject("picList", picList);
+				model.addObject("reviewList", review);
 				model.addObject("msg", "success");
 				break;
 			case 2:
@@ -123,7 +128,9 @@ public class UserController {
 		userService.insertHost(host);
 		host.getPlace().setUserNo(host.getUserNo());
 		userService.insertPlace(host.getPlace());
-
+		
+		System.out.println(host.getPlace().getLatitude() + ", " + host.getPlace().getLongitude());
+		
 		List<MultipartFile> fileList = req.getFiles("pic");
 
 		String path = "C:\\Users\\현정\\git\\Uhddaeyo\\src\\main\\webapp\\resources\\placeImages\\";
@@ -165,9 +172,19 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/host/back", method = RequestMethod.POST)
-	public String cancelJoin(@RequestParam("placeNo") int placeNo, @RequestParam("userNo") int userNo) {
+	public ModelAndView cancelJoin(@RequestParam("placeNo") int placeNo, @RequestParam("userNo") int userNo) {
 		userService.cancelJoin(userNo, placeNo);
-		return "home";
+		ModelAndView mv = new ModelAndView();
+		List<PlaceDto> place = userService.getPlaceByStar();
+		List<Map<String, Object>> hashList = userService.getPlaceHashList(place);
+		List<Map<String, Object>> picList = userService.getPlacePic(place);
+		List<ReviewDto> review = userService.getMainReviewList();
+		mv.setViewName("/home");
+		mv.addObject("placeList", place);
+		mv.addObject("hashList", hashList);
+		mv.addObject("picList", picList);
+		mv.addObject("reviewList", review);
+		return mv;
 	}
 	
 	@RequestMapping("/inviteList")
@@ -179,4 +196,21 @@ public class UserController {
 		mv.addObject("selectInviteList", selectInviteList);
 		return mv;
 	}
-}
+	
+	@RequestMapping(value= {"/home", "/"}) 
+		public ModelAndView home() {
+			ModelAndView mv = new ModelAndView();
+			List<PlaceDto> place = userService.getPlaceByStar();
+			List<Map<String, Object>> hashList = userService.getPlaceHashList(place);
+			List<Map<String, Object>> picList = userService.getPlacePic(place);
+			List<ReviewDto> review = userService.getMainReviewList();
+			mv.setViewName("/home");
+			mv.addObject("placeList", place);
+			mv.addObject("hashList", hashList);
+			mv.addObject("picList", picList);
+			mv.addObject("reviewList", review);
+			return mv;
+		}
+	}
+	
+

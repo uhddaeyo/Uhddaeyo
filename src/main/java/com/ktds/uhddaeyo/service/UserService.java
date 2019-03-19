@@ -46,5 +46,12 @@ public interface UserService {
 	public void insertPlaceTags(List<PlaceTagDto> tag);
 
 	public void cancelJoin(int userNo, int placeNo);
+	
+	public List<PlaceDto> getPlaceByStar();
+	
+	public List<Map<String, Object>> getPlaceHashList(List<PlaceDto> place);
+	
+	public List<Map<String, Object>> getPlacePic(List<PlaceDto> place);
 
+	public List<ReviewDto> getMainReviewList();
 }

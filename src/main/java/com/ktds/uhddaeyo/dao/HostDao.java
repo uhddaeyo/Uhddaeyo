@@ -20,4 +20,5 @@ public interface HostDao {
 	public Map<String, Object> getAgeStat(int placeNo);
 	public ArrayList<Long> getStar(int placeNo, String gender1, String gender2);
 	public boolean saveMemo(GuestReqDto grdto);
+	public void sentInvite(int idx);
 }

@@ -3,6 +3,7 @@ package com.ktds.uhddaeyo.controller;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.uhddaeyo.common.AES256Util;
@@ -28,7 +30,7 @@ public class SuggestionController {
 	SuggestionService service;
 
 	@RequestMapping(value = "/suggestion", method = RequestMethod.POST)
-	public String PopupSuggestion(@RequestParam int width, @RequestParam int height, HttpServletRequest request,
+	public String PopupSuggestion(@RequestParam double width, @RequestParam double height, HttpServletRequest request,
 			SuggestionDto sdto, Model model) {
 		sdto.setUser_no((int) request.getSession().getAttribute("userNo"));
 		sdto = service.selectSuggestion(sdto);
@@ -52,6 +54,7 @@ public class SuggestionController {
 		model.addAttribute("imgHeight", imgHeight);
 		model.addAttribute("SugDto", sdto);
 
+		System.out.println(sdto.toString());
 		return "suggestion";
 	}
 
@@ -71,7 +74,6 @@ public class SuggestionController {
 		try {
 			aes256Util = new AES256Util();
 			dercryptStr = aes256Util.decrypt(userNo);
-			System.out.println("decoded = " + dercryptStr);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (GeneralSecurityException e) {
@@ -84,5 +86,13 @@ public class SuggestionController {
 		session.setAttribute("userNo", Integer.parseInt(dercryptStr));
 		mv.addObject("suggestionList", suggestionList);
 		return mv;
+	}
+	
+	@RequestMapping(value="/sortByDistance", method=RequestMethod.POST)
+	@ResponseBody
+	public List<SuggestionDto> sortByDistance(@RequestParam String longitude, @RequestParam String latitude, HttpSession session) {
+		List<SuggestionDto> suggestionList = service.selectSuggestionList((int) session.getAttribute("userNo"));
+		suggestionList.sort(Comparator.comparingDouble(SuggestionDto ->  SuggestionDto.calcDistance(Double.parseDouble(latitude), Double.parseDouble(longitude))));
+		return suggestionList;
 	}
 }

@@ -1,7 +1,12 @@
 package com.ktds.uhddaeyo.model.dto;
 
+import java.math.BigDecimal;
 import java.sql.Time;
 import java.sql.Timestamp;
+
+import com.javadocmd.simplelatlng.LatLng;
+import com.javadocmd.simplelatlng.LatLngTool;
+import com.javadocmd.simplelatlng.util.LengthUnit;
 
 public class SuggestionDto {
 	private int sug_no;
@@ -18,6 +23,9 @@ public class SuggestionDto {
 	private Time end_time;
 	private String address;
 	private String message;
+	private BigDecimal longitude;
+	private BigDecimal latitude;
+	private double distance;
 
 	public SuggestionDto() {
 	};
@@ -142,12 +150,42 @@ public class SuggestionDto {
 		this.message = message;
 	}
 
-	@Override
-	public String toString() {
-		return "SuggestionDto [sug_no=" + sug_no + ", place_no=" + place_no + ", user_no=" + user_no + ", sug_date="
-				+ sug_date + ", resv_date=" + resv_date + ", isresv=" + isresv + ", place_name=" + place_name
-				+ ", place_tel=" + place_tel + ", capacity=" + capacity + ", start_time=" + start_time + ", end_time="
-				+ end_time + ", address=" + address + ", message=" + message + "]";
+	public BigDecimal getLatitude() {
+		return latitude;
 	}
 
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
+	}
+
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
+	}
+	
+    public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	public double calcDistance(Double xValue, Double yValue) {
+        LatLng p1 = new LatLng(xValue, yValue);
+        LatLng p2 = new LatLng(getLongitude().doubleValue(), getLatitude().doubleValue());
+        setDistance(LatLngTool.distance(p1, p2, LengthUnit.KILOMETER));
+        return LatLngTool.distance(p1, p2, LengthUnit.KILOMETER);
+    }
+	@Override
+	public String toString() {
+		return "SuggestionDto [sug_no=" + sug_no + ", req_no=" + req_no + ", place_no=" + place_no + ", user_no="
+				+ user_no + ", sug_date=" + sug_date + ", resv_date=" + resv_date + ", isresv=" + isresv
+				+ ", place_name=" + place_name + ", place_tel=" + place_tel + ", capacity=" + capacity + ", start_time="
+				+ start_time + ", end_time=" + end_time + ", address=" + address + ", message=" + message
+				+ ", latitude=" + latitude + ", longitude=" + longitude + "]";
+	}
 }

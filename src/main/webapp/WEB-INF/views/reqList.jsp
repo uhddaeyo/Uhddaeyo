@@ -1,6 +1,7 @@
 <%@page import="com.ktds.uhddaeyo.common.AES256Util"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@ page import="java.lang.String.*" %>
 <html>
 <head>
 <%@ include file="/WEB-INF/include/include-header.jsp"%>
@@ -76,35 +77,41 @@ function reviewClick(e) {
 										String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
 									%>
 					   <a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item">초대장 모아보기</a>
-               <a href="${pageContext.request.contextPath}/reqList" class="list-group-item">나의 요청내역</a>
+               <a href="${pageContext.request.contextPath}/reqList" class="list-group-item active">나의 요청내역</a>
                <a href="${pageContext.request.contextPath}/reservationList" class="list-group-item">나의 예약내역</a> 
-               <a href="${pageContext.request.contextPath}/historyList" class="list-group-item active">나의 이용내역</a>
-               <a href="${pageContext.request.contextPath}/reviewList" class="list-group-item">내가 남긴리뷰</a>
-               
+               <a href="${pageContext.request.contextPath}/historyList" class="list-group-item">나의 이용내역</a>
             </div>
 				</div>
 	
 
 			<div class="col-lg-9">
 			<h2 style="margin-top: 55px;">
-				<b>나의 이용 내역</b>
+				<b>나의 요청 내역</b>
 			</h2>
 			<div class="row" style="margin-top: 40px;">
 
                <c:choose>
-                  <c:when test="${fn:length(historyList) > 0}">
-                     <c:forEach items="${historyList}" var="row">
+                  <c:when test="${fn:length(reqList) > 0}">
+                     <c:forEach items="${reqList}" var="row" varStatus="idx">
                      
                         <div class="col-lg-4 col-md-6 mb-4" style="height: 254px;">
                            <div class="card h-500" style="height: 252px; border-color: #BDBDBD;">
                               <div class="card-body" style="width:auto; margin-top:20px;">
                                  <h4 class="card-title" style="margin-bottom:15px;">
-                                    <a class="text-primary"><b>${row.place_name}</b></a>
+                                    <a class="text-primary"><b>No.${idx.count}</b></a>
                                  </h4>
-                                 <h5>${row.resv_date}</h5>
-                                 <p class="card-text" style="height:70px;">${row.address}</p>
-                                 <button type="button" class="btn btn btn-outline-primary" data-toggle="modal" 
-                                 data-target="#exampleModal" onclick="reviewClick(this);" id="${row.place_no}" name="${row.place_name}" >리뷰작성</button>
+                                 <h5><b>요청 날짜 </b><fmt:formatDate value="${row.date }" pattern="yyyy-MM-dd HH:mm" /></h5>
+                                 <c:set var="tagMsg" value="${row.tagMsg}"></c:set>
+                                  <p class="card-text" style="height:70px;"><b>
+                                 <%
+                                 	
+                                 	String[] tags = ((String) pageContext.getAttribute("tagMsg")).split("[|]");
+                                 for(int i = 0; i<tags.length;i++ ){
+                                	 out.println("#" + tags[i] + " ");
+                                 }
+                                 %></b><br /><br />
+                                <b>가격대 </b>${row.price }<br />
+                                <b>인원 </b>${row.memCnt }<br />
                               </div>
                            </div>
                         </div>
@@ -122,63 +129,7 @@ function reviewClick(e) {
 		</div>
 	</div>
 
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">리뷰 전송</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				
-				<form action="/insertReview" method="post">
-					<div class="modal-body">
-					
-						<div class="form-group">
-							<label for="placeName" class="col-form-label"><b>가게 이름</b></label>
-							<div id="placeName"></div>
-						</div>
-						
-						<div class="form-group">
-							<label for="star-rating" class="col-form-label"><b>별점평가</b></label>
-							<span class="star-input" name="star" id="star-rating"> 
-								<span class="input"> 
-								<input type="radio" name="star" value="1" id="p1"> 
-									<label for="p1">1</label> 
-								<input type="radio" name="star" value="2" id="p2"> 
-									<label for="p2">2</label> 
-								<input type="radio" name="star" value="3" id="p3"> 
-									<label for="p3">3</label> 
-								<input type="radio" name="star" value="4" id="p4">
-									<label for="p4">4</label>
-								<input type="radio" name="star" value="5" id="p5"> 
-									<label for="p5">5</label>
-								</span> 
- 								<!--<output for="star-input">
-									<b>0</b>점
-								</output>-->
- 							</span> <br>
-						</div>
-						
-						<div class="form-group">
-							<label for="message-text" class="col-form-label"><b>리뷰작성</b></label>
-							<textarea class="form-control" name="msg" id="rivew-text"
-								required="required" placeholder="리뷰를 남겨주세요:)"></textarea>
-						</div>
-					</div>
-					
-					<div class="modal-footer">
-						<input type="submit" class="btn btn-primary" value="전송"/>
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">취소</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	
 
 
 </body>

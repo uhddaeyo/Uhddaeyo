@@ -1,7 +1,6 @@
 package com.ktds.uhddaeyo.model.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 @SuppressWarnings("serial")
 public class HostDto implements Serializable{

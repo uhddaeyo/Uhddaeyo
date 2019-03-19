@@ -32,4 +32,8 @@ public interface UserDao {
 	public String reviewDetail(int placeNo);
 	public void insertReview(ReviewDto review);
 	public int getPlaceNo(int userNo);
+	public List<PlaceDto> getPlaceByStar();
+	public List<Map<String, Object>> getPlaceHashList(List<PlaceDto> place);
+	public List<Map<String, Object>> getPlacePic(List<PlaceDto> place);
+	public List<ReviewDto> getMainReviewList();
 }

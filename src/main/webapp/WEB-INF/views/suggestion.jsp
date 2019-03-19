@@ -44,6 +44,9 @@
 	width: 100%;
 }
 </style>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27b7ba470a0448e650efe0a033ec1e1f"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27b7ba470a0448e650efe0a033ec1e1f&libraries=services"></script>
 </head>
 
 <body>
@@ -82,9 +85,41 @@
 						<input type="hidden" value="${SugDto.place_no }" name="place_no">
 						<input type="hidden" value="${SugDto.user_no }" name="user_no">
 						<input type="hidden" value="${SugDto.sug_no }" name="sug_no">
-						<input type="submit" value="예약"> <br> <input
-							type="submit" value="보류" onclick="self.close()">
+						<input type="submit" value="예약"> <br> 
+						<input type="submit" value="보류" onclick="self.close()">
 					</form>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="map" style="width: 500px; height: 400px;"></div>
+						<script>
+							var container = document.getElementById('map');
+							var infowindow = new daum.maps.InfoWindow({zIndex:1});
+							var options = {
+								center : new daum.maps.LatLng(${SugDto.longitude}, ${SugDto.latitude}),
+								level : 3
+							};
+							var map = new daum.maps.Map(container, options);
+							displayMarker('${SugDto.place_name}');
+							
+							// 지도에 마커를 등록하는 함수
+							function displayMarker(place_name) {
+								// 마커를 생성하고 지도에 표시
+								var marker = new daum.maps.Marker({
+									map: map,
+									position: new daum.maps.LatLng(${SugDto.longitude}, ${SugDto.latitude})
+								});
+								// 카머에 클릭이벤트를 등록
+								daum.maps.event.addListener(marker, 'click', function() {
+									console.log("clicked");
+									// 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+									infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place_name + '</div>');
+									infowindow.open(map, marker);
+								});
+							}
+						</script>
+				
 				</td>
 			</tr>
 		</table>
