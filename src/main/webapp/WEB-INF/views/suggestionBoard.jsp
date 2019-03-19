@@ -127,7 +127,7 @@
 						class="list-group-item">나의 이용내역</a>
 				</div>
 			</div>
-			<!-- /.col-lg-3 -->
+
 
 			<div class="col-lg-9">
 
