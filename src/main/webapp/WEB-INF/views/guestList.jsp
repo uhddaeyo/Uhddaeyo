@@ -152,20 +152,7 @@ function kakaoLink(e) {
 
 					</table>
 				</div>
-				<div style="text-align: center;">
-					<div style="display: inline-block;">
-						<ul class="pagination">
-							<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-							<li class="page-item active"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#">&raquo;</a>
-							</li>
-						</ul>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -209,6 +196,6 @@ function kakaoLink(e) {
 		</div>
 	</div>
 	<script type='text/javascript'>
-		Kakao.init('cd1e5dbbd5ca1a96ec393c7c7518dee7');
+		Kakao.init('9efa9b059b975522916cd89a10436da0');
 	</script>
 </body>

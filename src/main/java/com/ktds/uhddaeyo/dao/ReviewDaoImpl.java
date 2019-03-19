@@ -29,6 +29,11 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int updateReply(ReplyDto rdto) {
 		return reviewAndReplyMapper.updateReply(rdto);
 	}
+
+	@Override
+	public List<ReviewDto> selectReviewLists(int userNo) {
+		return reviewAndReplyMapper.selectReviewLists(userNo);
+	}
 	
 	
 

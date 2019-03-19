@@ -138,4 +138,6 @@ public class ReviewDto {
 				+ star + ", review=" + review + ", review_date=" + review_date + ", reply_no=" + reply_no + ", reply="
 				+ reply + ", reply_date=" + reply_date + ", age=" + age + ", gender=" + gender + ", id=" + id + "]";
 	}
+
+	
 }

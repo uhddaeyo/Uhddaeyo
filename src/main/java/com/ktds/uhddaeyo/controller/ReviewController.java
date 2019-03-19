@@ -1,6 +1,7 @@
 package com.ktds.uhddaeyo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.uhddaeyo.model.dto.ReviewDto;
 import com.ktds.uhddaeyo.service.ReviewAndReplyService;
@@ -25,5 +27,15 @@ public class ReviewController {
 		model.addAttribute("reviews", reviews);
 		return "review";
 	}
+	
+	@RequestMapping("/reviewList")
+	public ModelAndView selectHistoryList(HttpSession session) {
+		ModelAndView mv = new ModelAndView("/reviewList");
+		int userNo = (int) session.getAttribute("userNo");
+		List<ReviewDto> reviewList = service.selectReviewLists(userNo);
+		mv.addObject("reviewList", reviewList);
+		return mv;
+	}
+
 }
 

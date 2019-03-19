@@ -4,6 +4,10 @@ import java.math.BigDecimal;
 import java.sql.Time;
 import java.sql.Timestamp;
 
+import com.javadocmd.simplelatlng.LatLng;
+import com.javadocmd.simplelatlng.LatLngTool;
+import com.javadocmd.simplelatlng.util.LengthUnit;
+
 public class SuggestionDto {
 	private int sug_no;
 	private int req_no;
@@ -21,6 +25,7 @@ public class SuggestionDto {
 	private String message;
 	private BigDecimal longitude;
 	private BigDecimal latitude;
+	private double distance;
 
 	public SuggestionDto() {
 	};
@@ -160,7 +165,21 @@ public class SuggestionDto {
 	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
 	}
+	
+    public double getDistance() {
+		return distance;
+	}
 
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	public double calcDistance(Double xValue, Double yValue) {
+        LatLng p1 = new LatLng(xValue, yValue);
+        LatLng p2 = new LatLng(getLongitude().doubleValue(), getLatitude().doubleValue());
+        setDistance(LatLngTool.distance(p1, p2, LengthUnit.KILOMETER));
+        return LatLngTool.distance(p1, p2, LengthUnit.KILOMETER);
+    }
 	@Override
 	public String toString() {
 		return "SuggestionDto [sug_no=" + sug_no + ", req_no=" + req_no + ", place_no=" + place_no + ", user_no="

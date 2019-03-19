@@ -27,5 +27,9 @@ public class ReviewAndReplyServiceImpl implements ReviewAndReplyService {
 	public int insertReply(ReplyDto rdto) {
 		return reviewDao.insertReply(rdto);
 	}
+	@Override
+	public List<ReviewDto> selectReviewLists(int userNo) {
+		return reviewDao.selectReviewLists(userNo);
+	}
 }
 
