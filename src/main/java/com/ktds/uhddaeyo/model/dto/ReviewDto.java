@@ -14,6 +14,7 @@ public class ReviewDto {
 	private Timestamp reply_date;
 	private int age;
 	private String gender;
+	private String place_name;
 
 	public ReviewDto() {
 		
@@ -114,10 +115,21 @@ public class ReviewDto {
 		this.gender = gender;
 	}
 
+	public String getPlace_name() {
+		return place_name;
+	}
+
+	public void setPlace_name(String place_name) {
+		this.place_name = place_name;
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewDto [review_no=" + review_no + ", user_no=" + user_no + ", place_no=" + place_no + ", star="
 				+ star + ", review=" + review + ", review_date=" + review_date + ", reply_no=" + reply_no + ", reply="
-				+ reply + ", reply_date=" + reply_date + ", age=" + age + ", gender=" + gender + "]";
+				+ reply + ", reply_date=" + reply_date + ", age=" + age + ", gender=" + gender + ", place_name="
+				+ place_name + "]";
 	}
+
+	
 }

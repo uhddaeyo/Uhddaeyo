@@ -117,6 +117,7 @@ function suggestionPopup(place_no, sug_no) {
 				<a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item">초대장 모아보기</a> 
 					<a href="${pageContext.request.contextPath}/reservationList" class="list-group-item active">나의 예약내역</a>
 					<a href="${pageContext.request.contextPath}/historyList" class="list-group-item">나의 이용내역</a>
+					<a href="${pageContext.request.contextPath}/reviewList" class="list-group-item">내가 남긴리뷰</a>
 				</div>
 			</div>
 			
