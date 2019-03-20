@@ -84,19 +84,21 @@
    <!-- Page Content -->
    <div class="container">
       <div class="row">
-       
-		<div class="list-group" style="text-align: center; margin-top: 30px;">
-			<c:set var="userNo" value="${sessionScope.userNo}"></c:set>
-   			<%
-				AES256Util aes256Util = new AES256Util();
-				String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
-			%>
-		   <a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item">초대장 모아보기</a>
-		   <a href="${pageContext.request.contextPath}/reqList" class="list-group-item">나의 요청내역</a> 
-	             <a href="${pageContext.request.contextPath}/reservationList" class="list-group-item">나의 예약내역</a> 
-	             <a href="${pageContext.request.contextPath}/historyList" class="list-group-item">나의 이용내역</a>
-	             <a href="${pageContext.request.contextPath}/reviewList" class="list-group-item active">내가 남긴리뷰</a>
-       	</div>
+
+      <div class="col-lg-2" style="margin-top: 45px; margin-right: 30px">
+			<div class="site-logo" style="font-family: Segoe Scrip;" align="center">
+				<img class="menu-logo" src="resources/logoImage/menu1.jpg" width="130" height="50" />
+			</div>
+			<div class="list-group" style="text-align: center; margin-top: 30px;">
+				<a href="${pageContext.request.contextPath}/host" class="list-group-item">가게정보</a>
+				<a href="${pageContext.request.contextPath}/guestList" class="list-group-item"  style="text-align:center">고객현황</a>
+				<a href="${pageContext.request.contextPath}/inviteList" class="list-group-item">초대현황</a>
+				<a href="${pageContext.request.contextPath}/resvList" class="list-group-item">예약현황</a>
+				<a href="${pageContext.request.contextPath}/review" class="list-group-item active">가게리뷰</a>
+				<a href="${pageContext.request.contextPath}/reviewAnalysis" class="list-group-item">리뷰분석</a>
+				<a href="${pageContext.request.contextPath}/guestAnalysis" class="list-group-item">고객분석</a>
+			</div>
+	 		</div>
 
 
          <div class="col-lg-9">
@@ -124,38 +126,38 @@
                      <c:choose>
                         <c:when test="${review.star eq 5 }">
                            <div style>
-                              <img src="resources/images/star.png" width="30" height="30"/>
-                              <img src="resources/images/star.png" width="30" height="30"/>
-                              <img src="resources/images/star.png" width="30" height="30"/>
-                              <img src="resources/images/star.png" width="30" height="30"/>
-                              <img src="resources/images/star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}resources/images/single-star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}resources/images/single-star.png" width="30" height="30"/>
                               
                            </div>
                         </c:when>
                         <c:when test="${review.star eq 4 }">
                            <div>
-                              <img src="resources/images/star.png" width="30" height="30"/>
-                              <img src="resources/images/star.png" width="30" height="30"/>
-                              <img src="resources/images/star.png" width="30" height="30"/>
-                              <img src="resources/images/star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
                            </div>
                         </c:when>
                         <c:when test="${review.star eq 3 }">
                            <div>
-                              <img src="resources/images/star.png" width="30" height="30"/>
-                              <img src="resources/images/star.png" width="30" height="30"/>
-                              <img src="resources/images/star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
                            </div>
                         </c:when>
                         <c:when test="${reivew.star eq 2 }">
                            <div>
-                              <img src="resources/images/star.png" width="30" height="30"/>
-                              <img src="resources/images/star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
                            </div>
                         </c:when>
                         <c:otherwise>
                            <div>
-                              <img src="resources/images/star.png" width="30" height="30"/>
+                              <img src="${pageContext.request.contextPath}/resources/images/single-star.png" width="30" height="30"/>
                            </div>
                         </c:otherwise>
                      </c:choose>

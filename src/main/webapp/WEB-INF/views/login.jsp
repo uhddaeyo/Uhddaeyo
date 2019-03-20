@@ -53,13 +53,18 @@
                   <form name="form1" method="post" class="form-signin">
                      <div class="form-group row"></div>
                      <div class="form-group">
-                        <input type="email" class="form-control" id="id" name="id"
+                        <input type="text" class="form-control" id="id" name="id"
                            aria-describedby="emailHelp" placeholder="아이디" required autofocus>
                      </div>
                      <div class="form-group">
                         <input type="password" class="form-control" id="passwd" name="passwd" onkeyup="press();"
                            id="exampleInputPassword1" placeholder="비밀번호">
                      </div>
+                     <c:if test="${msg == 'failure' }">
+								<div style="color: red">
+									<h6>아이디 또는 비밀번호가 일치하지 않습니다!</h6>
+								</div>
+							</c:if>
                      <button class="btn btn-primary btn-lg btn-block" type="button"
                         id="btnLogin">Sign in</button>
                   </form>

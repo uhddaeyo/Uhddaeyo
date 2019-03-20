@@ -1,3 +1,4 @@
+<%@page import="com.ktds.uhddaeyo.common.AES256Util"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -51,10 +52,28 @@
 						</c:when>
 						<c:otherwise>
 				<li class="nav-item">
-					<a class="nav-link"><b>${sessionScope.userName }</b>님 환영합니다.</a>
+					<a class="nav-link"><font color="white"><b>${sessionScope.userName }</b>님 환영합니다.</font></a>
 				</li>
 				<li class="nav-item">
-				<a class="nav-link" href = "${pageContext.request.contextPath}/logout">Logout</a>
+					<c:choose>
+						<c:when test="${sessionScope.userType eq 2 }">
+						 <a class="nav-link" href = '${pageContext.request.contextPath}/host'>
+            <font color="white">My Page</font></a>
+						</c:when>
+						<c:otherwise>
+				<c:set var="userNo" value="${sessionScope.userNo}"></c:set>
+         <%
+										AES256Util aes256Util = new AES256Util();
+										String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
+									%>
+        <a class="nav-link" href = '${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>'>
+            <font color="white">My Page</font></a>
+            </c:otherwise>
+            </c:choose>
+            </li>
+				<li class="nav-item">
+				<a class="nav-link" href = "${pageContext.request.contextPath}/logout">
+				<font color="white">Logout</font></a>
 				</li>
 			</c:otherwise>
         </c:choose>

@@ -101,7 +101,7 @@ function reviewClick(e) {
                                  <h4 class="card-title" style="margin-bottom:15px;">
                                     <a class="text-primary"><b>No.${idx.count}</b></a>
                                  </h4>
-                                 <h5><b>요청 날짜 </b><fmt:formatDate value="${row.date }" pattern="yyyy-MM-dd HH:mm" /></h5>
+                                 <h5><b>날짜 </b><fmt:formatDate value="${row.date }" pattern="yyyy-MM-dd HH:mm" /></h5>
                                  <c:set var="tagMsg" value="${row.tagMsg}"></c:set>
                                   <p class="card-text" style="height:70px;"><b>
                                  <%

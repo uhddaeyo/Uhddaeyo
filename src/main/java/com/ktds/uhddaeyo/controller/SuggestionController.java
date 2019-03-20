@@ -87,7 +87,13 @@ public class SuggestionController {
 	@ResponseBody
 	public List<SuggestionDto> sortByDistance(@RequestParam String longitude, @RequestParam String latitude, HttpSession session) {
 		List<SuggestionDto> suggestionList = service.selectSuggestionList((int) session.getAttribute("userNo"));
+		for(SuggestionDto s : suggestionList) {
+			s.calcDistance(Double.parseDouble(latitude), Double.parseDouble(longitude));
+		}
 		suggestionList.sort(Comparator.comparingDouble(SuggestionDto ->  SuggestionDto.calcDistance(Double.parseDouble(latitude), Double.parseDouble(longitude))));
+		for(SuggestionDto s : suggestionList) {
+			System.out.println(s.getDistance());
+		}
 		return suggestionList;
 	}
 	

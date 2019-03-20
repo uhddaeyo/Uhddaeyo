@@ -24,6 +24,7 @@
             <a href="${pageContext.request.contextPath}/inviteList" class="list-group-item">초대현황</a>
             <a href="${pageContext.request.contextPath}/resvList" class="list-group-item">예약현황</a>
             <a href="${pageContext.request.contextPath}/review" class="list-group-item">가게리뷰</a>
+            <a href="${pageContext.request.contextPath}/reviewAnalysis" class="list-group-item">리뷰분석</a>
             <a href="${pageContext.request.contextPath}/guestAnalysis" class="list-group-item active">고객분석</a>
          </div>
      </div>
