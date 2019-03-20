@@ -161,14 +161,25 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/host/tag", method = RequestMethod.POST)
-	public String tagInsert(@RequestParam("tag") List<String> tags, @RequestParam("placeNo") int placeNo, @RequestParam("classify") String classify) {
+	public ModelAndView tagInsert(@RequestParam("tag") List<String> tags, @RequestParam("placeNo") int placeNo, @RequestParam("classify") String classify) {
 		List<PlaceTagDto> list = new ArrayList<>();
 		list.add(new PlaceTagDto(placeNo, classify));
 		for (String tag : tags) {
 			list.add(new PlaceTagDto(placeNo, tag));
 		}
 		userService.insertPlaceTags(list);
-		return "home";
+		
+		ModelAndView mv = new ModelAndView();
+		List<PlaceDto> place = userService.getPlaceByStar();
+		List<Map<String, Object>> hashList = userService.getPlaceHashList(place);
+		List<Map<String, Object>> picList = userService.getPlacePic(place);
+		List<ReviewDto> review = userService.getMainReviewList();
+		mv.setViewName("/home");
+		mv.addObject("placeList", place);
+		mv.addObject("hashList", hashList);
+		mv.addObject("picList", picList);
+		mv.addObject("reviewList", review);
+		return mv;
 	}
 	
 	@RequestMapping(value = "/host/back", method = RequestMethod.POST)

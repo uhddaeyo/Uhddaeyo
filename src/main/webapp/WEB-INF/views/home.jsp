@@ -169,11 +169,18 @@
 
 </div>
 
-    <button name="test2" id="reqSend" class="btn btn-outline-light" type="button" 
+<c:choose>
+						<c:when test="${sessionScope.userType eq 2 }">
+						
+						</c:when>
+						<c:otherwise>
+				<button name="test2" id="reqSend" class="btn btn-outline-light" type="button" 
      data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" 
     style="padding-top:13px;width:200px;height:70px;cursor:hand;position:relative;top:200px;z-index:100">
     <h4><b>내가 원하는 그곳은?</b></h4>
     </button>
+			</c:otherwise>
+			</c:choose>
     </div>
    <video id="video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
       <source src="${pageContext.request.contextPath}/resources/images/main_video.mp4">
