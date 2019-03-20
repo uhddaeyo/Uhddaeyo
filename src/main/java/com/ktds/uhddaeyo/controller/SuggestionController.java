@@ -58,7 +58,7 @@ public class SuggestionController {
 		boolean success = service.acceptSuggestion(sdto);
 		model.addAttribute("success", success);
 		
-		return "suggestion";
+		return "suggestionDetail";
 	}
 
 	@RequestMapping("/kakaoinvitelink/{userNo}")
