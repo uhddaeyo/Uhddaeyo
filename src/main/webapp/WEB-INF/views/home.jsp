@@ -14,12 +14,19 @@
 <script src="http://malsup.github.com/jquery.cycle2.js">
 </script>
 <script>
+
    $(document).ready(function() {
-	  
+	   var userNo = "<%=session.getAttribute("userNo") %>"
       $('#exampleModal').on('show.bs.modal', function(event) {
-         var button = $(event.relatedTarget) // Button that triggered the modal
-         var recipient = button.data('whatever') // Extract info from data-* attributes
-         var modal = $(this)
+    	  if(userNo == 'null'){
+    		  alert('로그인이 필요한 서비스입니다!');
+    		  window.location.href="/login";
+    	  } else{
+    		  var button = $(event.relatedTarget) // Button that triggered the modal
+    	         var recipient = button.data('whatever') // Extract info from data-* attributes
+    	         var modal = $(this)
+    	  }
+         
          /* modal.find('.modal-body input').val(recipient) */
          });
       $("#reqSend").click(function() {
@@ -137,86 +144,44 @@
 .close div{float:left; text-align:right;}
  #check{font-size:12px; font-family:'돋움'; padding-left:70px;}
  #close{font-size:13px; padding:5px; font-weight:bold;}
+ #video { 
+     position: absolute;
+     top: 0px;
+     left: 0px;
+     min-width: 100%;
+     min-height: 100%;
+     width: auto;
+     height: auto;
+     z-index: -1;
+     overflow: hidden;
+}
+
 </style>
 </head>
 <body style="font-family: Noto Sans KR;">
    <%@include file="header.jsp"%>
 
    <header>
-      <div id="carouselExampleIndicators" class="carousel slide"
-         data-ride="carousel">
-         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0"
-               class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-         </ol>
-         <div class="carousel-inner" role="listbox">
-            <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item active"
-               style="background-image: url('resources/images/table1.jpg')">
-               <div class="carousel-caption d-none d-md-block">
-                  <h3>
-                     <b>컨셉에 맞는 식사 장소를 제안해 드립니다!</b>
-                  </h3>
-                  <!--  <p>This is a description for the first slide.</p>-->
-               </div>
-            </div>
-            <div class="carousel-item"
-               style="background-image: url('resources/images/table2.jpg')">
-               <div class="carousel-caption d-none d-md-block">
-                  <h1>
-                     <b>멀리가지 말고 근처에서 회식하자!</b>
-                  </h1>
-                  <!--  <p>This is a description for the second slide.</p>-->
-               </div>
-            </div>
-            <!-- Slide Three - Set the background image for this slide in the line below -->
-            <div class="carousel-item"
-               style="background-image: url('resources/images/table3.jpg')">
-               <div class="carousel-caption d-none d-md-block">
-                  <h1>
-                     <b>숨겨진 맛집공간을 찾아서!</b>
-                  </h1>
-                  <!-- <p>This is a description for the third slide.</p>-->
-               </div>
-            </div>
-         </div>
-         <a class="carousel-control-prev" href="#carouselExampleIndicators"
-            role="button" data-slide="prev"> <span
-            class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-            class="sr-only">Previous</span>
-         </a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-            role="button" data-slide="next"> <span
-            class="carousel-control-next-icon" aria-hidden="true"></span> <span
-            class="sr-only">Next</span>
-         </a>
-      </div>
-   </header>
+    <div style="width:100%;height:500px;position:relative;top:0;bottom:0;">
+    <div align="center">
 
-     <!-- Button -->
-   <c:choose>
-      <c:when test="${sessionScope.userType != 1 }"></c:when>
-      <c:otherwise>
-   <div class="container" style="margin-top:20px;">
-      <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
-         <button type="button" id="reqSend" class="btn btn-primary btn-lg" style="margin-right: 50px; padding-top: 16px; width: 200px; height: 80px;"
-            data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-            <h4><b>어디가지? 고민말고<br>요청서 보내기</b></h4>
-         </button>
-         <c:set var="userNo" value="${sessionScope.userNo}"></c:set>
-         <%
-										AES256Util aes256Util = new AES256Util();
-										String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
-									%>
-         <button type="button" class="btn btn-outline-primary" style="width: 200px; padding-top: 16px; height: 80px;"
-         
-            onclick="location='${path}/kakaoinvitelink/<%=encryptUserNo %>'">
-             <h4><b>My Page</b></h4></button>
-      </div>
-   </div>
-      </c:otherwise>
-   </c:choose>
+<div align="center" style="position: relative;align:center; top: 120px;"><img width="540px" height="175px" src="${pageContext.request.contextPath}/resources/images/main_text.png"></img>
+
+</div>
+
+    <button name="test2" id="reqSend" class="btn btn-outline-light" type="button" 
+     data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" 
+    style="padding-top:13px;width:200px;height:70px;cursor:hand;position:relative;top:200px;z-index:100">
+    <h4><b>내가 원하는 그곳은?</b></h4>
+    </button>
+    </div>
+   <video id="video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+      <source src="${pageContext.request.contextPath}/resources/images/main_video.mp4">
+</video>
+</div>
+   </header>
+<section style="background-color:#FCFCFC;">
+
    <!-- Button -->
    
    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -224,7 +189,7 @@
       <div class="modal-dialog" role="document">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title" id="exampleModalLabel">의뢰서(맞춤 맛집 찾기)</h5>
+               <h5 class="modal-title" id="exampleModalLabel"><b>의뢰서(맞춤 맛집 찾기)</b></h5>
                <button type="button" class="close" data-dismiss="modal"
                   aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -287,7 +252,7 @@
 
    <!-- Page Content -->
    <div class="container" style="margin-top:45px;">
-
+<br />
       <h2 class="my-4" align="center">
          <b>오늘의 추천맛집</b>
       </h2>
@@ -407,22 +372,22 @@
       
       <hr>
 </div>
-<div id="div_laypopup" align="center" style="border-width:0px;Z-INDEX: 201; POSITION: absolute;left:200px; top:100px;">  
+<%-- <div id="div_laypopup" align="center" style="border-width:0px;Z-INDEX: 201; POSITION: absolute;left:100px; top:100px;">  
     <span><img width="400px" height="320px" src="${pageContext.request.contextPath}/resources/images/ad.png" /><br/>
     <input type="checkbox" name="close" value="OK" onclick="javascript:closeWin('div_laypopup', 1);"/>
-    <font color="white">하루동안 이 창을 열지 않음  </font>
-    </span>
-    <!-- <input type="checkbox" name="close" value="OK" onclick="javascript:closeWinAt00('div_laypopup', 1);"/>오늘만 이 창을 열지 않음 -->  
+    <font color="white">닫기</font>
+    </span> 
  </div>  
    
  <script type="text/javascript">  
 
     openWin('div_laypopup');  
  
- </script>  
+ </script>   --%>
 
       <!-- Call to Action Section -->
    </div>
+   </section>
    <!-- /.container -->
 
       <!-- Footer -->
