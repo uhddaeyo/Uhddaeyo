@@ -109,9 +109,17 @@ public class UserController {
 	@RequestMapping(value = "/guest/signUp", method = RequestMethod.POST)
 	public ModelAndView signUpGuestPost(GuestDto guest) {
 		userService.insertGuest(guest);
-		ModelAndView m = new ModelAndView();
-		m.setViewName("/home");
-		return m;
+		ModelAndView mv = new ModelAndView();
+		List<PlaceDto> place = userService.getPlaceByStar();
+		List<Map<String, Object>> hashList = userService.getPlaceHashList(place);
+		List<Map<String, Object>> picList = userService.getPlacePic(place);
+		List<ReviewDto> review = userService.getMainReviewList();
+		mv.setViewName("/home");
+		mv.addObject("placeList", place);
+		mv.addObject("hashList", hashList);
+		mv.addObject("picList", picList);
+		mv.addObject("reviewList", review);
+		return mv;
 	}
 
 	@RequestMapping(value = "/host/signUp", method = RequestMethod.GET)

@@ -135,7 +135,7 @@
 		from place p, review r where
 		r.place_no=p.place_no group by
 		p.place_no
-		order by avg(star) desc limit 1
+		order by avg(star) desc limit 3
 	</select>
 
 	<select id="getPlaceHashList" resultType="hashmap">

@@ -38,9 +38,7 @@
  	
  	
  	
- 	function sortByDic(){
- 		console.log(latitude);
- 	 	console.log(longitude);
+ function sortByDic(){
  	$.ajax({
  		url : "/sortByDistance",
  		type : 'POST',
@@ -67,7 +65,7 @@
  			});
  		},
          error: function(e) {
-            alert("등록에 실패했습니다.");
+            alert(e);
          } 
  	});
  	}
