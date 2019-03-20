@@ -157,13 +157,7 @@
 							}
 						</script>
 
-						<form action="${path}/acceptSuggestion" method="post">
-							<input type="hidden" value="${sdto.place_no }" name="place_no">
-							<input type="hidden" value="${sdto.user_no }" name="user_no">
-							<input type="hidden" value="${sdto.sug_no }" name="sug_no">
-							<input class="btn btn-primary" type="submit" value="예약" style="margin-right: 5px; width: 100px">
-							<input class="btn btn-outline-dark" type="button" value="보류" onclick="javascript:history.back();" style="margin-left: 5px; width: 100px">
-						</form>
+							<input class="btn btn-outline-dark" type="button" value="뒤로가기" onclick="javascript:history.back();" style="margin-left: 5px; width: 100px">
 						
 					</div>
 				  
@@ -171,6 +165,8 @@
 					         
 				</div>
 			</div>
+			<BR />
+			<BR />
 
 </body>
 </html>
