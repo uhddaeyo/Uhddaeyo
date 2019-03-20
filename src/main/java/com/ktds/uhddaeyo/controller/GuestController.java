@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.uhddaeyo.model.dto.GuestReqDto;
 import com.ktds.uhddaeyo.model.dto.HashTagDto;
+import com.ktds.uhddaeyo.model.dto.PlaceDto;
 import com.ktds.uhddaeyo.model.dto.ReviewDto;
 import com.ktds.uhddaeyo.service.GuestService;
 import com.ktds.uhddaeyo.service.UserService;
@@ -31,10 +32,10 @@ public class GuestController {
 	GuestService guestService;
 
 	@RequestMapping("/customerReq")
-	public String sendCustomerReq(@RequestParam("place") String place, @RequestParam("date") String date,
+	public ModelAndView sendCustomerReq(@RequestParam("place") String place, @RequestParam("date") String date,
 			@RequestParam("price") int price, @RequestParam("member") int memCnt,
 			@RequestParam("tag") List<String> tags, HttpSession session) {
-
+		ModelAndView mv = new ModelAndView();
 		date = date.replace("T", " ") + ":00";
 
 		List<Integer> list = guestService.getMatchedPlace(memCnt, place, price, tags);
@@ -51,8 +52,16 @@ public class GuestController {
 			matchedList.add(new GuestReqDto(req.getReqNo(), p));
 		}
 		guestService.insertMatchedReq(matchedList);
-
-		return "/home";
+		List<PlaceDto> placeList = userService.getPlaceByStar();
+		List<Map<String, Object>> hashList = userService.getPlaceHashList(placeList);
+		List<Map<String, Object>> picList = userService.getPlacePic(placeList);
+		List<ReviewDto> review = userService.getMainReviewList();
+		mv.setViewName("/home");
+		mv.addObject("placeList", placeList);
+		mv.addObject("hashList", hashList);
+		mv.addObject("picList", picList);
+		mv.addObject("reviewList", review);
+		return mv;
 
 	}
 
@@ -95,4 +104,5 @@ public class GuestController {
 		return mv;
 		
 	}
+	
 }
