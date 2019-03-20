@@ -8,13 +8,11 @@
 	<!-- 해당 부분의 id는 MapperClass의 함수 이름과 유사하여야 합니다. -->
 	<select id="getMatchedPlace" resultType="int">
 		SELECT DISTINCT(p.place_no) FROM place p, hash_tag h WHERE
-		p.capacity
-		>= #{capacity} AND p.place_no = h.place_no AND 
+		p.capacity >= #{capacity} AND p.place_no = h.place_no AND 
 		(p.place_price-p.place_price*0.35) <![CDATA[ <= ]]> #{price} <![CDATA[ <= ]]>
 		(p.place_price+p.place_price*0.35)
 		AND REPLACE (p.address,' ','') like REPLACE(CONCAT('%',#{place},'%'),' ','')
-		and
-		h.tag_contents in (
+		and h.tag_contents in (
 		<foreach collection="tags" item="tags" separator=",">
 			#{tags}
 		</foreach>

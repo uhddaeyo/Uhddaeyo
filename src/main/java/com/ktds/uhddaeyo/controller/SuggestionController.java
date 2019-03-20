@@ -63,6 +63,8 @@ public class SuggestionController {
 
 	@RequestMapping("/kakaoinvitelink/{userNo}")
 	public ModelAndView selectHistoryList(@PathVariable String userNo, HttpSession session) {
+		
+		System.out.println(userNo);
 		ModelAndView mv = new ModelAndView();
 		AES256Util aes256Util;
 		String dercryptStr = "";
@@ -75,8 +77,8 @@ public class SuggestionController {
 			e.printStackTrace();
 		}
 		mv.setViewName("/suggestionBoard");
-		
 		List<SuggestionDto> suggestionList = service.selectSuggestionList(Integer.parseInt(dercryptStr));
+		System.out.println(suggestionList);
 		session.setAttribute("userNo", Integer.parseInt(dercryptStr));
 		mv.addObject("suggestionList", suggestionList);
 		
@@ -90,10 +92,8 @@ public class SuggestionController {
 		for(SuggestionDto s : suggestionList) {
 			s.calcDistance(Double.parseDouble(latitude), Double.parseDouble(longitude));
 		}
-		suggestionList.sort(Comparator.comparingDouble(SuggestionDto ->  SuggestionDto.calcDistance(Double.parseDouble(latitude), Double.parseDouble(longitude))));
-		for(SuggestionDto s : suggestionList) {
-			System.out.println(s.getDistance());
-		}
+		suggestionList.sort(Comparator.comparingDouble(SuggestionDto -> 
+			SuggestionDto.calcDistance(Double.parseDouble(latitude), Double.parseDouble(longitude))));
 		return suggestionList;
 	}
 	

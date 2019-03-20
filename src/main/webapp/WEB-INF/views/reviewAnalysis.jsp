@@ -36,7 +36,7 @@
 				<table>
 					<tr>
 						<c:choose>
-   					   			<c:when test="${userNo == 76}" > 		<!-- 추후에 해당 userNo로 바꿔야함 -->
+   					   			<c:when test="${userNo == 210}" > 		<!-- 추후에 해당 userNo로 바꿔야함 -->
    					   				<td>
    										<img src="resources/images/wc_dummy.jpg" style="width:570px; height:570px;">
    									</td>
