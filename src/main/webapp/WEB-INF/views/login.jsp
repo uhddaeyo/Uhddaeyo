@@ -27,9 +27,21 @@
          document.form1.submit();
       });
    });
+   
+   function press() {
+      if (window.event.keyCode == 13) {
+         console.log("login clicked");
+         $('#btnLogin').trigger('click');
+      }
+   }
+   
+   if ("${msg}" == "failure") {
+	   alert("일치하는 정보가 없습니다.");
+   }
+   
 </script>
 </head>
-<body">
+<body>
    <%@include file="header.jsp"%>
    <div class="container">
       <div align="center">
@@ -45,7 +57,7 @@
                            aria-describedby="emailHelp" placeholder="아이디" required autofocus>
                      </div>
                      <div class="form-group">
-                        <input type="password" class="form-control" id="passwd" name="passwd"
+                        <input type="password" class="form-control" id="passwd" name="passwd" onkeyup="press();"
                            id="exampleInputPassword1" placeholder="비밀번호">
                      </div>
                      <button class="btn btn-primary btn-lg btn-block" type="button"

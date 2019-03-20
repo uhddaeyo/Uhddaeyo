@@ -169,6 +169,7 @@
 									map: map,
 									position: new daum.maps.LatLng(${sdto.longitude}, ${sdto.latitude})
 								});
+								
 								// 카머에 클릭이벤트를 등록
 								daum.maps.event.addListener(marker, 'click', function() {
 									console.log("clicked");
