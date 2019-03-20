@@ -24,6 +24,15 @@ public class ReviewController {
 	public String getReviews (Model model, HttpSession session) {
 		int place_no = (int) session.getAttribute("placeNo");
 		List<ReviewDto> reviews = service.selectReviewList(place_no);
+		
+		for (int i=0; i<reviews.size(); i++) {
+			String userId = reviews.get(i).getId();
+			System.out.println(userId);
+			int len = userId.length();
+			String substr = userId.substring((len/2) - 1, (len/2) + 2);
+			reviews.get(i).setId(reviews.get(i).getId().replaceFirst(substr, "***"));
+		}
+		
 		model.addAttribute("reviews", reviews);
 		return "review";
 	}
@@ -32,7 +41,7 @@ public class ReviewController {
 	public ModelAndView selectHistoryList(HttpSession session) {
 		ModelAndView mv = new ModelAndView("/reviewList");
 		int userNo = (int) session.getAttribute("userNo");
-		List<ReviewDto> reviewList = service.selectReviewLists(userNo);
+		List<ReviewDto> reviewList = service.selectReviewLists(userNo);		
 		mv.addObject("reviewList", reviewList);
 		return mv;
 	}

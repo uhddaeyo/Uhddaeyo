@@ -28,19 +28,18 @@
 					<img class="menu-logo" src="resources/logoImage/menu1.jpg" width="130" height="50" />
 				</div>
 				<div class="list-group" style="text-align: center; margin-top: 30px;">
-				<c:set var="userNo" value="${sessionScope.userNo}"></c:set>
-         <%
-										AES256Util aes256Util = new AES256Util();
-										String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
-									%>
-			   <a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item">초대장 모아보기</a>
-			   <a href="${pageContext.request.contextPath}/reqList" class="list-group-item">나의 요청내역</a> 
-               <a href="${pageContext.request.contextPath}/reservationList" class="list-group-item">나의 예약내역</a> 
-               <a href="${pageContext.request.contextPath}/historyList" class="list-group-item">나의 이용내역</a>
-               <a href="${pageContext.request.contextPath}/reviewList" class="list-group-item active">내가 남긴리뷰</a>
-               
-            </div>
-				</div>
+					<c:set var="userNo" value="${sessionScope.userNo}"></c:set>
+         			<%
+						AES256Util aes256Util = new AES256Util();
+						String encryptUserNo = aes256Util.encrypt(String.valueOf(pageContext.getAttribute("userNo")));
+					%>
+				   <a href="${pageContext.request.contextPath}/kakaoinvitelink/<%=encryptUserNo %>" class="list-group-item">초대장 모아보기</a>
+				   <a href="${pageContext.request.contextPath}/reqList" class="list-group-item">나의 요청내역</a> 
+	               <a href="${pageContext.request.contextPath}/reservationList" class="list-group-item">나의 예약내역</a> 
+	               <a href="${pageContext.request.contextPath}/historyList" class="list-group-item">나의 이용내역</a>
+	               <a href="${pageContext.request.contextPath}/reviewList" class="list-group-item active">내가 남긴리뷰</a>
+            	</div>
+			</div>
 
 
 			<div class="col-lg-9">

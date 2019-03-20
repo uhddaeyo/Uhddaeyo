@@ -45,8 +45,7 @@ public class GuestController {
 		for (String s : tags) {
 			tagMsg += (s + "|");
 		}
-		GuestReqDto req = new GuestReqDto((int) session.getAttribute("userNo"), tagMsg, Timestamp.valueOf(date), memCnt,
-				price);
+		GuestReqDto req = new GuestReqDto((int) session.getAttribute("userNo"), tagMsg, Timestamp.valueOf(date), memCnt, price);
 		guestService.insertGuestReq(req);
 		for (int p : list) {
 			matchedList.add(new GuestReqDto(req.getReqNo(), p));

@@ -95,7 +95,7 @@
 				console.log(data.zonecode);
 				console.log(fullRoadAddr);
 
-				/*                $("[name=addr1]").val(data.zonecode); */
+				/* $("[name=addr1]").val(data.zonecode); */
 				/* $("[name=addr2]").val(fullRoadAddr); */
 				document.getElementById('addr2').value = fullRoadAddr;
 				/* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용

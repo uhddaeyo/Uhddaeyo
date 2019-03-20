@@ -1,3 +1,4 @@
+<%@page import="com.ktds.uhddaeyo.common.AES256Util"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,16 +9,9 @@
 
 <style> textarea.autosize { min-height: 50px; } </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
-
-
-
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <script type="text/javascript">
-
-
-
 
    var reply_form;
    
@@ -28,7 +22,7 @@
            con.style.display = 'block';
        }
        
-       reply_form = document.getElementById("reply"+review_no);
+        reply_form = document.getElementById("reply"+review_no);
         reply_form.value="";
         reply_form.removeAttribute("readonly");
         reply_form.focus();
@@ -76,7 +70,6 @@
       obj.style.height = (12+obj.scrollHeight)+"px";
     }
    
-
  </script>
 <%@ include file="/WEB-INF/include/include-header.jsp"%>
 
@@ -91,7 +84,8 @@
    <!-- Page Content -->
    <div class="container">
       <div class="row">
-         <div class="col-lg-2" style="margin-top: 45px; margin-right: 30px">
+
+      <div class="col-lg-2" style="margin-top: 45px; margin-right: 30px">
 			<div class="site-logo" style="font-family: Segoe Scrip;" align="center">
 				<img class="menu-logo" src="resources/logoImage/menu1.jpg" width="130" height="50" />
 			</div>
