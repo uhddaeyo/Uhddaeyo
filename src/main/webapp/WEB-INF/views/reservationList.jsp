@@ -12,8 +12,6 @@
 <script>
 var sug_no = 0;
 $(document).ready(function(){
-	
-	
 	$('#exampleModal').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget) // Button that triggered the modal
 		  var recipient = button.data('whatever') // Extract info from data-* attributes
@@ -46,53 +44,28 @@ function cancelBtn(e){
 	sug_no = s;
 	
 }
-function suggestionPopup(place_no, sug_no) {
-	var popupWidth = 420;
-	var popupHeight = 850;
-	var sugUrl = "suggestionResv";
 
+function suggestionPopup(place_no, sug_no) {
+	var url = "/suggestionResv";
+	console.log(sug_no);
 	
 	var form = document.createElement("form");
 	form.setAttribute("charset", "UTF-8");
 	form.setAttribute("method", "Post");
-	form.setAttribute("action", sugUrl);
+	form.setAttribute("action", url);
 
-	var hiddenField = document.createElement("input");
-	hiddenField.setAttribute("type", "hidden");
-	hiddenField.setAttribute("name", "width");
-	hiddenField.setAttribute("value", popupWidth);
-
-	form.appendChild(hiddenField);
-	hiddenField = document.createElement("input");
-	hiddenField.setAttribute("type", "hidden");
-	hiddenField.setAttribute("name", "height");
-	hiddenField.setAttribute("value", popupHeight);
-	form.appendChild(hiddenField);
-
-	form.appendChild(hiddenField);
 	hiddenField = document.createElement("input");
 	hiddenField.setAttribute("type", "hidden");
 	hiddenField.setAttribute("name", "place_no");
 	hiddenField.setAttribute("value", place_no);
 	form.appendChild(hiddenField);
 	
-	form.appendChild(hiddenField);
 	hiddenField = document.createElement("input");
 	hiddenField.setAttribute("type", "hidden");
 	hiddenField.setAttribute("name", "sug_no");
 	hiddenField.setAttribute("value", sug_no);
 	form.appendChild(hiddenField);
-
-	var url = "suggest"
-	var title = "suggest"
-	var status = "width=" + popupWidth + ", height= " + popupHeight
-			+ ", left=" + (window.screen.width - popupWidth) / 2 + ", top="
-			+ (window.screen.height - popupHeight) / 2
-			+ ", resizable=no, scrollbars=no, status=no;";
-	window.open("", title, status);
-	form.target = title;
 	document.body.appendChild(form);
-	
 	form.submit();
 }
 </script>
