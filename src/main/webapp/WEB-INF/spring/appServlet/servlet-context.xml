@@ -38,6 +38,7 @@
 			<mapping path="/historyList" />
 			<mapping path="/reqList" />
 			<mapping path="/reservationList" />
+			<mapping path="/reviewList" />
 			<beans:bean class="com.ktds.uhddaeyo.controller.LoginInterceptor" />
 		</interceptor>
 	</interceptors>

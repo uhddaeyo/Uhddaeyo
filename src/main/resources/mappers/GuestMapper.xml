@@ -9,9 +9,9 @@
 	<select id="getMatchedPlace" resultType="int">
 		SELECT DISTINCT(p.place_no) FROM place p, hash_tag h WHERE
 		p.capacity
-		>= #{capacity} AND p.place_no = h.place_no AND #{price}-4000 <![CDATA[ <= ]]>
-		p.place_price <![CDATA[ <= ]]>
-		#{price}+5000
+		>= #{capacity} AND p.place_no = h.place_no AND 
+		(p.place_price-p.place_price*0.35) <![CDATA[ <= ]]> #{price} <![CDATA[ <= ]]>
+		(p.place_price+p.place_price*0.35)
 		AND REPLACE (p.address,' ','') like REPLACE(CONCAT('%',#{place},'%'),' ','')
 		and
 		h.tag_contents in (

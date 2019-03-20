@@ -90,4 +90,28 @@ public class SuggestionController {
 		suggestionList.sort(Comparator.comparingDouble(SuggestionDto ->  SuggestionDto.calcDistance(Double.parseDouble(latitude), Double.parseDouble(longitude))));
 		return suggestionList;
 	}
+	
+	@RequestMapping(value = "/suggestionResv", method = RequestMethod.POST)
+	public String sugFromResv(HttpServletRequest request, SuggestionDto sdto, Model model) {
+		sdto.setUser_no((int) request.getSession().getAttribute("userNo"));
+		sdto = service.selectSuggestion(sdto);
+		System.out.println(sdto.getPlace_no());
+		List<String> pictures = service.selectPicturesByPlaceNo(sdto.getPlace_no());
+		System.out.println(pictures);
+		model.addAttribute("pictures", pictures);
+
+		List<String> tags = new ArrayList<String>();
+		if (sdto.getPlace_name() == null)
+			System.out.println("NULL");
+		else {
+			sdto.setMessage(sdto.getMessage().replace("\n", "<br>"));
+			tags = service.selectTagsByPlaceNo(sdto.getPlace_no());
+			model.addAttribute("tags", tags);
+		}
+
+		model.addAttribute("sdto", sdto);
+
+		System.out.println(sdto.toString());
+		return "sugFromResv";
+	}
 }

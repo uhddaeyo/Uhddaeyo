@@ -80,6 +80,7 @@ function reviewClick(e) {
                <a href="${pageContext.request.contextPath}/reqList" class="list-group-item active">나의 요청내역</a>
                <a href="${pageContext.request.contextPath}/reservationList" class="list-group-item">나의 예약내역</a> 
                <a href="${pageContext.request.contextPath}/historyList" class="list-group-item">나의 이용내역</a>
+               <a href="${pageContext.request.contextPath}/reviewList" class="list-group-item">내가 남긴 리뷰</a>
             </div>
 				</div>
 	

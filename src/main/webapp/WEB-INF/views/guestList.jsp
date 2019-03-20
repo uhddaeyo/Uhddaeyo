@@ -53,9 +53,9 @@ function kakaoLink(e) {
 	Kakao.Link.sendCustom({
 		templateId : 15212,
 		templateArgs : {
-			'des' : '제안서 보기를 클릭해서 도착한 제안서를 확인해보세요!',
+			'des' : '초대장 보기를 클릭해서 도착한 제안서를 확인해보세요!',
 			'title' : '고객님 여기 어때요?',
-			'btn' : '제안서 보기',
+			'btn' : '초대장 보기',
 			'url' : url,
 		}
 	});

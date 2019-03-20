@@ -18,6 +18,7 @@
 		form.setAttribute("charset", "UTF-8");
 		form.setAttribute("method", "Post");
 		form.setAttribute("action", url);
+    
 		hiddenField = document.createElement("input");
 		hiddenField.setAttribute("type", "hidden");
 		hiddenField.setAttribute("name", "sug_no");
@@ -108,7 +109,6 @@
 
 
 			<div class="col-lg-9">
-
 				<h2 style="margin-top: 55px;margin-bottom: 10px"><b>초대장 모아보기</b></h2>
 <div align="right" >
 <button type="button" class="btn btn-primary review" id="sortBtn" onclick="sortByDic();">거리순으로 보기</button></div>
