@@ -108,4 +108,11 @@ public class HostController {
 		System.out.println(grdto.getSugNo() + " " + grdto.getMemo());
 		return hostService.saveMemo(grdto);
 	}
+	
+	@RequestMapping("/reviewAnalysis")
+	public ModelAndView reviewAnalysis(HttpSession session) {
+		ModelAndView mv = new ModelAndView("/reviewAnalysis");
+		mv.addObject("userNo" , session.getAttribute("userNo"));
+		return mv;
+	}
 }
