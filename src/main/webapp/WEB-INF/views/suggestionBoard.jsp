@@ -11,42 +11,19 @@
 
 <script type="text/javascript">
  	function suggestionPopup(sug_no) {
-		var popupWidth = 420;
-		var popupHeight = 850;
-		var sugUrl = "/suggestion";
-		
+		var url = "/suggestionDetail";
 		console.log(sug_no);
 		
 		var form = document.createElement("form");
 		form.setAttribute("charset", "UTF-8");
 		form.setAttribute("method", "Post");
-		form.setAttribute("action", sugUrl);
-		var hiddenField = document.createElement("input");
-		hiddenField.setAttribute("type", "hidden");
-		hiddenField.setAttribute("name", "width");
-		hiddenField.setAttribute("value", popupWidth);
-		form.appendChild(hiddenField);
-		
-		hiddenField = document.createElement("input");
-		hiddenField.setAttribute("type", "hidden");
-		hiddenField.setAttribute("name", "height");
-		hiddenField.setAttribute("value", popupHeight);
-		form.appendChild(hiddenField);
+		form.setAttribute("action", url);
+    
 		hiddenField = document.createElement("input");
 		hiddenField.setAttribute("type", "hidden");
 		hiddenField.setAttribute("name", "sug_no");
 		hiddenField.setAttribute("value", sug_no);
 		form.appendChild(hiddenField);
-		
-		var url = "suggest"
-		var title = "suggest"
-		var status = "width=" + popupWidth + ", height= " + popupHeight
-				+ ", left=" + (window.screen.width - popupWidth) / 2 + ", top="
-				+ (window.screen.height - popupHeight) / 2
-				+ ", resizable=no, scrollbars=no, status=no;";
-		window.open("", title, status);
-		form.target = title;
-		
 		document.body.appendChild(form);
 		form.submit();
 	}
@@ -127,10 +104,9 @@
 						class="list-group-item">나의 이용내역</a>
 				</div>
 			</div>
-			<!-- /.col-lg-3 -->
+
 
 			<div class="col-lg-9">
-
 				<h2 style="margin-top: 55px;margin-bottom: 10px"><b>초대장 모아보기</b></h2>
 <div align="right" >
 <button type="button" class="btn btn-primary review" id="sortBtn" onclick="sortByDic();">거리순으로 보기</button></div>

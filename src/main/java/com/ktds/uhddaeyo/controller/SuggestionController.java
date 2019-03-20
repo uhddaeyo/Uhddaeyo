@@ -28,14 +28,14 @@ public class SuggestionController {
 
 	@Inject
 	SuggestionService service;
-
-	@RequestMapping(value = "/suggestion", method = RequestMethod.POST)
-	public String PopupSuggestion(@RequestParam double width, @RequestParam double height, HttpServletRequest request,
-			SuggestionDto sdto, Model model) {
+	
+	@RequestMapping(value = "/suggestionDetail", method = RequestMethod.POST)
+	public String suggestionDetail(HttpServletRequest request, SuggestionDto sdto, Model model) {
 		sdto.setUser_no((int) request.getSession().getAttribute("userNo"));
 		sdto = service.selectSuggestion(sdto);
 		System.out.println(sdto.getPlace_no());
 		List<String> pictures = service.selectPicturesByPlaceNo(sdto.getPlace_no());
+		System.out.println(pictures);
 		model.addAttribute("pictures", pictures);
 
 		List<String> tags = new ArrayList<String>();
@@ -47,15 +47,10 @@ public class SuggestionController {
 			model.addAttribute("tags", tags);
 		}
 
-		double imgWidth = width * 0.90;
-		double imgHeight = height * 0.35;
-
-		model.addAttribute("imgWidth", imgWidth);
-		model.addAttribute("imgHeight", imgHeight);
-		model.addAttribute("SugDto", sdto);
+		model.addAttribute("sdto", sdto);
 
 		System.out.println(sdto.toString());
-		return "suggestion";
+		return "suggestionDetail";
 	}
 
 	@RequestMapping(value = "/acceptSuggestion", method = RequestMethod.POST)
