@@ -74,12 +74,12 @@ public class SuggestionController {
 		} catch (GeneralSecurityException e) {
 			e.printStackTrace();
 		}
-
 		mv.setViewName("/suggestionBoard");
 		
 		List<SuggestionDto> suggestionList = service.selectSuggestionList(Integer.parseInt(dercryptStr));
 		session.setAttribute("userNo", Integer.parseInt(dercryptStr));
 		mv.addObject("suggestionList", suggestionList);
+		
 		return mv;
 	}
 	

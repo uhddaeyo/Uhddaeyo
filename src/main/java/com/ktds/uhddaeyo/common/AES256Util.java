@@ -22,6 +22,7 @@ public class AES256Util {
 	 * @throws UnsupportedEncodingException 키값의 길이가 16이하일 경우 발생
 	 */
 	final private String key = "No.1ITTransformationLeader";
+	final private String WeNeedToChangeSlashToStr = "ENdfEFN";
 
 	public AES256Util() throws UnsupportedEncodingException {
 		this.iv = key.substring(0, 16);
@@ -48,11 +49,15 @@ public class AES256Util {
 	 */
 	public String encrypt(String str)
 			throws NoSuchAlgorithmException, GeneralSecurityException, UnsupportedEncodingException {
-		
+
 		Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 		c.init(Cipher.ENCRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes()));
 		byte[] encrypted = c.doFinal(str.getBytes("UTF-8"));
 		String enStr = new String(Base64.encodeBase64(encrypted));
+		if (enStr.contains("/")) {
+			enStr = enStr.replace("/", WeNeedToChangeSlashToStr);
+		}
+
 		return enStr;
 	}
 
@@ -67,6 +72,9 @@ public class AES256Util {
 	 */
 	public String decrypt(String str)
 			throws NoSuchAlgorithmException, GeneralSecurityException, UnsupportedEncodingException {
+		if (str.contains(WeNeedToChangeSlashToStr)) {
+			str = str.replace(WeNeedToChangeSlashToStr, "/");
+		}
 		Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 		c.init(Cipher.DECRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes()));
 		byte[] byteStr = Base64.decodeBase64(str.getBytes());
