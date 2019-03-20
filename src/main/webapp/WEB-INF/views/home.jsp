@@ -267,6 +267,8 @@
 
       <!-- Marketing Icons Section -->
       <div class="row">
+      	<c:choose>
+<c:when test="${fn:length(placeList) > 0}">
       <c:forEach items="${placeList}" var="place" varStatus="idx">
          <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
@@ -321,7 +323,10 @@
             
          </div>
          </c:forEach>
-
+         </c:when>
+         <c:otherwise>
+         </c:otherwise>
+</c:choose>
          </div>
          <!-- /.row -->
          <!-- Portfolio Section -->
@@ -330,6 +335,8 @@
          </h2>
 
          <div class="row">
+        	<c:choose>
+<c:when test="${fn:length(reviewList) > 0}">
          <c:forEach items="${reviewList}" var="row">
             <div class="col-lg-4 col-sm-6 portfolio-item">
                <div class="card h-500">
@@ -374,7 +381,11 @@
                </div>
             </div>
             </c:forEach>
-            
+            </c:when>
+            <c:otherwise>
+            조회된 결과가 없습니다!
+            </c:otherwise>
+            </c:choose>
          <!-- /.row -->
       
       <hr>

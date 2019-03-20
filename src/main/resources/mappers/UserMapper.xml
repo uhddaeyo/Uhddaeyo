@@ -118,15 +118,14 @@
 
 
 	<select id="selectInviteList" resultType="hashmap">
-		SELECT DISTINCT name,
-		resv_date, message, isresv, place_no, mem_cnt
-		FROM suggestion a, user
-		b, customer_req c
-		WHERE (a.user_no = b.user_no and a.user_no =
-		c.user_no ) and date(resv_date) > date(now()) and
-		a.place_no=#{placeNo}
-	</select>
-
+      SELECT DISTINCT u.user_no, u.name, s.resv_date, s.message, s.isresv, s.place_no, c.mem_cnt 
+      FROM suggestion s, user u, customer_req c 
+      WHERE s.req_no = c.req_no 
+      and s.user_no =u.user_no 
+      and date(resv_date) > date(now()) 
+      and s.place_no=#{placeNo};
+   </select>
+   
 	<select id="getPlaceByStar"
 		resultType="com.ktds.uhddaeyo.model.dto.PlaceDto">
 		select p.place_no AS placeNo, place_name AS placeName,
@@ -136,8 +135,7 @@
 		from place p, review r where
 		r.place_no=p.place_no group by
 		p.place_no
-		order by avg(star) desc limit
-		3;
+		order by avg(star) desc limit 1
 	</select>
 
 	<select id="getPlaceHashList" resultType="hashmap">
@@ -147,7 +145,7 @@
 			place_no =
 			#{place.placeNo}
 		</foreach>
-		order by place_no;
+		order by place_no
 	</select>
 
 	<select id="getPlacePic" resultType="hashmap">
@@ -157,12 +155,12 @@
 			place_no =
 			#{place.placeNo}
 		</foreach>
-		order by place_no;
+		order by place_no
 	</select>
 	<select id="getMainReviewList"
 		resultType="com.ktds.uhddaeyo.model.dto.ReviewDto">
 		SELECT place_name, review, review_date, star, gender, age
 		FROM (SELECT r.place_no, u.gender, u.age, star, r.review, review_date
-		FROM user u, review r WHERE u.user_no=r.user_no ORDER BY review_date desc) s, place p WHERE s.place_no = p.place_no ORDER BY review_date DESC limit 6;
+		FROM user u, review r WHERE u.user_no=r.user_no ORDER BY review_date desc) s, place p WHERE s.place_no = p.place_no ORDER BY review_date DESC limit 6
 	</select>
 </mapper>

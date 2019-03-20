@@ -36,7 +36,11 @@
  	    longitude = pos.coords.longitude;
  	});
  	
+ 	
+ 	
  	function sortByDic(){
+ 		console.log(latitude);
+ 	 	console.log(longitude);
  	$.ajax({
  		url : "/sortByDistance",
  		type : 'POST',

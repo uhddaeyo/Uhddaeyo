@@ -212,6 +212,9 @@ public class UserController {
 		public ModelAndView home() {
 			ModelAndView mv = new ModelAndView();
 			List<PlaceDto> place = userService.getPlaceByStar();
+			for(PlaceDto p : place) {
+				System.out.println(p.getPlaceNo());
+			}
 			List<Map<String, Object>> hashList = userService.getPlaceHashList(place);
 			List<Map<String, Object>> picList = userService.getPlacePic(place);
 			List<ReviewDto> review = userService.getMainReviewList();
