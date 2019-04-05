@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 해당 부분의 namespace는 project package + Mapper Package + Mapper Interface 
+	이름입니다. -->
+<mapper namespace="com.ktds.uhddaeyo.mapper.HostMapper">
+	<select id="getGuestList"
+		resultType="com.ktds.uhddaeyo.model.dto.GuestReqDto">
+		SELECT m.idx AS idx, u.name AS userName, u.user_no AS userNo, c.date AS
+		date, c.mem_cnt AS memCnt, m.place_no
+		AS placeNo, c.req_no AS reqNo, m.sent_yn AS sent
+		FROM user u, customer_req c, customer_req_match m
+		WHERE u.user_no = c.user_no AND
+		c.req_no = m.req_no
+		AND m.place_no = #{ placeNo }
+		AND date(c.date) > date(now())
+		ORDER BY c.date
+	</select>
+
+	<select id="getResvList" resultType="com.ktds.uhddaeyo.model.dto.GuestReqDto">
+		SELECT sug_no AS sugNo, u.name AS userName, s.resv_date AS date, cr.mem_cnt AS memCnt, s.memo AS memo
+		FROM customer_req AS cr 
+		JOIN user AS u ON cr.user_no = u.user_no
+		JOIN suggestion AS s ON cr.req_no = s.req_no
+		WHERE isresv = 'Y' AND  date(resv_date) > date(now()) AND  place_no = #{placeNo};
+	</select>
+	
+	<select id="selectPlaceName" resultType="String">
+		SELECT place_name FROM place WHERE place_no = #{placeNo}
+	</select>
+	
+	<insert id="insertSuggestion" parameterType="com.ktds.uhddaeyo.model.dto.SuggestionDto">
+		INSERT INTO suggestion (req_no, place_no, user_no, resv_date, message, memo)
+		VALUES (#{req_no}, #{place_no}, #{user_no}, #{resv_date}, #{message}, #{message})
+	</insert>
+
+	<select id="selectPlaceInfo" resultType="com.ktds.uhddaeyo.model.dto.PlaceDto">
+		SELECT place_no AS placeNo, place_name AS placeName, place_tel AS placeTel, address, capacity, start_time AS startTime, end_time AS endTime
+		FROM place
+		WHERE user_no = #{userNo}
+	</select>
+	
+	<select id="selectPlaceTag" resultType="java.lang.String">
+		SELECT tag_contents
+		FROM hash_tag
+		WHERE place_no = #{placeNo}
+	</select>
+	
+	<select id="getGenderStat" resultType="hashmap">
+		SELECT gender, count(gender) AS cnt, round(avg(star),1) AS avg 
+		FROM VIEW_guestAnalysis__project_db__review__user
+		WHERE place_no = #{placeNo}
+		GROUP BY gender
+	</select>
+	
+	<select id="getAgeStat" resultType="hashmap">
+		SELECT concat("\"",v.newAge,'s',"\"") AS newAge, count(v.newAge) AS cnt, round(avg(star),1) AS avg 
+		FROM (select left(age,1)*10 as 'newAge', star from VIEW_guestAnalysis__project_db__review__user 
+		WHERE place_no = #{placeNo}) v 
+		GROUP BY v.newAge
+	</select>
+	
+	<select id="getStar" resultType="hashmap" parameterType="map">
+		SELECT star, count(star) AS cnt 
+		FROM VIEW_guestAnalysis__project_db__review__user 
+		WHERE place_no = #{placeNo} and gender in (#{gender1}, #{gender2})  
+		GROUP BY star 
+		ORDER BY star
+	</select>
+	
+	<update id="saveMemo" parameterType="com.ktds.uhddaeyo.model.dto.GuestReqDto">
+		UPDATE suggestion SET memo = #{memo} WHERE sug_no = #{sugNo};
+	</update>
+	
+	<update id="sentInvite" parameterType="Integer">
+		UPDATE customer_req_match SET sent_yn='Y' WHERE idx=#{idx}
+	</update>
+</mapper>

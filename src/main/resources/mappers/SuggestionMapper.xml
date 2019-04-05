@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 해당 부분의 namespace는 project package + Mapper Package + Mapper Interface 
+	이름입니다. -->
+<mapper namespace="com.ktds.uhddaeyo.mapper.SuggestionMapper">
+	<!-- 해당 부분의 id는 MapperClass의 함수 이름과 유사하여야 합니다. -->
+	<select id="selectSuggestion"
+		resultType="com.ktds.uhddaeyo.model.dto.SuggestionDto">
+		SELECT * FROM suggestion AS s JOIN place AS p ON s.place_no = p.place_no WHERE s.sug_no = #{sug_no};
+	</select>
+
+	<update id="acceptSuggestion"
+		parameterType="com.ktds.uhddaeyo.model.dto.SuggestionDto">
+		UPDATE suggestion SET isresv = 'Y' WHERE place_no =
+		#{place_no} AND user_no = #{user_no};
+	</update>
+
+	<select id="selectTagsByPlaceNo" resultType="String">
+		SELECT tag_contents
+		FROM hash_tag WHERE place_no = #{place_no};
+	</select>
+
+	<select id="selectPicturesByPlaceNo" resultType="String">
+		SELECT
+		photo_name FROM picture WHERE place_no = #{place_no};
+	</select>
+	
+	<select id="selectSuggestionList"
+		resultType="com.ktds.uhddaeyo.model.dto.SuggestionDto">
+		SELECT * FROM suggestion AS s JOIN place AS p ON s.place_no = p.place_no WHERE s.user_no = #{user_no};
+	</select>
+</mapper>

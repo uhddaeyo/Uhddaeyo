@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 해당 부분의 namespace는 project package + Mapper Package + Mapper Interface 이름입니다. -->
+
+<mapper namespace="com.ktds.uhddaeyo.mapper.HashTagMapper">
+
+<!-- 해당 부분의 id는 MapperClass의 함수 이름과 유사하여야 합니다. -->
+	<select id="selectTagsByPlaceNo"  resultType="String">
+		SELECT tag_contents FROM hash_tag AS ht JOIN hash_tag_list AS htl
+		 ON ht.tag_list_no = htl.tag_list_no WHERE place_no = #{place_no};
+	</select>
+</mapper>
